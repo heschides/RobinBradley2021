@@ -18,8 +18,8 @@ namespace SimplyEmployeeTracker
         protected async override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            EmployeeViewModel evm = await EmployeeViewModel.CreateEmployeeViewModelAsync();
-            CreateNewEmployeeRecordViewModel cnervm = await CreateNewEmployeeRecordViewModel.CreateNewEmployeeRecordViewModelAsync();
+            var employeeViewModel = await EmployeeViewModel.CreateEmployeeViewModelAsync();
+            var createNewEmployeeRecordViewModel = await CreateNewEmployeeRecordViewModel.CreateNewEmployeeRecordViewModelAsync();
             Window window = new Dashboard();
             window.Show();
         }
