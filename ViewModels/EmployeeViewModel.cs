@@ -74,7 +74,7 @@ namespace SimplyEmployeeTracker.ViewModels
 
         public EmployeeViewModel()
         {
-            var Employees = new EmployeeModel();
+            Employees = new ObservableCollection<EmployeeModel>();
             AddEmployeeCommand = new RelayCommand(AddEmployee);
             RemoveEmployeeCommand = new RelayCommand(RemoveEmployee);
             OpenAddEmployeeWindowCommand = new RelayCommand(OpenAddEmployee);
@@ -84,8 +84,11 @@ namespace SimplyEmployeeTracker.ViewModels
         {
             var employeeViewModel = new EmployeeViewModel();
             var employees = await GetData.EmployeeQueryAsync();
-            foreach (var e in employees) { employeeViewModel.Employees.Add(e); }
-            return employeeViewModel;
+            foreach (var e in employees)
+            {
+                employeeViewModel.Employees.Add(e);
+            }
+                return employeeViewModel;
         }
     }
 }
