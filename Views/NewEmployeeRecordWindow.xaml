@@ -2,23 +2,24 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vms="clr-namespace:SimplyEmployeeTracker.ViewModels"
         xmlns:local="clr-namespace:SimplyEmployeeTracker.Views"
         mc:Ignorable="d"
         Title="CreateNewEmployeeRecord"
-        Height="350"
-        MinHeight="350"
-        MaxHeight="550"
-        Width="700"
-        MinWidth="800"
-        MaxWidth="1000"
-        Background="WhiteSmoke"
+        Height="400"
+        Width="800"
+        Background="White"
         WindowStartupLocation="CenterScreen">
-
+     <behaviors:Interaction.Triggers>
+          <behaviors:EventTrigger EventName="Loaded">
+               <behaviors:InvokeCommandAction Command="{Binding LoadComboBoxesCommand}" />
+          </behaviors:EventTrigger>
+     </behaviors:Interaction.Triggers>
      <Window.DataContext>
-          <vms:CreateNewEmployeeRecordViewModel />
+          <vms:NewEmployeeRecordWindowViewModel />
      </Window.DataContext>
      <Grid>
           <Grid.ColumnDefinitions>
@@ -108,25 +109,31 @@
 
           <TextBox Grid.Row="1"
                    Grid.Column="2"
-                   Grid.ColumnSpan="2" Text="{Binding FirstName}"/>
+                   Grid.ColumnSpan="2"
+                   Text="{Binding FirstName}" />
           <TextBox Grid.Row="2"
                    Grid.Column="2"
-                   Grid.ColumnSpan="2" Text="{Binding LastName}"/>
+                   Grid.ColumnSpan="2"
+                   Text="{Binding LastName}" />
           <TextBox Grid.Row="3"
                    Grid.Column="2"
-                   Grid.ColumnSpan="2" Text="{Binding Nickname}"/>
+                   Grid.ColumnSpan="2"
+                   Text="{Binding Nickname}" />
           <TextBox Grid.Row="1"
-                   Grid.Column="5" Text="{Binding HireDate, Mode=OneWayToSource}" Validation.ErrorTemplate="{x:Null}" />
-        <!--DEPARTMENT-->  
+                   Grid.Column="5"
+                   Text="{Binding HireDate, Mode=OneWayToSource}"
+                   Validation.ErrorTemplate="{x:Null}" />
+          <!--DEPARTMENT-->
           <ComboBox Grid.Row="2"
-                    Grid.Column="5" ItemsSource="{Binding Departments}"
+                    Grid.Column="5"
+                    ItemsSource="{Binding Departments}"
                     DisplayMemberPath="Name"
                     SelectedValue="{Binding SelectedDepartment}" />
           <!--JOB TITLE-->
           <ComboBox Grid.Row="3"
                     Grid.Column="5"
                     ItemsSource="{Binding JobTitles}"
-                    DisplayMemberPath="Name"                     
+                    DisplayMemberPath="Name"
                     SelectedValue="{Binding SelectedJobTitle}" />
 
           <!--PHONE NUMBERS-->
@@ -191,10 +198,10 @@
                       Grid.Column="5"
                       Grid.Row="5">
                <ComboBox ItemsSource="{Binding Path=CertificationTypes}"
-                         SelectedValue="{Binding NewCertificationName}"
-                         SelectedValuePath="Name"
+                         SelectedValue="{Binding SelectedCertification}"
                          DisplayMemberPath="Name" />
-               <TextBox Text="{Binding NewCertificationExpirationDate, StringFormat=d, Mode=OneWayToSource}" Validation.ErrorTemplate="{x:Null}" />
+               <TextBox Text="{Binding NewCertificationExpirationDate, StringFormat=d, Mode=OneWayToSource}"
+                        Validation.ErrorTemplate="{x:Null}" />
 
                <Button Content="Add"
                        Command="{Binding AddCertificationCommand}" />
@@ -222,10 +229,10 @@
                       Grid.Column="5"
                       Orientation="Vertical">
                <ComboBox ItemsSource="{Binding Path=RestrictionTypes}"
-                         SelectedValue="{Binding NewRestrictionType}"
-                         SelectedValuePath="Name"
+                         SelectedValue="{Binding SelectedRestriction}"
                          DisplayMemberPath="Name" />
-               <TextBox Text="{Binding NewRestrictionEndDate, StringFormat=d, Mode=OneWayToSource}" Validation.ErrorTemplate="{x:Null}" />
+               <TextBox Text="{Binding NewRestrictionEndDate, StringFormat=d, Mode=OneWayToSource}"
+                        Validation.ErrorTemplate="{x:Null}" />
                <Button Content="Add"
                        Command="{Binding AddRestrictionCommand}" />
           </StackPanel>
@@ -234,8 +241,7 @@
                     Grid.Row="6"
                     Margin="0,0,0,5"
                     FontSize="10"
-                    ItemsSource="{Binding Restrictions}"
-                    >
+                    ItemsSource="{Binding Restrictions}">
                <ListView.View>
                     <GridView>
                          <GridViewColumn Width="Auto"

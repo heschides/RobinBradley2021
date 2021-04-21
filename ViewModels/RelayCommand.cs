@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace SimplyEmployeeTracker.ViewModels
 {
-    public class RelayCommand : ICommand
+    public class RelayCommand<T> : ICommand
     {
         readonly Action<object> _execute;
         readonly Predicate<object> _canExecute;        

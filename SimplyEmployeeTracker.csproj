@@ -24,8 +24,15 @@
 
   <ItemGroup>
     <None Remove="Images\defaultUserImage.jpg" />
+    <None Remove="Images\distribution.png" />
     <None Remove="Images\edit.png" />
+    <None Remove="Images\inspection.png" />
     <None Remove="Images\person.png" />
+    <None Remove="Images\plus.png" />
+    <None Remove="Images\refresh-16.png" />
+    <None Remove="Images\repair.png" />
+    <None Remove="Images\return.png" />
+    <None Remove="Images\tools.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,10 +58,31 @@
     <Content Include="Images\defaultUserImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\distribution.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\inspection.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\person.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\plus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\refresh-16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\repair.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\return.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\tools.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

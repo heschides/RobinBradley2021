@@ -22,17 +22,19 @@ namespace SimplyEmployeeTracker.DataAccess
                 p.Add("@HireDate", e.HireDate);
                 p.Add("@JobTitleID", e.JobTitle.Id);
                 p.Add("@DepartmentID", e.Department.Id);
-                p.Add("@StatusID", e.Status.ID); //TODO: DERIVE EMPLOYEE.STATUS FROM STATUS TABLE
+                p.Add("@EmployeeStatusID", e.Status.ID); //TODO: DERIVE EMPLOYEE.STATUS FROM STATUS TABLE
                 p.Add("@id", 0, dbType: System.Data.DbType.Int32, direction: System.Data.ParameterDirection.Output);
                 connection.Execute("dbo.spEmployees_Insert", p, commandType: System.Data.CommandType.StoredProcedure);
                 e.ID = p.Get<int>("@id");
 
                 var phones = new DynamicParameters();
-                foreach (PhoneModel phoneModel in e.Phones) {
+                foreach (PhoneModel phoneModel in e.Phones) 
+                {
                     phones.Add("@Number", phoneModel.Number);
                     phones.Add("@Type", phoneModel.Type);
                     phones.Add("@EmployeeID", e.ID);
-                    connection.Execute("dbo.spPhones_Insert", phones, commandType: System.Data.CommandType.StoredProcedure);   }
+                    connection.Execute("dbo.spPhones_Insert", phones, commandType: System.Data.CommandType.StoredProcedure);   
+                }
 
                 var emails = new DynamicParameters();
                 foreach (EmailModel emailModel in e.Emails)
@@ -41,6 +43,28 @@ namespace SimplyEmployeeTracker.DataAccess
                     emails.Add("@Type", emailModel.Type);
                     emails.Add("@EmployeeID", e.ID);
                     connection.Execute("dbo.spEmails_Insert", emails, commandType: System.Data.CommandType.StoredProcedure);
+                }
+
+                var certifications = new DynamicParameters();
+                foreach (CertificationModel certification in e.Certifications)
+                {
+                    DateTime thisDay = DateTime.Today;
+                    certifications.Add("@CertificationNameID", certification.ID);
+                    certifications.Add("@CertificationInitialDate", thisDay);
+                    certifications.Add("@CertificationEndDate", certification.ExpirationDate);
+                    certifications.Add("@EmployeeID", e.ID);
+                    connection.Execute("dbo.spEmployeesCertificationType_Insert", certifications, commandType: System.Data.CommandType.StoredProcedure);
+                }
+
+                var restrictions = new DynamicParameters();
+                foreach (RestrictionModel restriction in e.Restrictions)
+                {
+                    DateTime thisDay = DateTime.Today;
+                    restrictions.Add("@RestrictionNameID", restriction.ID);
+                    restrictions.Add("@RestrictionInitialDate", thisDay);
+                    restrictions.Add("@RestrictionEndDate", restriction.EndDate);
+                    restrictions.Add("@EmployeeID", e.ID);
+                    connection.Execute("dbo.spEmployeesRestrictionTypes_Insert", restrictions, commandType: System.Data.CommandType.StoredProcedure);
                 }
 
                 return e;

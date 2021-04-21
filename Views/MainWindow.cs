@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimplyEmployeeTracker.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,11 @@ using System.Windows.Shapes;
 namespace SimplyEmployeeTracker.Views
 {
     /// <summary>
-    /// Interaction logic for Dashboard.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Dashboard : Window
+    public partial class MainWindow : Window
     {
-        public Dashboard()
+        public MainWindow()
         {
             InitializeComponent();
         }

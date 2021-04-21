@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace SimplyEmployeeTracker.Views
 {
     /// <summary>
-    /// Interaction logic for CreateNewEmployeeRecord.xaml
+    /// Interaction logic for AssignItemWindow.xaml
     /// </summary>
-    public partial class CreateNewEmployeeRecord : Window
+    public partial class AssignItemWindow : Window
     {
-        public CreateNewEmployeeRecord()
+        public AssignItemWindow()
         {
             InitializeComponent();
         }

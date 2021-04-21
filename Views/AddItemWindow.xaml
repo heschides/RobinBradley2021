@@ -1,0 +1,145 @@
+﻿<Window x:Class="SimplyEmployeeTracker.Views.AddItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:vms="clr-namespace:SimplyEmployeeTracker.ViewModels"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimplyEmployeeTracker.Views"
+        mc:Ignorable="d"
+        Title="AddItem"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="ToolWindow"
+        Width="650"
+        Height="370"
+        Background="White" Topmost="True" >
+
+     <behaviors:Interaction.Triggers>
+          <behaviors:EventTrigger EventName="Loaded">
+               <behaviors:InvokeCommandAction Command="{Binding GetEquipmentClassesCommand}" />
+          </behaviors:EventTrigger>
+     </behaviors:Interaction.Triggers>
+     <Window.DataContext>
+          <vms:AddItemViewModel />
+     </Window.DataContext>
+     <Grid>
+          <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="*" />
+               <ColumnDefinition Width="Auto" />
+               <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+               <RowDefinition Height=".5*" />
+               <RowDefinition Height="Auto" />
+               <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+
+          <StackPanel Width="500"
+                      Grid.Column="1"
+                      Grid.Row="1">
+               <TextBlock Text="Create New Inventory Item"
+                          FontSize="16" />
+               <StackPanel Height="20" />
+               <StackPanel Orientation="Horizontal">
+                    <StackPanel Margin="0,30,5,0"
+                                Width="70">
+                         <TextBlock Text="ID"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
+                         <TextBlock Text="Description"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="22"
+                                    Padding="0,3,0,0" />
+                         <TextBlock Text="Class"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
+                         <TextBlock Text="Brand"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
+                         <TextBlock Text="Model"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
+                         <TextBlock Text="S/N"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
+
+                    </StackPanel>
+                    <StackPanel Width="150">
+                         <DatePicker x:Name="txtPurchaseDate"
+                                     Grid.Row="3"
+                                     Grid.Column="5"
+                                     FontSize="10"
+                                     BorderThickness="0"
+                                     Height="30" />
+                         <TextBox x:Name="txtDescription"
+                                  HorizontalAlignment="Stretch" />
+                         
+                         <TextBox x:Name="txtBrand"
+                                  HorizontalAlignment="Stretch" />
+                         <ComboBox x:Name="comboClass"
+                                   HorizontalAlignment="Stretch" ItemsSource="{Binding Path=EquipmentClasses}" 
+                                   DisplayMemberPath="Name"/>
+                         <TextBox x:Name="txtModel" />
+                         <TextBox x:Name="txtID"
+                                  HorizontalAlignment="Stretch" />
+
+                         <TextBox x:Name="txtSerialNumber"
+                                  HorizontalAlignment="Stretch" />
+
+                    </StackPanel>
+                    <StackPanel Width="30" />
+
+                    <StackPanel Margin="0,28,0,0" >
+                         <TextBlock Text="CIC Required"
+                                    FontSize="10"
+                                    Margin="0,4,0,0"
+                                    HorizontalAlignment="Right"
+                                    Height="20" />
+                       
+                         <TextBlock Text="PO#"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
+                         <TextBlock Text="Documents"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
+                    </StackPanel>
+                    <StackPanel Width="10" />
+                    <StackPanel Width="120"  Margin="0,28,0,0">
+                         <StackPanel Orientation="Horizontal"
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     Height="25">
+                              <RadioButton Content="Yes"
+                                           Margin="0,5,10,0" />
+                              <RadioButton Content="No"
+                                           Margin="0,5,0,0" />
+                         </StackPanel>
+
+                         <TextBox x:Name="txtPONumber" />
+
+                         <ListBox Height="48" ItemsSource="{Binding SelectedFiles}" />
+                         <Button Command="{Binding OpenFileDialogCommand}">
+                              <Image Source="/Images/plus.png"
+                                Width="16"
+                                Margin="0,2,0,2" />
+                         </Button>
+
+                    </StackPanel>
+               </StackPanel>
+
+               <Button Margin="75,10,58,0"
+                       Content="Submit" BorderThickness="1"></Button>
+          </StackPanel>
+       
+
+     </Grid>
+</Window>

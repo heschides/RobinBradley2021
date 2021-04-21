@@ -1,4 +1,5 @@
-﻿using SimplyEmployeeTracker.ViewModels;
+﻿using SimplyEmployeeTracker.DataAccess;
+using SimplyEmployeeTracker.ViewModels;
 using SimplyEmployeeTracker.Views;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,11 @@ namespace SimplyEmployeeTracker
     /// </summary>
     public partial class App : Application
     {
-        protected async override void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            var employeeViewModel = await EmployeeViewModel.CreateEmployeeViewModelAsync();
-            var createNewEmployeeRecordViewModel = await CreateNewEmployeeRecordViewModel.CreateNewEmployeeRecordViewModelAsync();
-            Window window = new Dashboard();
-            window.Show();
+            Window window = new MainWindow();
+            window.Show();       
         }
     }
 }

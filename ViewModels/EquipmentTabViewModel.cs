@@ -1,0 +1,76 @@
+﻿using SimplyEmployeeTracker.DataAccess;
+using SimplyEmployeeTracker.Models;
+using SimplyEmployeeTracker.Views;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SimplyEmployeeTracker.ViewModels
+{
+    public class EquipmentTabViewModel
+    {
+
+        public ObservableCollection<EquipmentModel> Equipment { get; set; }
+
+        public RelayCommand<object> OpenAddItemWindowCommand { get; private set; }
+        public static void OpenAddItemWindow(object e)
+        {
+            var window = new AddItem();
+            window.Show();
+        }
+        public RelayCommand<object> OpenAssignItemWindowCommand { get; set; }
+        public static void OpenAssignItemWindow(object e)
+        {
+            var window = new AssignItemWindow();
+            window.Show();
+        }
+        public RelayCommand<object> OpenReturnItemWindowCommand { get; set; }
+        public static void OpenReturnItemWindow(object e)
+        {
+            var window = new ReturnItemWindow();
+            window.Show();
+        }
+        public RelayCommand<object> OpenAddCICRecordWindowCommand { get; set; }
+        public static void OpenAddCICRecordWindow(object e)
+        {
+            var window = new AddCICRecordWindow();
+            window.Show();
+        }
+        public RelayCommand<object> OpenRepairItemWindowCommand { get; set; }
+        public static void OpenRepairItemWindow(object e)
+        {
+            var window = new RepairItemWindow();
+            window.Show();
+        }
+        public RelayCommand<object>RefreshEquipmentCommand { get; private set; }
+        public async void RefreshEquipment(object e)
+        {
+
+           var equipment = await GetData.EquipmentQueryAsync();
+            var IDs = new List<int>();
+            foreach (EquipmentModel _equipment in Equipment) { IDs.Add(_equipment.ID); }
+
+            foreach (EquipmentModel _equipment in equipment)
+            {
+                if (IDs.Contains(_equipment.ID))
+                { }
+                else { Equipment.Add(_equipment); }
+            }
+        }
+
+        public EquipmentTabViewModel()
+        {
+            Equipment = new ObservableCollection<EquipmentModel>();
+            OpenAddItemWindowCommand = new RelayCommand<object>(OpenAddItemWindow);
+            OpenAssignItemWindowCommand = new RelayCommand<object>(OpenAssignItemWindow);
+            OpenReturnItemWindowCommand = new RelayCommand<object>(OpenReturnItemWindow);
+            OpenAddCICRecordWindowCommand = new RelayCommand<object>(OpenAddCICRecordWindow);
+            OpenRepairItemWindowCommand = new RelayCommand<object>(OpenRepairItemWindow);
+            RefreshEquipmentCommand = new RelayCommand<object>(RefreshEquipment);
+        }
+
+    }
+}

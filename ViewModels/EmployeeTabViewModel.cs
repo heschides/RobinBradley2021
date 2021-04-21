@@ -10,14 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using SimplyEmployeeTracker.DataAccess;
 using System.Windows.Input;
+using System.Windows;
 
 namespace SimplyEmployeeTracker.ViewModels
 {
-   public class EmployeeViewModel : ViewModelBase
+    public class EmployeeTabViewModel : ViewModelBase
     {
         //PROPERTIES
 
-        public ObservableCollection<EmployeeModel> Employees { get; set; }
+       public ObservableCollection<EmployeeModel> Employees { get; set; }
 
         private string _firstName;
 
@@ -41,54 +42,45 @@ namespace SimplyEmployeeTracker.ViewModels
             get { return _hireDate; }
             set { OnPropertyChanged(ref _hireDate, value); }
         }
-
+        
         //COMMANDS
 
-        public RelayCommand AddEmployeeCommand { get; private set; }
-        public void AddEmployee(object employee)
-        {
-            EmployeeModel newEmployee = new EmployeeModel();
-            newEmployee.FirstName = FirstName;
-            newEmployee.LastName = LastName;
-            newEmployee.HireDate = HireDate;
-            Employees.Add(newEmployee);
-            DataAccess.SendData.CreateEmployee(newEmployee);
-        }
-
-        public RelayCommand OpenAddEmployeeWindowCommand { get; private set; }
-        public void OpenAddEmployee(object e)
+        public RelayCommand<object> OpenAddEmployeeWindowCommand { get; private set; }
+        public static void OpenAddEmployee(object e)
         {
             var w = new CreateNewEmployeeRecord();
             w.Show();
         }
 
-        public RelayCommand RemoveEmployeeCommand { get; private set; }
+        public RelayCommand<object> RemoveEmployeeCommand { get; private set; }
         public void RemoveEmployee(object employee)
         {
             Employees.Remove(employee as EmployeeModel);
             DeleteData.DeleteEmployee(employee as EmployeeModel);
         }
 
-
-        //CONSTRUCTORS
-
-        public EmployeeViewModel()
+        public RelayCommand<object> RefreshEmployeesCommand { get; private set; }
+        public async void RefreshEmployees(object e)
         {
-            Employees = new ObservableCollection<EmployeeModel>();
-            AddEmployeeCommand = new RelayCommand(AddEmployee);
-            RemoveEmployeeCommand = new RelayCommand(RemoveEmployee);
-            OpenAddEmployeeWindowCommand = new RelayCommand(OpenAddEmployee);
-        }
-
-        public static async Task<EmployeeViewModel> CreateEmployeeViewModelAsync()
-        {
-            var employeeViewModel = new EmployeeViewModel();
             var employees = await GetData.EmployeeQueryAsync();
-            foreach (var e in employees)
+            var IDs = new List<int>();
+            foreach (EmployeeModel _employee in Employees) { IDs.Add(_employee.ID); }
+                        
+            foreach (EmployeeModel _employee in employees)
             {
-                employeeViewModel.Employees.Add(e);
+                if (IDs.Contains(_employee.ID))
+                { }
+                else { Employees.Add(_employee); }
             }
-                return employeeViewModel;
         }
-    }
+    
+            //CONSTRUCTORS
+            public EmployeeTabViewModel()
+            {
+                Employees = new ObservableCollection<EmployeeModel>();
+                RemoveEmployeeCommand = new RelayCommand<object>(RemoveEmployee);
+                OpenAddEmployeeWindowCommand = new RelayCommand<object>(OpenAddEmployee);
+                RefreshEmployeesCommand = new RelayCommand<object>(RefreshEmployees);
+            }
+        } 
 }

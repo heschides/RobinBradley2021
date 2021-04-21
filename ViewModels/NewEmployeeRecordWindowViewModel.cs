@@ -1,17 +1,14 @@
 ﻿using SimplyEmployeeTracker.DataAccess;
-using static SimplyEmployeeTracker.DataAccess.SendData;
 using SimplyEmployeeTracker.Models;
 using SimplyEmployeeTracker.Other;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SimplyEmployeeTracker.ViewModels
 {
-public  class CreateNewEmployeeRecordViewModel : ViewModelBase
+public  class NewEmployeeRecordWindowViewModel : ViewModelBase
     {
         private string _firstName;
         public string FirstName
@@ -41,9 +38,7 @@ public  class CreateNewEmployeeRecordViewModel : ViewModelBase
             set { dateTime = value; }
         }
 
-        
         public static ObservableCollection<JobTitleModel> JobTitles { get; private set; }
-        
         private JobTitleModel _selectedJobTitle;
         public JobTitleModel SelectedJobTitle
         {
@@ -105,42 +100,44 @@ public  class CreateNewEmployeeRecordViewModel : ViewModelBase
         public static ObservableCollection<CertificationModel> Certifications { get; private set; }
         public static ObservableCollection<CertificationModel> CertificationTypes {get; private set;}
         
-        private string _newCertificationName;
-        public string NewCertificationName
+        private CertificationModel _selectedCertification;
+        public CertificationModel SelectedCertification
         {
-            get { return _newCertificationName; }
-            set { OnPropertyChanged(ref _newCertificationName, value); }
+            get { return _selectedCertification; }
+            set { OnPropertyChanged(ref _selectedCertification, value); }
         }
 
         private DateTime _newCertificationExpirationDate;
+
         public DateTime NewCertificationExpirationDate
         {
             get { return _newCertificationExpirationDate; }
-            set { OnPropertyChanged(ref _newCertificationExpirationDate, value); }
+            set { _newCertificationExpirationDate = value; }
         }
+
 
         public static ObservableCollection<RestrictionModel> Restrictions { get; private set; }
         public static ObservableCollection<RestrictionModel> RestrictionTypes { get; private set; }
 
-        private string _newRestrictionName;
-
-        public string NewRestrictionType
+        private RestrictionModel _selectedRestriction;
+        public RestrictionModel SelectedRestriction
         {
-            get { return _newRestrictionName; }
-            set { OnPropertyChanged(ref _newRestrictionName, value); }
+            get { return _selectedRestriction; }
+            set { OnPropertyChanged(ref _selectedRestriction, value); }
         }
+
         private DateTime _newRestrictionEndDate;
 
         public DateTime NewRestrictionEndDate
         {
             get { return _newRestrictionEndDate; }
-            set { OnPropertyChanged(ref _newRestrictionEndDate, value); }
+            set { _newRestrictionEndDate = value; }
         }
 
 
         //COMMANDS
 
-        public RelayCommand AddPhoneCommand { get; private set; }
+        public RelayCommand<object> AddPhoneCommand { get; private set; }
         public void AddEmployeeForm_AddPhone(object e)
         {
             PhoneModel newPhone = new PhoneModel();
@@ -149,7 +146,7 @@ public  class CreateNewEmployeeRecordViewModel : ViewModelBase
             Phones.Add(newPhone);
         }
 
-        public RelayCommand AddEmailCommand { get; private set; }
+        public RelayCommand<object> AddEmailCommand { get; private set; }
         public void AddEmployeeForm_AddEmail(object e)
         {
             var newEmail = new EmailModel();
@@ -158,25 +155,29 @@ public  class CreateNewEmployeeRecordViewModel : ViewModelBase
             Emails.Add(newEmail);
         }
 
-        public RelayCommand AddCertificationCommand { get; private set; }
+        public RelayCommand<object> AddCertificationCommand { get; private set; }
         public void AddEmployeeForm_AddCertification(object e)
         {
             var newCertification = new CertificationModel();
-            newCertification.Name = _newCertificationName;
-            newCertification.ExpirationDate = _newCertificationExpirationDate;
+            newCertification.Name = SelectedCertification.Name;
+                newCertification.ExpirationDate = _newCertificationExpirationDate;
+            newCertification.ID = SelectedCertification.ID;
             Certifications.Add(newCertification);
         }
 
-        public RelayCommand AddRestrictionCommand { get; private set; }
+        public RelayCommand<object> AddRestrictionCommand { get; private set; }
         public void AddEmployeeForm_AddRestriction(object e)
         {
+            DateTime today = DateTime.Today;
             var newRestriction = new RestrictionModel();
-            newRestriction.Name = _newRestrictionName;
+            newRestriction.Name =  _selectedRestriction.Name;
             newRestriction.EndDate = _newRestrictionEndDate;
+            newRestriction.ID = _selectedRestriction.ID ;
+            newRestriction.BeginDate = today;
             Restrictions.Add(newRestriction);
         }
 
-        public RelayCommand CreateNewEmployeeCommand { get; private set; }
+        public RelayCommand<object> CreateNewEmployeeCommand { get; private set; }
         public void CreateNewEmployee(object e)
         {
             var newEmployee = new EmployeeModel();
@@ -194,30 +195,46 @@ public  class CreateNewEmployeeRecordViewModel : ViewModelBase
             newEmployeeStatus.ID = 1;
             newEmployee.Status = newEmployeeStatus;
             SendData.CreateEmployee(newEmployee);
-       //     EmployeeViewModel = await GetData.EmployeeQueryAsync();
         }
 
-//CONSTRUCTORS
-        public CreateNewEmployeeRecordViewModel()
+        public RelayCommand<object> LoadComboBoxesCommand { get; private set; }
+        public async void LoadComboBoxes(object e)
         {
-            AddPhoneCommand = new RelayCommand(AddEmployeeForm_AddPhone);
-            AddEmailCommand = new RelayCommand(AddEmployeeForm_AddEmail);
-            AddCertificationCommand = new RelayCommand(AddEmployeeForm_AddCertification);
-            AddRestrictionCommand = new RelayCommand(AddEmployeeForm_AddRestriction);
+            var certificationTypes = await GetData.CertificationQueryAsync();
+            foreach (CertificationModel certification in certificationTypes) { CertificationTypes.Add(certification); }
+            var restrictionTypes = await GetData.RestrictionQueryAsync();
+            foreach (RestrictionModel restrictionType in restrictionTypes) { RestrictionTypes.Add(restrictionType); }
+            var departments = await GetData.DepartmentQueryAsync();
+            foreach (DepartmentModel department in departments) { Departments.Add(department); }
+            var jobTitles = await GetData.JobTitleQueryAsync();
+            foreach(JobTitleModel jobTitle in jobTitles) { JobTitles.Add(jobTitle); }
+        }
+
+
+        //CONSTRUCTORS
+        public NewEmployeeRecordWindowViewModel()
+        {
             Phones = new ObservableCollection<PhoneModel>();
             Emails = new ObservableCollection<EmailModel>();
             Certifications = new ObservableCollection<CertificationModel>();
+            CertificationTypes = new ObservableCollection<CertificationModel>();
             Restrictions = new ObservableCollection<RestrictionModel>();
-            CreateNewEmployeeCommand = new RelayCommand(CreateNewEmployee);
+            RestrictionTypes = new ObservableCollection<RestrictionModel>();
+            JobTitles = new ObservableCollection<JobTitleModel>();
+            Departments = new ObservableCollection<DepartmentModel>();
+            AddPhoneCommand = new RelayCommand<object>(AddEmployeeForm_AddPhone);
+            AddEmailCommand = new RelayCommand<object>(AddEmployeeForm_AddEmail);
+            AddCertificationCommand = new RelayCommand<object>(AddEmployeeForm_AddCertification);
+            AddRestrictionCommand = new RelayCommand<object>(AddEmployeeForm_AddRestriction);
+            CreateNewEmployeeCommand = new RelayCommand<object>(CreateNewEmployee);
+            LoadComboBoxesCommand = new RelayCommand<object>(LoadComboBoxes);
+
         }
 
-        public static async Task<CreateNewEmployeeRecordViewModel>CreateNewEmployeeRecordViewModelAsync()
+        public static async Task<NewEmployeeRecordWindowViewModel>CreateNewEmployeeRecordViewModelAsync()
         {
-            var createNewEmployeeRecordViewModel = new CreateNewEmployeeRecordViewModel();
-            CertificationTypes = await GetData.CertificationQueryAsync();
-            RestrictionTypes = await GetData.RestrictionQueryAsync();
-            Departments = await GetData.DepartmentQueryAsync();
-            JobTitles = await GetData.JobTitleQueryAsync();          
+            var createNewEmployeeRecordViewModel = new NewEmployeeRecordWindowViewModel();
+
             return createNewEmployeeRecordViewModel;
         }
     }
