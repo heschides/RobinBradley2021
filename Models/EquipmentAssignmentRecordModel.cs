@@ -17,36 +17,34 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private string _inventoryID;
-
         public string InventoryID
         {
             get { return _inventoryID; }
             set { _inventoryID = value; }
         }
-        private string _description;
 
-        public string Description
+        private int _employeeID;
+        public int EmployeeID
         {
-            get { return _description; }
-            set { _description = value; }
+            get { return _employeeID; }
+            set { _employeeID = value; }
         }
 
         private DateTime _dateOut;
-
         public DateTime DateOut
         {
             get { return _dateOut; }
             set { _dateOut = value; }
         }
+       
         private DateTime _dateIn;
-
         public DateTime DateIn
         {
             get { return _dateIn; }
             set { _dateIn = value; }
         }
+       
         private DateTime _dueDate;
-
         public DateTime DueDate
         {
             get { return _dueDate; }
@@ -54,20 +52,18 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private string _conditionOut;
-
         public string ConditionOut
         {
             get { return _conditionOut; }
             set { _conditionOut = value; }
             //TODO: Create an enum to populate a dropdown box and include data validation.
         }
+   
         private string _destination;
-
         public string Destination
         {
             get { return _destination; }
             set { _destination = value; }
         }
-
     }
 }

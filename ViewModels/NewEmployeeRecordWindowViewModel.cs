@@ -231,11 +231,11 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
 
         }
 
-        public static async Task<NewEmployeeRecordWindowViewModel>CreateNewEmployeeRecordViewModelAsync()
-        {
-            var createNewEmployeeRecordViewModel = new NewEmployeeRecordWindowViewModel();
+        //public static async Task<NewEmployeeRecordWindowViewModel>CreateNewEmployeeRecordViewModelAsync()
+        //{
+        //    var createNewEmployeeRecordViewModel = new NewEmployeeRecordWindowViewModel();
 
-            return createNewEmployeeRecordViewModel;
-        }
+        //    return createNewEmployeeRecordViewModel;
+        //}
     }
 }

@@ -19,6 +19,7 @@ namespace SimplyEmployeeTracker
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
+            System.Threading.Thread.Sleep(3000);
             Window window = new MainWindow();
             window.Show();       
         }

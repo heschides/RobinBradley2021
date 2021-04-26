@@ -45,6 +45,12 @@ namespace SimplyEmployeeTracker.ViewModels
             var window = new RepairItemWindow();
             window.Show();
         }
+        public RelayCommand<object> OpenAssignmentsWindowCommand { get; set; }
+        public static void OpenAssignmentsWindow()
+        {
+            var window = new AssignItemWindow();
+            window.Show();
+        }
         public RelayCommand<object>RefreshEquipmentCommand { get; private set; }
         public async void RefreshEquipment(object e)
         {
@@ -69,6 +75,7 @@ namespace SimplyEmployeeTracker.ViewModels
             OpenReturnItemWindowCommand = new RelayCommand<object>(OpenReturnItemWindow);
             OpenAddCICRecordWindowCommand = new RelayCommand<object>(OpenAddCICRecordWindow);
             OpenRepairItemWindowCommand = new RelayCommand<object>(OpenRepairItemWindow);
+            OpenAssignItemWindowCommand = new RelayCommand<object>(OpenAssignItemWindow);
             RefreshEquipmentCommand = new RelayCommand<object>(RefreshEquipment);
         }
 

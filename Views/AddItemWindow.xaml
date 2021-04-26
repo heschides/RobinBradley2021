@@ -11,9 +11,10 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         WindowStyle="ToolWindow"
-        Width="650"
-        Height="370"
-        Background="White" Topmost="True" >
+        Width="750"
+        Height="400"
+        Background="White"
+        Topmost="True">
 
      <behaviors:Interaction.Triggers>
           <behaviors:EventTrigger EventName="Loaded">
@@ -21,7 +22,7 @@
           </behaviors:EventTrigger>
      </behaviors:Interaction.Triggers>
      <Window.DataContext>
-          <vms:AddItemViewModel />
+          <vms:AddItemWindowViewModel />
      </Window.DataContext>
      <Grid>
           <Grid.ColumnDefinitions>
@@ -35,7 +36,7 @@
                <RowDefinition Height="*" />
           </Grid.RowDefinitions>
 
-          <StackPanel Width="500"
+          <StackPanel Width="600"
                       Grid.Column="1"
                       Grid.Row="1">
                <TextBlock Text="Create New Inventory Item"
@@ -43,7 +44,7 @@
                <StackPanel Height="20" />
                <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="0,30,5,0"
-                                Width="70">
+                                Width="80">
                          <TextBlock Text="ID"
                                     FontSize="10"
                                     HorizontalAlignment="Right"
@@ -69,6 +70,14 @@
                                     FontSize="10"
                                     HorizontalAlignment="Right"
                                     Height="18" />
+                         <TextBlock Text="Warranty Months"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
+                         <TextBlock Text="Price"
+                                    FontSize="10"
+                                    HorizontalAlignment="Right"
+                                    Height="18" />
 
                     </StackPanel>
                     <StackPanel Width="150">
@@ -77,32 +86,41 @@
                                      Grid.Column="5"
                                      FontSize="10"
                                      BorderThickness="0"
-                                     Height="30" />
-                         <TextBox x:Name="txtDescription"
-                                  HorizontalAlignment="Stretch" />
-                         
-                         <TextBox x:Name="txtBrand"
-                                  HorizontalAlignment="Stretch" />
-                         <ComboBox x:Name="comboClass"
-                                   HorizontalAlignment="Stretch" ItemsSource="{Binding Path=EquipmentClasses}" 
-                                   DisplayMemberPath="Name"/>
-                         <TextBox x:Name="txtModel" />
+                                     Height="30"
+                                     SelectedDate="{Binding PurchaseDate, Mode=OneWayToSource}"
+                                     Validation.ErrorTemplate="{x:Null}" />
                          <TextBox x:Name="txtID"
-                                  HorizontalAlignment="Stretch" />
-
+                                  HorizontalAlignment="Stretch"
+                                  Text="{Binding Id }" />
+                         <TextBox x:Name="txtDescription"
+                                  HorizontalAlignment="Stretch"
+                                  Text="{Binding Description}" />
+                         <ComboBox x:Name="comboClass"
+                                   HorizontalAlignment="Stretch"
+                                   ItemsSource="{Binding Path=EquipmentClasses}"
+                                   DisplayMemberPath="Name"
+                                   SelectedValue="{Binding Class, Mode=TwoWay}" />
+                         <TextBox x:Name="txtBrand"
+                                  Text="{Binding Brand}" />
+                         <TextBox x:Name="txtModel"
+                                  HorizontalAlignment="Stretch" Text="{Binding Model}"/>
                          <TextBox x:Name="txtSerialNumber"
-                                  HorizontalAlignment="Stretch" />
-
+                                  HorizontalAlignment="Stretch" Text="{Binding SerialNumber}" />
+                         <TextBox x:Name="txtWarrantyMonths"
+                                  HorizontalAlignment="Stretch"
+                                  Text="{Binding WarrantyMonths}" />
+                         <TextBox x:Name="txtPrice"
+                                  HorizontalAlignment="Stretch"
+                                  Text="{Binding Price}" />
                     </StackPanel>
                     <StackPanel Width="30" />
 
-                    <StackPanel Margin="0,28,0,0" >
+                    <StackPanel Margin="0,28,0,0">
                          <TextBlock Text="CIC Required"
                                     FontSize="10"
                                     Margin="0,4,0,0"
                                     HorizontalAlignment="Right"
                                     Height="20" />
-                       
                          <TextBlock Text="PO#"
                                     FontSize="10"
                                     HorizontalAlignment="Right"
@@ -112,8 +130,11 @@
                                     HorizontalAlignment="Right"
                                     Height="18" />
                     </StackPanel>
+                    
                     <StackPanel Width="10" />
-                    <StackPanel Width="120"  Margin="0,28,0,0">
+                   
+                    <StackPanel Width="220"
+                                Margin="0,28,0,0">
                          <StackPanel Orientation="Horizontal"
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
@@ -124,22 +145,27 @@
                                            Margin="0,5,0,0" />
                          </StackPanel>
 
-                         <TextBox x:Name="txtPONumber" />
+                         <TextBox x:Name="txtPONumber" Text="{Binding PO, Mode=TwoWay}" />
 
-                         <ListBox Height="48" ItemsSource="{Binding SelectedFiles}" />
+                         <ListBox Height="65"
+                                  FontSize="10"
+                                  ItemsSource="{Binding SelectedFiles, Mode=TwoWay}"
+                                  HorizontalAlignment="Stretch"
+                                  DisplayMemberPath="SafeName" />
                          <Button Command="{Binding OpenFileDialogCommand}">
                               <Image Source="/Images/plus.png"
-                                Width="16"
-                                Margin="0,2,0,2" />
+                                     Width="16"
+                                     Margin="0,2,0,2" />
                          </Button>
 
                     </StackPanel>
                </StackPanel>
 
                <Button Margin="75,10,58,0"
-                       Content="Submit" BorderThickness="1"></Button>
+                       Content="Submit"
+                       BorderThickness="1"
+                       Command="{Binding CreateItemCommand}"></Button>
           </StackPanel>
-       
 
      </Grid>
 </Window>

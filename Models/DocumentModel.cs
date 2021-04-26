@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimplyEmployeeTracker.Models
 {
-  public class RestrictionModel
+   public class DocumentModel
     {
         private int _id;
-        public int ID
+
+        public int Id
         {
             get { return _id; }
             set { _id = value; }
@@ -22,18 +23,12 @@ namespace SimplyEmployeeTracker.Models
             set { _name = value; }
         }
 
-        private DateTime _beginDate;
-        public DateTime BeginDate
-        {
-            get { return _beginDate; }
-            set { _beginDate = value; }
-        }
+        private string _safeName;
 
-        private DateTime _endDate;
-        public DateTime EndDate
+        public string SafeName
         {
-            get { return _endDate; }
-            set { _endDate = value; }
+            get { return _safeName; }
+            set { _safeName = value; }
         }
 
     }

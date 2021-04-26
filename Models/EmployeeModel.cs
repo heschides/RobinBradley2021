@@ -10,7 +10,6 @@ namespace SimplyEmployeeTracker.Models
    public class EmployeeModel
     {
         private int _id;
-
         public int ID
         {
             get { return _id; }
@@ -18,7 +17,6 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private string _firstName;
-
         public string FirstName
         {
             get { return _firstName; }
@@ -26,22 +24,25 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private string _lastName;
-
         public string LastName
         {
             get { return _lastName; }
             set { _lastName = value; }
         }
 
-        private string _nickName;
+        public string FullName
+        {
+            get { return FirstName + " " + LastName; }
+        }
 
+        private string _nickName;
         public string NickName
         {
             get { return _nickName; }
             set { _nickName = value; }
         }
+        
         private JobTitleModel _jobTitle;
-
         public JobTitleModel JobTitle
         {
             get { return _jobTitle; }
@@ -49,7 +50,6 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private EmployeeStatusModel _status;
-
         public EmployeeStatusModel Status
         {
             get { return _status; }
@@ -57,7 +57,6 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private DepartmentModel _department;
-
         public DepartmentModel Department
         {
             get { return _department; }
@@ -72,7 +71,6 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private ObservableCollection<EmailModel> _emails;
-
         public ObservableCollection<EmailModel> Emails
         {
             get { return _emails; }
@@ -80,7 +78,6 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private ObservableCollection<PhoneModel> _phones;
-
         public ObservableCollection<PhoneModel> Phones
         {
             get { return _phones; }
@@ -88,7 +85,6 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private ObservableCollection<CertificationModel> _certifications;
-
         public ObservableCollection<CertificationModel> Certifications
         {
             get { return _certifications; }
@@ -96,14 +92,12 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private ObservableCollection<CitationModel> _citations;
-        
         public ObservableCollection<CitationModel> Citations
         {
             get { return _citations; }
             set { _citations = value; }
         }
         private ObservableCollection<EquipmentAssignmentRecordModel> _equipmentAssignments;
-
         public ObservableCollection<EquipmentAssignmentRecordModel> EquipmentAssignments
         {
             get { return _equipmentAssignments; }
@@ -111,12 +105,13 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private ObservableCollection<RestrictionModel> _restrictions;
-
         public ObservableCollection<RestrictionModel> Restrictions
         {
             get { return _restrictions; }
             set { _restrictions = value; }
         }
+
+
 
     }
 }

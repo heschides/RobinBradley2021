@@ -438,7 +438,7 @@
                               </Button>
                               <Button Width="100"
                                       Height="40"
-                                      Command="{Binding OpenAssignItemWindowCommand}">
+                                      Command="{Binding EquipmentTabVM.OpenAssignItemWindowCommand}">
                                    <StackPanel>
                                         <Image Source="/Images/distribution.png"
                                                Height="16" />
