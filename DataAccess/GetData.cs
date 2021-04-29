@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using System;
 using SimplyEmployeeTracker.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,22 +9,22 @@ using static SimplyEmployeeTracker.DataAccess.SqlConnect;
 
 namespace SimplyEmployeeTracker.DataAccess
 {
-    public static class GetData
+    public class GetData
     {
+        static string databaseName = "WorkDeskDB";
         public static async Task<ObservableCollection<CertificationModel>> CertificationQueryAsync()
         {
-            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(databaseName)))
             {
                 var certifications = await connection.QueryAsync<CertificationModel>("dbo.spGetCertificationTypes_All", commandType: System.Data.CommandType.StoredProcedure);
                 var result = certifications.ToList();
                 var certificationCollection = new ObservableCollection<CertificationModel>(result);
                 return certificationCollection;
             }
-
         }
         public static async Task<ObservableCollection<DepartmentModel>> DepartmentQueryAsync()
         {
-            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(databaseName)))
             {
                 var departments = await connection.QueryAsync<DepartmentModel>("dbo.spGetDepartments_All", commandType: System.Data.CommandType.StoredProcedure);
                 var result = departments.ToList();
@@ -33,7 +34,7 @@ namespace SimplyEmployeeTracker.DataAccess
         }
         public static async Task<ObservableCollection<EmployeeModel>> EmployeeQueryAsync()
         {
-            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(databaseName)))
             {
                 var employees = new Dictionary<int, EmployeeModel>();
                 await connection.QueryAsync<EmployeeModel>("dbo.spGetEmployeeData_All", new[]
@@ -63,7 +64,7 @@ namespace SimplyEmployeeTracker.DataAccess
                 RestrictionModel restrictionModel = obj[9] as RestrictionModel;
 
                 //employeemodel
-                EmployeeModel employeeEntity = new EmployeeModel();
+                var employeeEntity = new EmployeeModel();
                 if (!employees.TryGetValue(employeeModel.ID, out employeeEntity))
                 {
                     employees.Add(employeeModel.ID, employeeEntity = employeeModel);
@@ -181,27 +182,25 @@ namespace SimplyEmployeeTracker.DataAccess
                 return employeeCollection;
             }
         }
-        public static async Task<ObservableCollection<EquipmentModel>> EquipmentQueryAsync()
+        public async static Task< ObservableCollection<EquipmentModel>> EquipmentQueryAsync()
         {
-            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(databaseName)))
             {
                 var equipment = new Dictionary<int, EquipmentModel>();
-                await connection.QueryAsync<EquipmentModel>("dbo.spGetEquipmentData_All", new[]
+                await connection.QueryAsync("dbo.spGetEquipmentData_All", new[]
             {
-
                     typeof(EquipmentModel),
                     typeof(EquipmentAssignmentRecordModel)
-
             }
                 , obj =>
                   {
-                      EquipmentModel equipmentModel = obj[0] as EquipmentModel;
-                      EquipmentAssignmentRecordModel equipmentAssignmentRecord = obj[1] as EquipmentAssignmentRecordModel;
+                      var equipmentModel = obj[0] as EquipmentModel;
+                      var equipmentAssignmentRecord = obj[1] as EquipmentAssignmentRecordModel;
 
-                      EquipmentModel equipmentEntity = new EquipmentModel();
-                      if (!equipment.TryGetValue(equipmentModel.ID, out equipmentEntity))
+                      var equipmentEntity = new EquipmentModel();
+                      if (!equipment.TryGetValue(equipmentModel.Id, out equipmentEntity))
                       {
-                          equipment.Add(equipmentModel.ID, equipmentEntity = equipmentModel);
+                          equipment.Add(equipmentModel.Id, equipmentEntity = equipmentModel);
                       }
                       if (equipmentEntity.Assignments == null)
                       {
@@ -223,7 +222,7 @@ namespace SimplyEmployeeTracker.DataAccess
         }
         public static async Task<ObservableCollection<JobTitleModel>> JobTitleQueryAsync()
         {
-            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(databaseName)))
             {
                 var jobTitles = await connection.QueryAsync<JobTitleModel>("dbo.spGetJobTitles_All", commandType: System.Data.CommandType.StoredProcedure);
                 var result = jobTitles.ToList();
@@ -233,7 +232,7 @@ namespace SimplyEmployeeTracker.DataAccess
         }
         public static async Task<ObservableCollection<RestrictionModel>> RestrictionQueryAsync()
         {
-            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(databaseName)))
             {
                 var restrictions = await connection.QueryAsync<RestrictionModel>("dbo.spGetRestrictionTypes_All", commandType: System.Data.CommandType.StoredProcedure);
                 var result = restrictions.ToList();
@@ -241,17 +240,26 @@ namespace SimplyEmployeeTracker.DataAccess
                 return restrictionCollection;
             }
         }
-
         public static async Task<ObservableCollection<EquipmentClassModel>> EquipmentClassQueryAsync()
-    {
-            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
+        {
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(databaseName)))
             {
                 var equipmentClasses = await connection.QueryAsync<EquipmentClassModel>("dbo.spGetEquipmentClasses_All", commandType: System.Data.CommandType.StoredProcedure);
                 var result = equipmentClasses.ToList();
                 var equipmentClassesCollection = new ObservableCollection<EquipmentClassModel>(result);
                 return equipmentClassesCollection;
             }
-    }
+        }
+        public static async Task<ObservableCollection<JobsiteModel>> JobsiteQueryAsync()
+        {
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(databaseName)))
+            {
+                var jobsites = await connection.QueryAsync<JobsiteModel>("dbo.spGetJobsites_All", commandType: System.Data.CommandType.StoredProcedure);
+                var result = jobsites.ToList();
+                var jobsitesCollection = new ObservableCollection<JobsiteModel>(result);
+                return jobsitesCollection;
+            }
+        }
     }
 }
 

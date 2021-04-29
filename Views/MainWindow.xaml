@@ -1,15 +1,4 @@
-﻿<Window x:Class="SimplyEmployeeTracker.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SimplyEmployeeTracker.Views"
-        xmlns:vms="clr-namespace:SimplyEmployeeTracker.ViewModels"
-        mc:Ignorable="d"
-        Title="MainWindow"
-        MinHeight="650"
-        MinWidth="1300">
+﻿<Window x:Class="SimplyEmployeeTracker.Views.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:SimplyEmployeeTracker.Views" xmlns:vms="clr-namespace:SimplyEmployeeTracker.ViewModels" mc:Ignorable="d" Title="MainWindow" MinHeight="650" MinWidth="1300">
 
      <behaviors:Interaction.Triggers>
           <behaviors:EventTrigger EventName="Loaded">
@@ -20,7 +9,7 @@
      <Window.DataContext>
           <vms:MainViewModel />
      </Window.DataContext>
-     
+
      <Grid Background="LightSkyBlue">
           <Grid.RowDefinitions>
                <RowDefinition Height="Auto" />
@@ -34,11 +23,8 @@
           </DockPanel>
 
           <!--MainWindow TAB-->
-          <TabControl Grid.Row="1"
-                      Background="WhiteSmoke">
-               <TabItem Header="Dashboard
-"
-                        Width="106">
+          <TabControl Grid.Row="1" Background="WhiteSmoke">
+               <TabItem Header="Dashboard" Width="106">
                     <Grid>
                          <Grid.ColumnDefinitions>
                               <ColumnDefinition Width="Auto" />
@@ -56,19 +42,14 @@
                </TabItem>
 
                <!--EMPLOYEES TAB-->
-               <TabItem Header="Employees"
-                        Width="106">
+               <TabItem Header="Employees" Width="106">
                     <Grid>
                          <Grid.ColumnDefinitions>
                               <ColumnDefinition Width="10" />
-                              <ColumnDefinition Width="300"
-                                                MinWidth="300" />
-                              <ColumnDefinition Width="*"
-                                                MinWidth="300" />
-                              <ColumnDefinition Width="*"
-                                                MinWidth="300" />
-                              <ColumnDefinition Width="*"
-                                                MinWidth="300" />
+                              <ColumnDefinition Width="300" MinWidth="300" />
+                              <ColumnDefinition Width="*" MinWidth="300" />
+                              <ColumnDefinition Width="*" MinWidth="300" />
+                              <ColumnDefinition Width="*" MinWidth="300" />
                               <ColumnDefinition Width="10" />
                          </Grid.ColumnDefinitions>
                          <Grid.RowDefinitions>
@@ -77,9 +58,7 @@
                               <RowDefinition Height="*" />
                               <RowDefinition Height="10" />
                          </Grid.RowDefinitions>
-
-                         <Grid Grid.Column="1"
-                               Grid.Row="1">
+                         <Grid Grid.Column="1" Grid.Row="1">
                               <Grid.ColumnDefinitions>
                                    <ColumnDefinition Width="120" />
                                    <ColumnDefinition Width="*" />
@@ -90,93 +69,44 @@
                                    <RowDefinition Height="50" />
                               </Grid.RowDefinitions>
 
-                              <TextBlock Text="Select Department"
-                                         Grid.Column="0"
-                                         Grid.Row="0"
-                                         Margin="10,0,0,0"
-                                         HorizontalAlignment="Left"
-                                         VerticalAlignment="Center" />
-                              <ComboBox Grid.Row="0"
-                                        Grid.Column="1"
-                                        Margin="5,0,0,0" />
+                              <TextBlock Text="Select Department" Grid.Column="0" Grid.Row="0" Margin="10,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+                              <ComboBox Grid.Row="0" Grid.Column="1" Margin="5,0,0,0" />
 
-                              <ListView x:Name="listviewEmployees"
-                                        Grid.Row="1"
-                                        Grid.Column="0"
-                                        Grid.ColumnSpan="2"
-                                        ItemsSource="{Binding EmployeeTabVM.Employees}"
-                                        BorderThickness="0">
+                              <ListView x:Name="listviewEmployees" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding EmployeeTabVM.Employees}" SelectedItem="{Binding EmployeeTabVM.SelectedEmployee}" BorderThickness="0">
                                    <ListView.View>
                                         <GridView>
-                                             <GridViewColumn Width="Auto"
-                                                             Header="First Name"
-                                                             DisplayMemberBinding="{Binding Path=FirstName}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Last Name"
-                                                             DisplayMemberBinding="{Binding Path=LastName}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Department"
-                                                             DisplayMemberBinding="{Binding Path=Department}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="ID"
-                                                             DisplayMemberBinding="{Binding Path=ID}" />
+                                             <GridViewColumn Width="Auto" Header="First Name" DisplayMemberBinding="{Binding Path=FirstName}" />
+                                             <GridViewColumn Width="Auto" Header="Last Name" DisplayMemberBinding="{Binding Path=LastName}" />
+                                             <GridViewColumn Width="Auto" Header="Department" DisplayMemberBinding="{Binding Path=Department}" />
+                                             <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=ID}" />
                                         </GridView>
                                    </ListView.View>
                               </ListView>
-                              <StackPanel Grid.Row="3"
-                                          Grid.Column="0"
-                                          Grid.ColumnSpan="2"
-                                          HorizontalAlignment="Right"
-                                          Orientation="Horizontal">
+                              <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
 
-                                   <Button Width="100"
-                                           Height="50"
-                                           Grid.Column="0"
-                                           Grid.Row="2"
-                                           BorderThickness="0"
-                                           Background="{DynamicResource 
-                                        ResourceKey=HeadingBackgroundBrush}"
-                                           Margin="0,0,0,2"
-                                           Command="{Binding OpenAddEmployeeWindowCommand}">
+                                   <Button Width="100" Height="50" Grid.Column="0" Grid.Row="2" BorderThickness="0" Background="{DynamicResource 
+                                        ResourceKey=HeadingBackgroundBrush}" Margin="0,0,0,2" Command="{Binding OpenAddEmployeeWindowCommand}">
                                         <StackPanel Orientation="Vertical">
-                                             <Image Source="/Images/person.png"
-                                                    Stretch="None" />
+                                             <Image Source="/Images/person.png" Stretch="None" />
                                              <TextBlock Text="Add Employee" />
                                         </StackPanel>
                                    </Button>
-                                   <Button Width="100"
-                                           Height="50"
-                                           Grid.Column="1"
-                                           Grid.Row="2"
-                                           BorderThickness="0"
-                                           Margin="2,0,0,2"
-                                           Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}">
+                                   <Button Width="100" Height="50" Grid.Column="1" Grid.Row="2" BorderThickness="0" Margin="2,0,0,2" Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}">
                                         <StackPanel Orientation="Vertical">
-                                             <Image Source="/Images/edit.png"
-                                                    Stretch="None" />
+                                             <Image Source="/Images/edit.png" Stretch="None" />
                                              <TextBlock Text="Edit Selected" />
                                         </StackPanel>
                                    </Button>
-                                   <Button Width="100"
-                                           Height="50"
-                                           Grid.Column="0"
-                                           Grid.Row="2"
-                                           BorderThickness="0"
-                                           Background="{DynamicResource 
-                                        ResourceKey=HeadingBackgroundBrush}"
-                                           Margin="0,0,0,2"
-                                           Command="{Binding RefreshEmployeesCommand}">
+                                   <Button Width="100" Height="50" Grid.Column="0" Grid.Row="2" BorderThickness="0" Background="{DynamicResource 
+                                        ResourceKey=HeadingBackgroundBrush}" Margin="0,0,0,2" Command="{Binding RefreshEmployeesCommand}">
                                         <StackPanel Orientation="Vertical">
-                                             <Image Source="/Images/refresh-16.png"
-                                                    Stretch="None" />
+                                             <Image Source="/Images/refresh-16.png" Stretch="None" />
                                              <TextBlock Text="Refresh List" />
                                         </StackPanel>
                                    </Button>
                               </StackPanel>
                          </Grid>
-
-                         <Grid Grid.Row="2"
-                               Grid.Column="1">
+                         <Grid Grid.Row="2" Grid.Column="1">
                               <Grid.ColumnDefinitions>
                                    <ColumnDefinition Width="1*" />
                                    <ColumnDefinition Width="4*" />
@@ -186,72 +116,27 @@
                                    <RowDefinition Height="Auto" />
                                    <RowDefinition Height="Auto" />
                                    <RowDefinition Height="Auto" />
-                                   <RowDefinition MinHeight="100"
-                                                  Height="*" />
-                                   <RowDefinition MinHeight="100"
-                                                  Height="*" />
+                                   <RowDefinition MinHeight="100" Height="*" />
+                                   <RowDefinition MinHeight="100" Height="*" />
                               </Grid.RowDefinitions>
 
                               <!--EMPLOYEE INFORMATION SECTION-->
-                              <TextBlock Text="Employee Information"
-                                         Grid.ColumnSpan="2"
-                                         Grid.Row="0"
-                                         Padding="5,0,0,4"
-                                         HorizontalAlignment="Stretch"
-                                         Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}"
-                                         FontSize="16" />
-                              <Label Content="Job Title"
-                                     Grid.Column="0"
-                                     Grid.Row="1"
-                                     FontSize="12" />
-                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.JobTitle.Name}"
-                                       Grid.Column="1"
-                                       Grid.Row="1"
-                                       HorizontalContentAlignment="Center"
-                                       VerticalContentAlignment="Center" />
-                              <Label Content="Status"
-                                     Grid.Column="0"
-                                     Grid.Row="2" />
-                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.Status.Name}"
-                                       Grid.Column="1"
-                                       Grid.Row="2"
-                                       HorizontalContentAlignment="Center"
-                                       VerticalContentAlignment="Center" />
+                              <TextBlock Text="Employee Information" Grid.ColumnSpan="2" Grid.Row="0" Padding="5,0,0,4" HorizontalAlignment="Stretch" Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}" FontSize="16" />
+                              <Label Content="Job Title" Grid.Column="0" Grid.Row="1" FontSize="12" />
+                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.JobTitle.Name}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                              <Label Content="Status" Grid.Column="0" Grid.Row="2" />
+                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.Status.Name}" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
 
-                              <Label Content="Hire Date"
-                                     Grid.Column="0"
-                                     Grid.Row="3" />
-                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.HireDate, StringFormat=dd-MM-yyyy}"
-                                       Grid.Column="1"
-                                       Grid.Row="3"
-                                       HorizontalContentAlignment="Center"
-                                       VerticalContentAlignment="Center" />
+                              <Label Content="Hire Date" Grid.Column="0" Grid.Row="3" />
+                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.HireDate, StringFormat=dd-MM-yyyy}" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
 
-                              <Label Content="Phone"
-                                     Grid.Column="0"
-                                     Grid.Row="4" />
-                              <ListBox MinHeight="100"
-                                       Grid.Row="4"
-                                       Grid.Column="1"
-                                       ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Phones}"
-                                       HorizontalContentAlignment="Center"
-                                       VerticalContentAlignment="Center" />
+                              <Label Content="Phone" Grid.Column="0" Grid.Row="4" />
+                              <ListBox MinHeight="100" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Phones}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
 
-                              <Label Content="Email"
-                                     Grid.Column="0"
-                                     Grid.Row="5" />
-                              <ListBox MinHeight="100"
-                                       Grid.Column="1"
-                                       Grid.Row="5"
-                                       ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Emails}"
-                                       HorizontalContentAlignment="Center"
-                                       VerticalContentAlignment="Center" />
+                              <Label Content="Email" Grid.Column="0" Grid.Row="5" />
+                              <ListBox MinHeight="100" Grid.Column="1" Grid.Row="5" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Emails}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
                          </Grid>
-
-                         <Grid Grid.Row="1"
-                               Grid.Column="2"
-                               Width="Auto"
-                               Height="Auto">
+                         <Grid Grid.Row="1" Grid.Column="2" Width="Auto" Height="Auto">
                               <Grid.ColumnDefinitions>
                                    <ColumnDefinition />
                               </Grid.ColumnDefinitions>
@@ -261,155 +146,86 @@
                               </Grid.RowDefinitions>
 
                               <!--Standard Issue Listbox-->
-                              <TextBlock Text="Standard Issue"
-                                         VerticalAlignment="Stretch"
-                                         Padding="10,5,0,0"
-                                         Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}"
-                                         Grid.Column="0"
-                                         Grid.Row="0" />
-                              <ListView FontSize="10"
-                                        MinHeight="275"
-                                        Grid.Row="1"
-                                        ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.EquipmentAssignments}">
+                              <TextBlock Text="Standard Issue" VerticalAlignment="Stretch" Padding="10,5,0,0" Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}" Grid.Column="0" Grid.Row="0" />
+                              <ListView FontSize="10" MinHeight="275" Grid.Row="1" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.EquipmentAssignments}">
                                    <ListView.View>
                                         <GridView>
-                                             <GridViewColumn Width="Auto"
-                                                             Header="ID"
-                                                             DisplayMemberBinding="{Binding Path=InventoryID}" />
-                                             <GridViewColumn Width="auto"
-                                                             Header="Description"
-                                                             DisplayMemberBinding="{Binding Path=Description}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Date Out"
-                                                             DisplayMemberBinding="{Binding Path=DateOut, StringFormat=d}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Date In"
-                                                             DisplayMemberBinding="{Binding Path=DateIn, StringFormat=d}" />
+                                             <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=ConditionOut}" />
+                                             <GridViewColumn Width="auto" Header="Description" DisplayMemberBinding="{Binding Path=Description}" />
+                                             <GridViewColumn Width="Auto" Header="Date Out" DisplayMemberBinding="{Binding Path=DateOut, StringFormat=d}" />
+                                             <GridViewColumn Width="Auto" Header="Date In" DisplayMemberBinding="{Binding Path=ConditionOut, StringFormat=d}" />
                                         </GridView>
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
-                         <Grid Grid.Row="2"
-                               Grid.Column="2">
+                         <Grid Grid.Row="2" Grid.Column="2">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
 
                               <!--Certifications Listbox-->
-                              <TextBlock Grid.Row="0"
-                                         Text="Certifications"
-                                         Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}"
-                                         Padding="10,5,0,0" />
-                              <ListView Grid.Row="1"
-                                        MinHeight="275"
-                                        FontSize="10"
-                                        ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Certifications}">
+                              <TextBlock Grid.Row="0" Text="Certifications" Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}" Padding="10,5,0,0" />
+                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Certifications}">
                                    <ListView.View>
                                         <GridView>
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Type"
-                                                             DisplayMemberBinding="{Binding Path=Name}" />
-                                             <GridViewColumn Width="auto"
-                                                             Header="Description"
-                                                             DisplayMemberBinding="{Binding Path=Description}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Issued"
-                                                             DisplayMemberBinding="{Binding Path=BeginDate, StringFormat=d}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Expiration"
-                                                             DisplayMemberBinding="{Binding Path=ExpirationDate, StringFormat=d}" />
+                                             <GridViewColumn Width="Auto" Header="Type" DisplayMemberBinding="{Binding Path=Name}" />
+                                             <GridViewColumn Width="auto" Header="Description" DisplayMemberBinding="{Binding Path=Description}" />
+                                             <GridViewColumn Width="Auto" Header="Issued" DisplayMemberBinding="{Binding Path=BeginDate, StringFormat=d}" />
+                                             <GridViewColumn Width="Auto" Header="Expiration" DisplayMemberBinding="{Binding Path=ExpirationDate, StringFormat=d}" />
                                         </GridView>
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
-                         <Grid Grid.Row="1"
-                               Grid.Column="3"
-                               Width="Auto"
-                               Height="Auto">
+                         <Grid Grid.Row="1" Grid.Column="3" Width="Auto" Height="Auto">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
 
                               <!--Ad Hoc ListBox-->
-                              <TextBlock Text="Ad Hoc Issue"
-                                         Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}"
-                                         Padding="10,5,0,0"
-                                         Grid.Row="0" />
-                              <ListView MinHeight="275"
-                                        Grid.Row="1"
-                                        ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.EquipmentAssignments}">
+                              <TextBlock Text="Ad Hoc Issue" Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}" Padding="10,5,0,0" Grid.Row="0" />
+                              <ListView MinHeight="275" Grid.Row="1" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.EquipmentAssignments}">
                                    <ListView.View>
                                         <GridView>
-                                             <GridViewColumn Width="Auto"
-                                                             Header="ID"
-                                                             DisplayMemberBinding="{Binding Path=InventoryID}" />
-                                             <GridViewColumn Width="auto"
-                                                             Header="Description"
-                                                             DisplayMemberBinding="{Binding Path=Description}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Issued"
-                                                             DisplayMemberBinding="{Binding Path=DateOut, StringFormat=d}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Due"
-                                                             DisplayMemberBinding="{Binding Path=DueDate, StringFormat=d}" />
+                                             <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=InventoryID}" />
+                                             <GridViewColumn Width="auto" Header="Description" DisplayMemberBinding="{Binding Path=Description}" />
+                                             <GridViewColumn Width="Auto" Header="Issued" DisplayMemberBinding="{Binding Path=DateOut, StringFormat=d}" />
+                                             <GridViewColumn Width="Auto" Header="Due" DisplayMemberBinding="{Binding Path=DueDate, StringFormat=d}" />
                                         </GridView>
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
-                         <Grid Grid.Row="2"
-                               Grid.Column="3">
+                         <Grid Grid.Row="2" Grid.Column="3">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
-                              <TextBlock Text="Restrictions"
-                                         Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}"
-                                         Padding="10,5,0,0" />
-                              <ListView MinHeight="275"
-                                        Grid.Row="1"
-                                        ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Restrictions}">
+                              <TextBlock Text="Restrictions" Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}" Padding="10,5,0,0" />
+                              <ListView MinHeight="275" Grid.Row="1" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Restrictions}">
                                    <ListView.View>
                                         <GridView>
-                                             <GridViewColumn Width="Auto"
-                                                             Header="ID"
-                                                             DisplayMemberBinding="{Binding Path=Name}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="Begin"
-                                                             DisplayMemberBinding="{Binding Path=BeginDate, StringFormat=d}" />
-                                             <GridViewColumn Width="Auto"
-                                                             Header="End"
-                                                             DisplayMemberBinding="{Binding Path=EndDate, StringFormat=d}" />
+                                             <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path=Name}" />
+                                             <GridViewColumn Width="Auto" Header="Begin" DisplayMemberBinding="{Binding Path=BeginDate, StringFormat=d}" />
+                                             <GridViewColumn Width="Auto" Header="End" DisplayMemberBinding="{Binding Path=EndDate, StringFormat=d}" />
                                         </GridView>
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
-                         <Grid Grid.Row="1"
-                               Grid.RowSpan="2"
-                               Grid.Column="4">
+                         <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="4">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
-                              <TextBlock Text="Vehicle History"
-                                         Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}"
-                                         Padding="5,6,0,0" />
-                              <DataGrid MinHeight="570"
-                                        Grid.Row="1"></DataGrid>
+                              <TextBlock Text="Vehicle History" Background="{DynamicResource ResourceKey=HeadingBackgroundBrush}" Padding="5,6,0,0" />
+                              <DataGrid MinHeight="570" Grid.Row="1"></DataGrid>
                          </Grid>
-
                     </Grid>
                </TabItem>
-    
+
                <!--EQUIPMENT TAB-->
-               <TabItem Header="Equipment"
-                        Width="106" >
-                     <Grid>
+               <TabItem Header="Equipment" Width="106">
+                    <Grid>
                          <Grid.ColumnDefinitions>
                               <ColumnDefinition Width="10" />
                               <ColumnDefinition Width="2.5*" />
@@ -423,104 +239,62 @@
                               <RowDefinition Height="10" />
                          </Grid.RowDefinitions>
 
-                         <StackPanel Orientation="Horizontal"
-                                     Grid.Row="1"
-                                     Grid.Column="1">
-                              <Button  Width="100"
-                                       Height="40"
-                                       Command="{Binding EquipmentTabVM.OpenAddItemWindowCommand}">
+                         <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
+                              <Button Width="100" Height="40" Command="{Binding EquipmentTabVM.OpenAddItemWindowCommand}">
                                    <StackPanel>
-                                        <Image Source="/Images/plus.png"
-                                               Width="16" />
-                                        <TextBlock Text="Add"
-                                                   FontSize="10" />
+                                        <Image Source="/Images/plus.png" Width="16" />
+                                        <TextBlock Text="Add" FontSize="10" />
                                    </StackPanel>
                               </Button>
-                              <Button Width="100"
-                                      Height="40"
-                                      Command="{Binding EquipmentTabVM.OpenAssignItemWindowCommand}">
+                              <Button Width="100" Height="40" Command="{Binding EquipmentTabVM.OpenAssignItemWindowCommand}">
                                    <StackPanel>
-                                        <Image Source="/Images/distribution.png"
-                                               Height="16" />
-                                        <TextBlock Text="Assign"
-                                                   FontSize="10" />
+                                        <Image Source="/Images/distribution.png" Height="16" />
+                                        <TextBlock Text="Assign" FontSize="10" />
                                    </StackPanel>
                               </Button>
-                              <Button Width="100"
-                                      Height="40"
-                                      Command="{Binding OpenReturnItemWindowCommand}">
+                              <Button Width="100" Height="40" Command="{Binding OpenReturnItemWindowCommand}">
                                    <StackPanel>
-                                        <Image Source="/Images/return.png"
-                                               Height="16" />
-                                        <TextBlock Text="Return"
-                                                   FontSize="10" />
+                                        <Image Source="/Images/return.png" Height="16" />
+                                        <TextBlock Text="Return" FontSize="10" />
                                    </StackPanel>
                               </Button>
-                              <Button Width="100"
-                                      Height="40"
-                                      Command="{Binding EquipmentTabVM.OpenAddCICRecordWindowCommand}">
+                              <Button Width="100" Height="40" Command="{Binding EquipmentTabVM.OpenAddCICRecordWindowCommand}">
                                    <StackPanel>
-                                        <Image Source="/Images/inspection.png"
-                                               Width="16" />
-                                        <TextBlock Text="CIC Record"
-                                                   FontSize="10" />
+                                        <Image Source="/Images/inspection.png" Width="16" />
+                                        <TextBlock Text="CIC Record" FontSize="10" />
                                    </StackPanel>
                               </Button>
-                              <Button Width="100"
-                                      Height="40"
-                                      Command="{Binding EquipmentTabVM.OpenRepairItemWindowCommand}">
+                              <Button Width="100" Height="40" Command="{Binding EquipmentTabVM.OpenRepairItemWindowCommand}">
                                    <StackPanel>
-                                        <Image Source="/Images/repair.png"
-                                               Width="16" />
-                                        <TextBlock Text="Repair"
-                                                   FontSize="10" />
+                                        <Image Source="/Images/repair.png" Width="16" />
+                                        <TextBlock Text="Repair" FontSize="10" />
                                    </StackPanel>
                               </Button>
-                              <Button Width="100"
-                                      Height="40"
-                                      Command="{Binding EquipmentTabVM.RefreshEquipmentCommand}">
+                              <Button Width="100" Height="40" Command="{Binding EquipmentTabVM.RefreshEquipmentCommand}">
                                    <StackPanel>
-                                        <Image Source="/Images/refresh-16.png"
-                                               Width="16" />
-                                        <TextBlock Text="Refresh List"
-                                                   FontSize="10" />
+                                        <Image Source="/Images/refresh-16.png" Width="16" />
+                                        <TextBlock Text="Refresh List" FontSize="10" />
                                    </StackPanel>
                               </Button>
                          </StackPanel>
-                         <ListView Grid.Row="2"
-                                   Grid.Column="1"
-                                   FontSize="10"
-                                   ItemsSource="{Binding EquipmentTabVM.Equipment}">
+                         <ListView Grid.Row="2" Grid.Column="1" FontSize="10" ItemsSource="{Binding EquipmentTabVM.Equipment}">
                               <ListView.View>
                                    <GridView>
-                                        <GridViewColumn Width="Auto"
-                                                        Header="ID"
-                                                        DisplayMemberBinding="{Binding Path= InventoryID}" />
-                                        <GridViewColumn Width="Auto"
-                                                        Header="Description"
-                                                        DisplayMemberBinding="{Binding Path=Description}" />
-                                        <GridViewColumn Width="Auto"
-                                                        Header="S/N"
-                                                        DisplayMemberBinding="{Binding Path=SerialNumber}" />
+                                        <GridViewColumn Width="Auto" Header="ID" DisplayMemberBinding="{Binding Path= InventoryID}" />
+                                        <GridViewColumn Width="Auto" Header="Description" DisplayMemberBinding="{Binding Path=Description}" />
+                                        <GridViewColumn Width="Auto" Header="S/N" DisplayMemberBinding="{Binding Path=SerialNumber}" />
                                    </GridView>
                               </ListView.View>
                          </ListView>
-                         <StackPanel Grid.Row="2"
-                                     Grid.Column="2"
-                                     Orientation="Vertical">
+                         <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical">
                               <ListView MinHeight="250">
                                    <ListView.View>
                                         <GridView>
-                                             <GridViewColumn Width="50"
-                                                             Header="Out"></GridViewColumn>
-                                             <GridViewColumn Width="50"
-                                                             Header="In"></GridViewColumn>
-                                             <GridViewColumn Width="100"
-                                                             Header="Assignee"></GridViewColumn>
-                                             <GridViewColumn Width="100"
-                                                             Header="Condition Out"></GridViewColumn>
-                                             <GridViewColumn Width="100"
-                                                             Header="Condition In"></GridViewColumn>
+                                             <GridViewColumn Width="50" Header="Out"></GridViewColumn>
+                                             <GridViewColumn Width="50" Header="In"></GridViewColumn>
+                                             <GridViewColumn Width="100" Header="Assignee"></GridViewColumn>
+                                             <GridViewColumn Width="100" Header="Condition Out"></GridViewColumn>
+                                             <GridViewColumn Width="100" Header="Condition In"></GridViewColumn>
                                              <GridViewColumn></GridViewColumn>
                                         </GridView>
                                    </ListView.View>
@@ -529,16 +303,11 @@
                               <ListView Height="278">
                                    <ListView.View>
                                         <GridView>
-                                             <GridViewColumn Width="50"
-                                                             Header="Make"></GridViewColumn>
-                                             <GridViewColumn Width="50"
-                                                             Header="Model"></GridViewColumn>
-                                             <GridViewColumn Width="100"
-                                                             Header="S/N"></GridViewColumn>
-                                             <GridViewColumn Width="100"
-                                                             Header="Price"></GridViewColumn>
-                                             <GridViewColumn Width="100"
-                                                             Header="Purchase Date"></GridViewColumn>
+                                             <GridViewColumn Width="50" Header="Make"></GridViewColumn>
+                                             <GridViewColumn Width="50" Header="Model"></GridViewColumn>
+                                             <GridViewColumn Width="100" Header="S/N"></GridViewColumn>
+                                             <GridViewColumn Width="100" Header="Price"></GridViewColumn>
+                                             <GridViewColumn Width="100" Header="Purchase Date"></GridViewColumn>
                                         </GridView>
                                    </ListView.View>
                               </ListView>
@@ -547,12 +316,10 @@
                </TabItem>
 
                <!--VEHICLES TAB-->
-               <TabItem Header="Vehicles"
-                        Width="100"></TabItem>
-               
+               <TabItem Header="Vehicles" Width="100"></TabItem>
+
                <!--ADMINISTRATION TAB-->
-               <TabItem Header="Administration"
-                        Width="100"></TabItem>
+               <TabItem Header="Administration" Width="100"></TabItem>
           </TabControl>
 
      </Grid>

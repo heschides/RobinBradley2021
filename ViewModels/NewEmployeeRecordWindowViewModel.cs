@@ -14,28 +14,28 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public string FirstName
         {
             get { return _firstName; }
-            set { _firstName = value; }
+            set { OnPropertyChanged(ref _firstName, value); }
         }
 
         private string _lastName;
         public string LastName
         {
             get { return _lastName; }
-            set { _lastName = value; }
+            set { OnPropertyChanged(ref _lastName, value); }
         }
 
         private string _nickname;
         public string Nickname
         {
             get { return _nickname; }
-            set { _nickname = value; }
+            set { OnPropertyChanged(ref _nickname, value); }
         }
 
-        private DateTime dateTime;
+        private DateTime _hireDate;
         public DateTime HireDate
         {
-            get { return dateTime; }
-            set { dateTime = value; }
+            get { return _hireDate; }
+            set { OnPropertyChanged(ref _hireDate, value); }
         }
 
         public static ObservableCollection<JobTitleModel> JobTitles { get; private set; }
@@ -43,7 +43,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public JobTitleModel SelectedJobTitle
         {
             get { return _selectedJobTitle; }
-            set { _selectedJobTitle = value; }
+            set { OnPropertyChanged(ref _selectedJobTitle, value); }
         }
 
         public static ObservableCollection<DepartmentModel> Departments { get; private set; }
@@ -51,7 +51,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public DepartmentModel SelectedDepartment
         {
             get { return _selectedDepartment; }
-            set { _selectedDepartment = value; }
+            set { OnPropertyChanged(ref _selectedDepartment, value); }
         }
 
         public ObservableCollection<PhoneModel> Phones { get; private set; }
@@ -108,7 +108,6 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         }
 
         private DateTime _newCertificationExpirationDate;
-
         public DateTime NewCertificationExpirationDate
         {
             get { return _newCertificationExpirationDate; }
@@ -127,7 +126,6 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         }
 
         private DateTime _newRestrictionEndDate;
-
         public DateTime NewRestrictionEndDate
         {
             get { return _newRestrictionEndDate; }
@@ -183,7 +181,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             var newEmployee = new EmployeeModel();
             newEmployee.FirstName = FirstName;
             newEmployee.LastName = LastName;
-            newEmployee.NickName = Nickname;
+            newEmployee.Nickname = Nickname;
             newEmployee.HireDate = HireDate;
             newEmployee.Emails = Emails;
             newEmployee.Phones = Phones;

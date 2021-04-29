@@ -12,7 +12,6 @@ namespace SimplyEmployeeTracker.ViewModels
 {
     public class EquipmentTabViewModel
     {
-
         public ObservableCollection<EquipmentModel> Equipment { get; set; }
 
         public RelayCommand<object> OpenAddItemWindowCommand { get; private set; }
@@ -57,11 +56,11 @@ namespace SimplyEmployeeTracker.ViewModels
 
            var equipment = await GetData.EquipmentQueryAsync();
             var IDs = new List<int>();
-            foreach (EquipmentModel _equipment in Equipment) { IDs.Add(_equipment.ID); }
+            foreach (EquipmentModel _equipment in Equipment) { IDs.Add(_equipment.Id); }
 
             foreach (EquipmentModel _equipment in equipment)
             {
-                if (IDs.Contains(_equipment.ID))
+                if (IDs.Contains(_equipment.Id))
                 { }
                 else { Equipment.Add(_equipment); }
             }

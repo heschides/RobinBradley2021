@@ -20,7 +20,7 @@ namespace SimplyEmployeeTracker.DataAccess
                 var p = new DynamicParameters();
                 p.Add("@FirstName", e.FirstName);
                 p.Add("@LastName", e.LastName);
-                p.Add("@NickName", e.NickName);
+                p.Add("@NickName", e.Nickname);
                 p.Add("@HireDate", e.HireDate);
                 p.Add("@JobTitleID", e.JobTitle.Id);
                 p.Add("@DepartmentID", e.Department.Id);
@@ -71,8 +71,7 @@ namespace SimplyEmployeeTracker.DataAccess
                 return e;
             }
         }
-
-        internal static EquipmentModel CreateItem(EquipmentModel newItem)
+        public static EquipmentModel CreateItem(EquipmentModel newItem)
         {
             using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
             {
@@ -90,13 +89,45 @@ namespace SimplyEmployeeTracker.DataAccess
                 p.Add("@CICRequired", false);
                 p.Add("@id", 0, dbType: System.Data.DbType.Int32, direction: System.Data.ParameterDirection.Output);
                 connection.Execute("dbo.spEquipment_Insert", p, commandType: System.Data.CommandType.StoredProcedure);
-                newItem.ID = p.Get<int>("@id");
+                newItem.Id = p.Get<int>("@id");
 
                 return newItem;
             }
         }
-
-
+        public static void CreateEquipmentAssignmentRecord(EquipmentAssignmentRecordModel newAssignment)
+        {
+            foreach (EquipmentModel item in newAssignment.SelectedItems)
+            {
+                using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkDeskDB")))
+                {
+                    var p = new DynamicParameters();
+                    p.Add("@EmployeeID", newAssignment.EmployeeID);
+                    p.Add("@EquipmentID", item.Id);
+                    if (newAssignment.ID == 0)
+                    {
+                        p.Add("@DepartmentID", null);
+                    }
+                    else
+                    {
+                        p.Add("@DepartmentID", newAssignment.DepartmentID);
+                    }
+                    p.Add("@DateOut", newAssignment.DateOut);
+                    p.Add("@IsStandardIssue", newAssignment.IsStandardIssue);
+                    p.Add("@IsDepartment", newAssignment.IsDepartment);
+                    if (newAssignment.IsStandardIssue == false)
+                    {
+                        p.Add("@DueDate", newAssignment.DueDate);
+                        p.Add("@JobsiteId", newAssignment.Jobsite);
+                    }
+                    else
+                    {
+                        p.Add("@DueDate", null);
+                        p.Add("@JobsiteId", null);
+                    }
+                    connection.Execute("dbo.spEquipmentAssignmentRecord_Insert", p, commandType: System.Data.CommandType.StoredProcedure);
+                }
+            }
+        }
     }
 }
 

@@ -42,42 +42,44 @@
           </Grid.RowDefinitions>
           <TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Text="Create Assignment Record" FontSize="16" />
           <TextBlock Grid.Row="3" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Text="Assignment Type" />
-          <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Text="Standard Issue" VerticalAlignment="Center"/>
+          <TextBlock Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Text="Standard Issue" VerticalAlignment="Center" />
           <TextBlock Grid.Row="3" Grid.Column="4" HorizontalAlignment="Right" Margin="0,0,10,0" Text="Name" Visibility="{Binding ElementName=rbAssignmentType_Individual, Path=IsChecked, Converter={StaticResource b2v}}" />
           <TextBlock Grid.Row="3" Grid.Column="4" HorizontalAlignment="Right" Margin="0,0,10,0" Text="Department" Visibility="{Binding ElementName=rbAssignmentType_Department, Path=IsChecked, Converter={StaticResource b2v}}" />
-          <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Text="Assigned" VerticalAlignment="Center"/>
-          <TextBlock Grid.Row="5" Grid.Column="4" HorizontalAlignment="Right" Margin="0,2,10,0"  Text="Due" FontSize="8" Visibility="{Binding ElementName=rbStandardIssue_No, Path=IsChecked, Converter={StaticResource b2v}}" VerticalAlignment="Center" />
-          <TextBlock Grid.Row="7" Grid.Column="4" Text="Select Item" HorizontalAlignment="Center" VerticalAlignment="Center"  />
+          <TextBlock Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" Text="Assigned" VerticalAlignment="Center" />
+          <TextBlock Grid.Row="5" Grid.Column="4" HorizontalAlignment="Right" Margin="0,2,10,0" Text="Due" FontSize="8" Visibility="{Binding ElementName=rbStandardIssue_No, Path=IsChecked, Converter={StaticResource b2v}}" VerticalAlignment="Center" />
+          <TextBlock Grid.Row="7" Grid.Column="4" Text="Select Item" HorizontalAlignment="Center" VerticalAlignment="Center" />
           <TextBlock Grid.Row="7" Grid.Column="3" VerticalAlignment="Center" FontSize="8" Text="or" Margin="7,0,0,0" />
           <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Text="Item ID" />
 
           <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal">
-               <RadioButton x:Name="rbAssignmentType_Department" GroupName="AssignmentType" Content="Department" HorizontalAlignment="Center" Margin="0,0,15,0" IsChecked="{Binding IsDepartment, Mode=OneWayToSource}"/>
+               <RadioButton x:Name="rbAssignmentType_Department" GroupName="AssignmentType" Content="Department" HorizontalAlignment="Center" Margin="0,0,15,0" IsChecked="{Binding IsDepartment, Mode=OneWayToSource}" />
                <RadioButton x:Name="rbAssignmentType_Individual" GroupName="AssignmentType" Content="Individual" IsChecked="{Binding IsIndividual, Mode=OneWayToSource}" />
           </StackPanel>
 
           <StackPanel Grid.Row="5" Grid.Column="2" Orientation="Horizontal">
-               <RadioButton GroupName="IsStandardIssue" x:Name="rbStandardIssue_YES" Content="Yes" Margin="0,0,54,0" VerticalAlignment="Center"/>
-               <RadioButton GroupName="IsStandardIssue" x:Name="rbStandardIssue_No" Content="No" Margin="0,0,0,0" VerticalAlignment="Center"/>
+               <RadioButton GroupName="IsStandardIssue" x:Name="rbStandardIssue_YES" Content="Yes" Margin="0,0,54,0" VerticalAlignment="Center" IsChecked="{Binding IsStandardIssue, Mode=OneWayToSource}"/>
+               <RadioButton GroupName="IsStandardIssue" x:Name="rbStandardIssue_No" Content="No" Margin="0,0,0,0" VerticalAlignment="Center" d:IsChecked="True" />
           </StackPanel>
 
-          <ComboBox Grid.Row="3" Grid.Column="5" Visibility="{Binding ElementName=rbAssignmentType_Individual, Path=IsChecked}" ItemsSource="{Binding Path=AuthorizedEmployees}"  DisplayMemberPath="FullName" SelectedValue="{Binding SelectedEmployee}" />
-          <ComboBox Grid.Row="3" Grid.Column="5" Visibility="{Binding ElementName=rbAssignmentType_Department, Path=IsChecked, Converter={StaticResource b2v}}" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedDepartment}"/>
-          <DatePicker x:Name="dateAssignedDate" Grid.Row="6" Grid.Column="2" BorderThickness="0" VerticalAlignment="Center" SelectedDate="{Binding AssignedDate, Mode=OneWayToSource}"/>
-          <DatePicker x:Name="dateDueDate"  VerticalAlignment="Center" Grid.Row="5" Grid.Column="5" BorderThickness="0" Visibility="{Binding ElementName=rbStandardIssue_No, Path=IsChecked, Converter={StaticResource b2v}}" SelectedDate="{Binding DueDate, Mode=OneWayToSource}" />
+          <ComboBox Grid.Row="3" Grid.Column="5" Visibility="{Binding ElementName=rbAssignmentType_Individual, Path=IsChecked}" ItemsSource="{Binding Path=AuthorizedEmployees}" DisplayMemberPath="FullName" SelectedValue="{Binding SelectedEmployee}" />
+          <ComboBox Grid.Row="3" Grid.Column="5" Visibility="{Binding ElementName=rbAssignmentType_Department, Path=IsChecked, Converter={StaticResource b2v}}" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedDepartment}" />
+          <TextBlock Text="Destination" FontSize="10" Grid.Row="6" Grid.Column="4" VerticalAlignment="Center" Visibility="{Binding ElementName=rbStandardIssue_No, Path=IsChecked, Converter={StaticResource b2v}}" />
+          <ComboBox Text="{Binding Destination}" ItemsSource="{Binding Jobsites}" DisplayMemberPath="Name" Height="20" VerticalAlignment="Center" Grid.Column="5" Grid.Row="6" Visibility="{Binding ElementName=rbStandardIssue_No, Path=IsChecked, Converter={StaticResource b2v}}" />
+          <DatePicker x:Name="dateAssignedDate" Grid.Row="6" Grid.Column="2" BorderThickness="0" VerticalAlignment="Center" SelectedDate="{Binding AssignedDate, Mode=OneWayToSource}" />
+          <DatePicker x:Name="dateDueDate" VerticalAlignment="Center" Grid.Row="5" Grid.Column="5" BorderThickness="0" Visibility="{Binding ElementName=rbStandardIssue_No, Path=IsChecked, Converter={StaticResource b2v}}" SelectedDate="{Binding DueDate, Mode=OneWayToSource}" />
           <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="7" Grid.Column="2" Text="{Binding AddedItem, Mode=TwoWay}" />
-          <ComboBox Grid.Row="7" Grid.Column="5" ItemsSource="{Binding Equipment}" DisplayMemberPath="InventoryID" SelectedItem="{Binding SelectedItem, Mode=TwoWay}"/>
+          <ComboBox Grid.Row="7" Grid.Column="5" ItemsSource="{Binding Equipment}" DisplayMemberPath="InventoryID" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
           <Button Content="Add Item" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="4" Margin="0" Command="{Binding AddItemToListCommand}" />
           <ListView Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="4" ItemsSource="{Binding SelectedItems}" HorizontalAlignment="Center">
-               <ListView.View >
-                    <GridView >
+               <ListView.View>
+                    <GridView>
                          <GridViewColumn Header="Inventory ID" Width="175" DisplayMemberBinding="{Binding InventoryID}" />
                          <GridViewColumn Header="Description" Width="175" DisplayMemberBinding="{Binding Description}" />
                     </GridView>
                </ListView.View>
           </ListView>
 
-          <Button x:Name="buttonSubmit" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="4" Margin="0" Command="{Binding CreateAssignmentRecordCommand}">
+          <Button x:Name="buttonSubmit" Grid.Row="12" Grid.Column="2" Grid.ColumnSpan="4" Margin="15,0,15,0" Command="{Binding CreateAssignmentRecordCommand}">
                <StackPanel>
                     <TextBlock Text="Submit" />
                </StackPanel>

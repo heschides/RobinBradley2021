@@ -30,15 +30,14 @@ namespace SimplyEmployeeTracker.ViewModels
 
             var equipment = await GetData.EquipmentQueryAsync();
             var eIDs = new List<int>();
-            foreach (EquipmentModel _equipment in EquipmentTabVM.Equipment) { eIDs.Add(_equipment.ID); }
+            foreach (EquipmentModel _equipment in EquipmentTabVM.Equipment) { eIDs.Add(_equipment.Id); }
 
             foreach (EquipmentModel _equipment in equipment)
             {
-                if (eIDs.Contains(_equipment.ID))
+                if (eIDs.Contains(_equipment.Id))
                 { }
                 else { EquipmentTabVM.Equipment.Add(_equipment); }
             }
-
         }
        
         public MainViewModel()

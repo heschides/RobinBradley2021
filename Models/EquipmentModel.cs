@@ -10,7 +10,7 @@ namespace SimplyEmployeeTracker.Models
     public class EquipmentModel
     {
         private int _id;
-        public int ID
+        public int Id
         {
             get { return _id; }
             set { _id = value; }

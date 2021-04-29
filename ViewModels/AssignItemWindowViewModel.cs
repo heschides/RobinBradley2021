@@ -21,6 +21,7 @@ namespace SimplyEmployeeTracker.ViewModels
         public ObservableCollection<EquipmentModel> Equipment { get; set; }
         public ObservableCollection<DepartmentModel> Departments { get; set; }
         public ObservableCollection<EquipmentModel> AssignedItems { get; set; }
+        public ObservableCollection<JobsiteModel>Jobsites { get; set; }
 
         private bool _isStandardIssue;
         public bool IsStandardIssue
@@ -40,7 +41,7 @@ namespace SimplyEmployeeTracker.ViewModels
         public bool IsDepartment
         {
             get { return _isDepartment; }
-            set { _isDepartment = value; }
+            set { OnPropertyChanged(ref _isDepartment, value); }
         }
 
         private DateTime _assignedDate;
@@ -64,6 +65,14 @@ namespace SimplyEmployeeTracker.ViewModels
             set { OnPropertyChanged(ref _addedItem, value); }
         }
 
+        private JobsiteModel _destination;
+        public JobsiteModel Destination
+        {
+            get { return _destination; }
+            set { OnPropertyChanged(ref _destination, value); }
+        }
+
+
         private EquipmentModel _selectedItem;
         public EquipmentModel SelectedItem
         {
@@ -85,6 +94,7 @@ namespace SimplyEmployeeTracker.ViewModels
             set { OnPropertyChanged(ref _selectedDepartment, value); }
         }
 
+        
 
 
         //COMMANDS
@@ -94,6 +104,7 @@ namespace SimplyEmployeeTracker.ViewModels
             var equipment = await GetData.EquipmentQueryAsync();
             var employees = await GetData.EmployeeQueryAsync();
             var departments = await GetData.DepartmentQueryAsync();
+            var jobsites = await GetData.JobsiteQueryAsync();
 
             foreach (EquipmentModel item in equipment)
             {
@@ -102,6 +113,10 @@ namespace SimplyEmployeeTracker.ViewModels
             foreach (DepartmentModel department in departments)
             {
                 Departments.Add(department);
+            }
+            foreach (JobsiteModel jobsite in jobsites)
+            { 
+                Jobsites.Add(jobsite); 
             }
 
             var today = DateTime.Now;
@@ -135,21 +150,46 @@ namespace SimplyEmployeeTracker.ViewModels
         public RelayCommand<object> CreateAssignmentRecordCommand { get; private set; }
         public void CreateAssignmentRecord(object e)
         {
-            ValidateData();
+            AssembleData(NewEquipmentAssignmentRecord);
+            ValidateData(NewEquipmentAssignmentRecord);
+            SendData.CreateEquipmentAssignmentRecord(NewEquipmentAssignmentRecord);
         }
 
+        //ASSEMBLE DATA
+        public void AssembleData(EquipmentAssignmentRecordModel record)
+        {
+            record.DateOut = AssignedDate;
+            record.SelectedItems = SelectedItems.ToList();
+            record.IsDepartment = IsDepartment;
+            record.IsStandardIssue = IsStandardIssue;
+
+            if (record.IsStandardIssue == false)
+            {
+                record.DueDate = DueDate;
+                record.Jobsite = Destination;
+            }
+            if(record.IsDepartment)
+            {
+                record.DepartmentID = SelectedDepartment.Id;
+            }
+            if (IsDepartment == false)
+            {
+                record.EmployeeID = SelectedEmployee.ID;
+            } 
+        }
+        
         //DATA VALIDATION
-        public void ValidateData()
+        public void ValidateData(EquipmentAssignmentRecordModel record)
         {
             StringBuilder message = new StringBuilder();
-            if (IsIndividual == true && SelectedEmployee == null)
+            if (record.IsDepartment == false && SelectedEmployee == null)
             {
                 string userMessage = "Please select an employee to receive the assignment.";
                 message.Append(userMessage);
                 message.AppendLine(); 
                 message.AppendLine();
             }
-            if (IsDepartment && SelectedDepartment == null)
+            if (record.IsDepartment && SelectedDepartment == null)
             {
                 string userMessage = "Please select a department to receive the assignment.";
                 message.Append(userMessage);
@@ -157,14 +197,14 @@ namespace SimplyEmployeeTracker.ViewModels
                 message.AppendLine();
             }
 
-            if (IsStandardIssue == false && DueDate == default)
+            if (record.IsStandardIssue == false && DueDate == default)
             {
                 string dueDateMessage = "You have selected NO to Standard Issue.  Therefore, please select a due date for the selected items.";
                 message.Append(dueDateMessage);
                 message.AppendLine();
                 message.AppendLine();
             }
-            if (AssignedDate == default)
+            if (record.DateOut == default)
             {
                 string assignedDateMessage = "Please select an assignment date.";
                 message.Append(assignedDateMessage);
@@ -172,7 +212,7 @@ namespace SimplyEmployeeTracker.ViewModels
                 message.AppendLine();
             }
 
-            if (SelectedItems == null)
+            if (record.SelectedItems == null)
             {
                 string selectedItemsMessage = "Please select one or more items to create an assignment.";
                 message.AppendLine(selectedItemsMessage);
@@ -191,16 +231,10 @@ namespace SimplyEmployeeTracker.ViewModels
             message.Clear();
         }
 
-
-
-
-        //CONSTRUCTIOR
+        //CONSTRUCTOR
         public AssignItemWindowViewModel()
         {
-            //NewEquipmentAssignmentRecord.DateOut = ;
-            //NewEquipmentAssignmentRecord.ConditionOut = ;
-            //NewEquipmentAssignmentRecord.InventoryID = ;
-            //NewEquipmentAssignmentRecord.EmployeeID = ;
+            NewEquipmentAssignmentRecord = new EquipmentAssignmentRecordModel();
             LoadDataSourcesCommand = new RelayCommand<object>(LoadDataSources);
             AddItemToListCommand = new RelayCommand<object>(AddItemToList);
             CreateAssignmentRecordCommand = new RelayCommand<object>(CreateAssignmentRecord);
@@ -208,6 +242,7 @@ namespace SimplyEmployeeTracker.ViewModels
             Departments = new ObservableCollection<DepartmentModel>();
             AuthorizedEmployees = new ObservableCollection<EmployeeModel>();
             SelectedItems = new ObservableCollection<EquipmentModel>();
+            Jobsites = new ObservableCollection<JobsiteModel>();
         }
     }
 }
