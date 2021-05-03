@@ -159,7 +159,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             var newCertification = new CertificationModel();
             newCertification.Name = SelectedCertification.Name;
                 newCertification.ExpirationDate = _newCertificationExpirationDate;
-            newCertification.ID = SelectedCertification.ID;
+            newCertification.Id = SelectedCertification.Id;
             Certifications.Add(newCertification);
         }
 
@@ -170,7 +170,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             var newRestriction = new RestrictionModel();
             newRestriction.Name =  _selectedRestriction.Name;
             newRestriction.EndDate = _newRestrictionEndDate;
-            newRestriction.ID = _selectedRestriction.ID ;
+            newRestriction.Id = _selectedRestriction.Id ;
             newRestriction.BeginDate = today;
             Restrictions.Add(newRestriction);
         }
@@ -190,7 +190,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             newEmployee.Department = _selectedDepartment;
             newEmployee.JobTitle = _selectedJobTitle;
             EmployeeStatusModel newEmployeeStatus = new EmployeeStatusModel();
-            newEmployeeStatus.ID = 1;
+            newEmployeeStatus.Id = 1;
             newEmployee.Status = newEmployeeStatus;
             SendData.CreateEmployee(newEmployee);
         }

@@ -16,7 +16,7 @@ namespace SimplyEmployeeTracker.DataAccess
             using (var connection = new System.Data.SqlClient.SqlConnection(CnnString("WorkdeskDB")))
             {
                 var p = new DynamicParameters();
-                p.Add("@id", e.ID);
+                p.Add("@id", e.Id);
 
                 connection.Execute("dbo.spEmployees_Delete", p, commandType: System.Data.CommandType.StoredProcedure);
             }

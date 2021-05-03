@@ -9,11 +9,12 @@ namespace SimplyEmployeeTracker.Models
 {
    public class EquipmentAssignmentRecordModel
     {
-        public int ID { get; set; }
-        public EquipmentModel AssignedItem { get; set; }
+        public int Id{ get; set; }
+        public string InventoryId { get; set; }
+        public string Description { get; set; }
         public List<EquipmentModel> SelectedItems { get; set; }
-        public int EmployeeID { get; set; }
-        public int DepartmentID { get; set; }
+        public int EmployeeId { get; set; }
+        public int DepartmentId { get; set; }
         public DateTime DateOut { get; set; }
         public DateTime DateIn { get; set; }
         public DateTime DueDate { get; set; }
@@ -22,6 +23,6 @@ namespace SimplyEmployeeTracker.Models
         public JobsiteModel Jobsite { get; set; }
         public bool IsDepartment { get; set; }
         public bool IsStandardIssue { get; set; }
-
+        public bool IsResolved { get; set; }
     }
 }

@@ -49,7 +49,7 @@
           <TextBlock Grid.Row="5" Grid.Column="4" HorizontalAlignment="Right" Margin="0,2,10,0" Text="Due" FontSize="8" Visibility="{Binding ElementName=rbStandardIssue_No, Path=IsChecked, Converter={StaticResource b2v}}" VerticalAlignment="Center" />
           <TextBlock Grid.Row="7" Grid.Column="4" Text="Select Item" HorizontalAlignment="Center" VerticalAlignment="Center" />
           <TextBlock Grid.Row="7" Grid.Column="3" VerticalAlignment="Center" FontSize="8" Text="or" Margin="7,0,0,0" />
-          <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Text="Item ID" />
+          <TextBlock Grid.Row="7" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Text="Item Id" />
 
           <StackPanel Grid.Row="3" Grid.Column="2" Orientation="Horizontal">
                <RadioButton x:Name="rbAssignmentType_Department" GroupName="AssignmentType" Content="Department" HorizontalAlignment="Center" Margin="0,0,15,0" IsChecked="{Binding IsDepartment, Mode=OneWayToSource}" />
@@ -68,12 +68,12 @@
           <DatePicker x:Name="dateAssignedDate" Grid.Row="6" Grid.Column="2" BorderThickness="0" VerticalAlignment="Center" SelectedDate="{Binding AssignedDate, Mode=OneWayToSource}" />
           <DatePicker x:Name="dateDueDate" VerticalAlignment="Center" Grid.Row="5" Grid.Column="5" BorderThickness="0" Visibility="{Binding ElementName=rbStandardIssue_No, Path=IsChecked, Converter={StaticResource b2v}}" SelectedDate="{Binding DueDate, Mode=OneWayToSource}" />
           <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Row="7" Grid.Column="2" Text="{Binding AddedItem, Mode=TwoWay}" />
-          <ComboBox Grid.Row="7" Grid.Column="5" ItemsSource="{Binding Equipment}" DisplayMemberPath="InventoryID" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
+          <ComboBox Grid.Row="7" Grid.Column="5" ItemsSource="{Binding Equipment}" DisplayMemberPath="InventoryId" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" />
           <Button Content="Add Item" Grid.Column="2" Grid.Row="9" Grid.ColumnSpan="4" Margin="0" Command="{Binding AddItemToListCommand}" />
           <ListView Grid.Column="2" Grid.Row="11" Grid.ColumnSpan="4" ItemsSource="{Binding SelectedItems}" HorizontalAlignment="Center">
                <ListView.View>
                     <GridView>
-                         <GridViewColumn Header="Inventory ID" Width="175" DisplayMemberBinding="{Binding InventoryID}" />
+                         <GridViewColumn Header="Inventory Id" Width="175" DisplayMemberBinding="{Binding InventoryId}" />
                          <GridViewColumn Header="Description" Width="175" DisplayMemberBinding="{Binding Description}" />
                     </GridView>
                </ListView.View>

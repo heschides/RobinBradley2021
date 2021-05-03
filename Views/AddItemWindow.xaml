@@ -45,7 +45,7 @@
                <StackPanel Orientation="Horizontal">
                     <StackPanel Margin="0,30,5,0"
                                 Width="80">
-                         <TextBlock Text="ID"
+                         <TextBlock Text="Id"
                                     FontSize="10"
                                     HorizontalAlignment="Right"
                                     Height="18" />
@@ -89,7 +89,7 @@
                                      Height="30"
                                      SelectedDate="{Binding PurchaseDate, Mode=OneWayToSource}"
                                      Validation.ErrorTemplate="{x:Null}" />
-                         <TextBox x:Name="txtID"
+                         <TextBox x:Name="txtId"
                                   HorizontalAlignment="Stretch"
                                   Text="{Binding Id }" />
                          <TextBox x:Name="txtDescription"

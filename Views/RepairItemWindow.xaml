@@ -27,7 +27,7 @@
                               <DatePicker BorderThickness="0" Width="100" Margin="20" HorizontalAlignment="Left"/>
                               <StackPanel Orientation="Horizontal">
 
-                                   <TextBlock Text="ID" Width="18" Margin="0,2,0,0" />
+                                   <TextBlock Text="Id" Width="18" Margin="0,2,0,0" />
                                    <ComboBox Width="125"/>
                                    <TextBlock Text="Provider" Margin="5,2,2,0"/>
                                    <ComboBox Width="200" />
@@ -45,7 +45,7 @@
                                      Width="100"
                                      HorizontalAlignment="Left" BorderThickness="0"/>
                               <StackPanel Orientation="Horizontal">
-                                   <TextBlock Text="ID"
+                                   <TextBlock Text="Id"
                                               Width="15" Margin="0,2,0,0"/>
                                    <ComboBox Width="125" />
                                    <TextBlock Text="Status" Margin="5,2,2,0"/>

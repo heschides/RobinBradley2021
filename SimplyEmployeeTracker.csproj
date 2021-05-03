@@ -23,16 +23,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Images\car.png" />
+    <None Remove="Images\car_side.png" />
+    <None Remove="Images\cic.png" />
     <None Remove="Images\defaultUserImage.jpg" />
     <None Remove="Images\distribution.png" />
     <None Remove="Images\edit.png" />
+    <None Remove="Images\email.png" />
+    <None Remove="Images\hammer.png" />
+    <None Remove="Images\hello.png" />
     <None Remove="Images\inspection.png" />
     <None Remove="Images\person.png" />
     <None Remove="Images\plus.png" />
     <None Remove="Images\refresh-16.png" />
     <None Remove="Images\repair.png" />
     <None Remove="Images\return.png" />
+    <None Remove="Images\robin.png" />
+    <None Remove="Images\RobinLogo.png" />
     <None Remove="Images\splashScreen.jpg" />
+    <None Remove="Images\sport-car.png" />
+    <None Remove="Images\student.png" />
+    <None Remove="Images\team-leader.png" />
     <None Remove="Images\tools.png" />
   </ItemGroup>
 
@@ -46,6 +57,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Images\car.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\car_side.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\cic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\defaultUserImage.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -53,6 +73,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\email.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\hammer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\hello.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\inspection.png">
@@ -73,6 +102,18 @@
     <Content Include="Images\return.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\robin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\RobinLogo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\sport-car.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\student.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\tools.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -82,6 +123,9 @@
     <SplashScreen Include="Images\splashScreen.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </SplashScreen>
+    <Content Include="Images\team-leader.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

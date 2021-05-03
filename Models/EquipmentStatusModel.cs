@@ -2,19 +2,7 @@
 {
     public class EquipmentStatusModel
     {
-        private int _id;
-        public int ID
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-
-        private string _type;
-        public string Type
-        {
-            get { return _type; }
-            set { _type = value; }
-        }
-
+        public int Id { get; set; }
+        public string Type { get; set; }
     }
 }

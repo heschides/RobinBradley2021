@@ -110,12 +110,12 @@ namespace SimplyEmployeeTracker.ViewModels
         public async void GetEquipmentClasses(object e)
         {
             var _equipmentClasses = await GetData.EquipmentClassQueryAsync();
-            var IDs = new List<int>();
-            foreach (EquipmentClassModel _class in EquipmentClasses) { IDs.Add(_class.Id); }
+            var Ids = new List<int>();
+            foreach (EquipmentClassModel _class in EquipmentClasses) { Ids.Add(_class.Id); }
 
             foreach (EquipmentClassModel _class in _equipmentClasses)
             {
-                if (IDs.Contains(_class.Id))
+                if (Ids.Contains(_class.Id))
                 { }
                 else { EquipmentClasses.Add(_class); }
             }
@@ -125,13 +125,13 @@ namespace SimplyEmployeeTracker.ViewModels
         public void CreateItem(object e)
         {
             var newItem = new EquipmentModel();
-            newItem.InventoryID = Id;
+            newItem.InventoryId = Id;
             newItem.Class = Class;
             bool result = decimal.TryParse(Price, out decimal price);
             newItem.Price = price;
             var itemStatus = new EquipmentStatusModel
             {
-                ID = 2
+                Id = 2
             };
             newItem.Status = itemStatus;
             newItem.Brand = Brand;

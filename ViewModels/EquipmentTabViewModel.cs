@@ -55,12 +55,12 @@ namespace SimplyEmployeeTracker.ViewModels
         {
 
            var equipment = await GetData.EquipmentQueryAsync();
-            var IDs = new List<int>();
-            foreach (EquipmentModel _equipment in Equipment) { IDs.Add(_equipment.Id); }
+            var Ids = new List<int>();
+            foreach (EquipmentModel _equipment in Equipment) { Ids.Add(_equipment.Id); }
 
             foreach (EquipmentModel _equipment in equipment)
             {
-                if (IDs.Contains(_equipment.Id))
+                if (Ids.Contains(_equipment.Id))
                 { }
                 else { Equipment.Add(_equipment); }
             }

@@ -132,7 +132,7 @@ namespace SimplyEmployeeTracker.ViewModels
         {
             if (AddedItem != null)
             {
-                var nextItem = Equipment.First(x => x.InventoryID == AddedItem);
+                var nextItem = Equipment.First(x => x.InventoryId == AddedItem);
                 if (!SelectedItems.Contains(nextItem))
                 {
                     SelectedItems.Add(nextItem);
@@ -170,11 +170,11 @@ namespace SimplyEmployeeTracker.ViewModels
             }
             if(record.IsDepartment)
             {
-                record.DepartmentID = SelectedDepartment.Id;
+                record.DepartmentId = SelectedDepartment.Id;
             }
             if (IsDepartment == false)
             {
-                record.EmployeeID = SelectedEmployee.ID;
+                record.EmployeeId = SelectedEmployee.Id;
             } 
         }
         

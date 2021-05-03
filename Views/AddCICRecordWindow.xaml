@@ -41,7 +41,7 @@
                               <StackPanel Orientation="Horizontal"
                                           Margin="5,0,0,0">
                                    <StackPanel Width="80">
-                                        <TextBlock Text="ID"
+                                        <TextBlock Text="Id"
                                                    Background="LightSkyBlue" />
                                         <ComboBox />
                                         <ComboBox />
@@ -94,7 +94,7 @@
                               <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
                                    <StackPanel Width="80"
                                                Background="LightSkyBlue">
-                                        <TextBlock Text="ID" />
+                                        <TextBlock Text="Id" />
                                         <ComboBox />
                                         <ComboBox />
                                         <ComboBox />
@@ -118,7 +118,7 @@
                                                />
                                    <StackPanel Width="80"
                                                Background="LightSkyBlue">
-                                        <TextBlock Text="ID" />
+                                        <TextBlock Text="Id" />
                                         <ComboBox />
                                         <ComboBox />
                                         <ComboBox />
@@ -160,7 +160,7 @@
                                    <StackPanel Orientation="Horizontal"
                                                Margin="5,0,0,0">
                                         <StackPanel Width="80">
-                                             <TextBlock Text="ID"
+                                             <TextBlock Text="Id"
                                                         Background="LightSkyBlue" />
                                              <ComboBox />
                                              <ComboBox />
