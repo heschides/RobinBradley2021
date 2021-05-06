@@ -27,6 +27,7 @@ namespace SimplyEmployeeTracker.Models
         public ObservableCollection<CitationModel> Citations { get; set; }
         public ObservableCollection<EquipmentAssignmentRecordModel> EquipmentAssignments { get; set; }
         public ObservableCollection<RestrictionModel> Restrictions { get; set; }
+        public ObservableCollection<DocumentModel> Documents { get; set; }
     }
 }
 

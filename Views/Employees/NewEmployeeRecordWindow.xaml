@@ -1,0 +1,154 @@
+﻿<Window x:Class="SimplyEmployeeTracker.Views.CreateNewEmployeeRecord" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors" xmlns:i="http://schemas.microsoft.com/xaml/behaviors" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vms="clr-namespace:SimplyEmployeeTracker.ViewModels" xmlns:local="clr-namespace:SimplyEmployeeTracker.Views" mc:Ignorable="d" Title="CreateNewEmployeeRecord" Height="700" Width="1050" Background="White" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ResizeMode="NoResize " Topmost="True">
+     <behaviors:Interaction.Triggers>
+          <behaviors:EventTrigger EventName="Loaded">
+               <behaviors:InvokeCommandAction Command="{Binding LoadComboBoxesCommand}" />
+          </behaviors:EventTrigger>
+     </behaviors:Interaction.Triggers>
+     <Window.DataContext>
+          <vms:NewEmployeeRecordWindowViewModel />
+     </Window.DataContext>
+     <Grid>
+          <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="50" />
+               <ColumnDefinition Width="67" />
+               <ColumnDefinition Width="200" />
+               <ColumnDefinition Width="20" />
+               <ColumnDefinition Width="100" />
+               <ColumnDefinition Width="10" />
+               <ColumnDefinition Width="221" />
+               <ColumnDefinition Width="19" />
+               <ColumnDefinition Width="250" />
+               <ColumnDefinition Width="50" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+               <RowDefinition Height="80" />
+               <RowDefinition Height="50" />
+               <RowDefinition Height="25" />
+               <RowDefinition Height="5" />
+               <RowDefinition Height="25" />
+               <RowDefinition Height="5" />
+               <RowDefinition Height="25" />
+               <RowDefinition Height="5" />
+               <RowDefinition Height="150" />
+               <RowDefinition Height="10" />
+               <RowDefinition Height="150" />
+               <RowDefinition Height="10" />
+               <RowDefinition Height="30" />
+
+               <RowDefinition Height="*" />
+          </Grid.RowDefinitions>
+          <TextBlock Text="Create A New Employee Record" FontSize="16" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" />
+          <TextBlock Text="First Name" TextAlignment="Right" Grid.Row="2" Grid.Column="1" Style="{DynamicResource FormLabels}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+          <TextBlock Text="Last Name" TextAlignment="Right" Grid.Row="4" Grid.Column="1" Style="{DynamicResource FormLabels}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+          <TextBlock Text="Nickname" TextAlignment="Right" Grid.Row="6" Grid.Column="1" Style="{DynamicResource FormLabels}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+          <TextBlock Text="Phone" TextAlignment="Right" Grid.Row="8" Grid.Column="1" Style="{DynamicResource FormLabels}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+          <TextBlock Text="Email" TextAlignment="Right" Grid.Row="10" Grid.Column="1" Style="{DynamicResource FormLabels}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+
+          <TextBlock Text="Hire Date" TextAlignment="Right" Grid.Row="2" Grid.Column="4" Style="{DynamicResource FormLabels}" />
+          <TextBlock Text="Department" TextAlignment="Right" Grid.Row="4" Grid.Column="4" Style="{DynamicResource FormLabels}" />
+          <TextBlock Text="Job Title" TextAlignment="Right" Grid.Row="6" Grid.Column="4" Style="{DynamicResource FormLabels}" />
+
+          <StackPanel Grid.Row="8" Grid.Column="4">
+               <TextBlock Text="Certifications" HorizontalAlignment="Right" Margin="0,5,5,0" Style="{DynamicResource FormLabels}" />
+               <TextBlock Text="Expiration Date" HorizontalAlignment="Right" Margin="0,5,5,0" FontStyle="Italic" FontSize="8" Style="{DynamicResource FormLabels}" />
+          </StackPanel>
+
+          <StackPanel Grid.Row="10" Grid.Column="4" Margin="0,2,1,28">
+               <TextBlock Text="Restrictions" HorizontalAlignment="Right"  Style="{DynamicResource FormLabels}" />
+               <TextBlock Text="End Date" HorizontalAlignment="Right" Margin="0,10,5,0" FontStyle="Italic" FontSize="8" Style="{DynamicResource FormLabels}" />
+          </StackPanel>
+
+          <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding FirstName}" />
+          <TextBox Grid.Row="4" Grid.Column="2" Text="{Binding LastName}" Grid.RowSpan="1" />
+          <TextBox Grid.Row="6" Grid.Column="2" Text="{Binding Nickname}" Grid.RowSpan="1" />
+          <DatePicker Grid.Row="2" Grid.Column="6" Text="{Binding HireDate, Mode=OneWayToSource}" Validation.ErrorTemplate="{x:Null}" BorderThickness="0" />
+          <!--DEPARTMENT-->
+          <ComboBox Grid.Row="4" Grid.Column="6" ItemsSource="{Binding Departments}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedDepartment}" Grid.RowSpan="1" />
+          <!--JOB TITLE-->
+          <ComboBox Grid.Row="6" Grid.Column="6" ItemsSource="{Binding JobTitles}" DisplayMemberPath="Name" SelectedValue="{Binding SelectedJobTitle}" Grid.RowSpan="1" />
+
+          <!--PHONE NUMBERS-->
+          <StackPanel Grid.Row="8" Grid.RowSpan="2" Grid.Column="2" Orientation="Vertical">
+               <TextBox Text="{Binding NewPhoneNumber}" Height="25" />
+               <ComboBox ItemsSource="{Binding Path = PhoneTypes }" SelectedItem="{Binding NewPhoneType}" />
+               <Button Content="Add" Command="{Binding AddPhoneCommand}" />
+               <ListView x:Name="listviewPhones" ItemsSource="{Binding Phones}" BorderThickness="1" FontSize="10" Width="200" Height="90">
+                    <ListView.View>
+                         <GridView>
+                              <GridViewColumn Width="100" Header="Number" DisplayMemberBinding="{Binding Path=Number}" />
+                              <GridViewColumn Width="100" Header="Type" DisplayMemberBinding="{Binding Path=Type }" />
+                         </GridView>
+                    </ListView.View>
+               </ListView>
+          </StackPanel>
+
+          <!--EMAILS-->
+          <StackPanel Grid.Row="10" Grid.Column="2" Orientation="Vertical">
+               <TextBox Text="{Binding NewEmailAddress}" Height="25" />
+               <ComboBox ItemsSource="{Binding Path= EmailTypes}" SelectedItem="{Binding NewEmailType}" />
+               <Button Content="Add" Command="{Binding AddEmailCommand}" />
+
+               <ListView Grid.Row="10" Grid.Column="3" ItemsSource="{Binding Emails}" BorderThickness="1" FontSize="10" Width="200" Height="83">
+                    <ListView.View>
+                         <GridView>
+                              <GridViewColumn Width="100" Header="Address" DisplayMemberBinding="{Binding Path=Address}" />
+                              <GridViewColumn Width="100" Header="Type" DisplayMemberBinding="{Binding Path=Type}" />
+                         </GridView>
+                    </ListView.View>
+               </ListView>
+          </StackPanel>
+
+          <!--CERTIFICATIONS-->
+          <StackPanel Orientation="Vertical" Grid.Column="6" Grid.Row="8">
+               <ComboBox ItemsSource="{Binding Path=CertificationTypes}" SelectedValue="{Binding SelectedCertification}" DisplayMemberPath="Name" />
+               <DatePicker Text="{Binding NewCertificationExpirationDate, StringFormat=d, Mode=OneWayToSource}" Height="25" Validation.ErrorTemplate="{x:Null}" />
+
+               <Button Content="Add" Command="{Binding AddCertificationCommand}" />
+               <ListView Grid.Column="5" Grid.Row="7" ItemsSource="{Binding Certifications}" BorderThickness="1" FontSize="10" Width="220" Height="83">
+                    <ListView.View>
+                         <GridView>
+                              <GridViewColumn Width="110" Header="Type" DisplayMemberBinding="{Binding Path=Name}" />
+                              <GridViewColumn Width="100" Header="Expiration Date" DisplayMemberBinding="{Binding Path=ExpirationDate, StringFormat=d}" />
+                         </GridView>
+                    </ListView.View>
+               </ListView>
+          </StackPanel>
+
+          <!--RESTRICTIONS-->
+          <StackPanel Grid.Row="10" Grid.Column="6" Orientation="Vertical">
+               <ComboBox ItemsSource="{Binding Path=RestrictionTypes}" SelectedValue="{Binding SelectedRestriction}" DisplayMemberPath="Name" />
+               <DatePicker Text="{Binding NewRestrictionEndDate, StringFormat=d, Mode=OneWayToSource}" Validation.ErrorTemplate="{x:Null}"  Height="25"/>
+               <Button Content="Add" Command="{Binding AddRestrictionCommand}" />
+
+               <ListView Grid.Column="5" Grid.Row="10" FontSize="10" ItemsSource="{Binding Restrictions}" Width="220" Height="83">
+                    <ListView.View>
+                         <GridView>
+                              <GridViewColumn Width="140" Header="Type" DisplayMemberBinding="{Binding Path=Name}" />
+                              <GridViewColumn Width="70" Header="End Date" DisplayMemberBinding="{Binding Path=EndDate, StringFormat=d}" />
+                         </GridView>
+                    </ListView.View>
+               </ListView>
+          </StackPanel>
+
+          <!--Attachments -->
+          <StackPanel Grid.Column="8" Grid.Row="2" Grid.RowSpan="10" Width="250">
+               <Image Source="/Images/defaultUserImage.jpg" Height="190" />
+               <Button Content="Add Image" Height="25" Margin="0,5,0,0" />
+
+
+               <ListBox Height="130" Width="250" BorderThickness="1" Margin="0,30,0,0" />
+               <Button Content="Attach PDF" Height="20" />
+          </StackPanel>
+
+          <!--SUBMIT-->
+          <Button Grid.Column="2" Grid.ColumnSpan="7" Grid.Row="12" Content="Submit New Record" Command="{Binding CreateNewEmployeeCommand}">
+               <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                         <i:CallMethodAction MethodName="Close" TargetObject="{Binding RelativeSource={RelativeSource
+                                                  Mode=FindAncestor,
+                                                  AncestorType=Window}}" />
+                    </i:EventTrigger>
+               </i:Interaction.Triggers>
+          </Button>
+     </Grid>
+</Window>

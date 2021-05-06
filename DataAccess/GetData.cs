@@ -182,7 +182,7 @@ namespace SimplyEmployeeTracker.DataAccess
                 return employeeCollection;
             }
         }
-        public async static Task< ObservableCollection<EquipmentModel>> EquipmentQueryAsync()
+        public async static Task<ObservableCollection<EquipmentModel>> EquipmentQueryAsync()
         {
             using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(database)))
             {
@@ -260,7 +260,7 @@ namespace SimplyEmployeeTracker.DataAccess
                 return jobsitesCollection;
             }
         }
-        public static async Task<ObservableCollection<EquipmentAssignmentRecordModel>>EquipmentAssignmentQueryAsync()
+        public static async Task<ObservableCollection<EquipmentAssignmentRecordModel>> EquipmentAssignmentQueryAsync()
         {
             using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(database)))
             {
@@ -268,7 +268,7 @@ namespace SimplyEmployeeTracker.DataAccess
                 var result = assignments.ToList();
                 var assignmentsCollection = new ObservableCollection<EquipmentAssignmentRecordModel>(result);
                 return assignmentsCollection;
-            }    
+            }
         }
         public static async Task<ObservableCollection<VehicleAssignmentRecordModel>> VehicleAssignmentQueryAsync()
         {
@@ -285,15 +285,21 @@ namespace SimplyEmployeeTracker.DataAccess
             using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(database)))
             {
                 var vehicles = new Dictionary<int, VehicleModel>();
-                await connection.QueryAsync("dbo.spGeVehicleData_All", new[]
+                await connection.QueryAsync("dbo.spGetVehicleData_All", new[]
             {
                     typeof(VehicleModel),
-                    typeof(VehicleAssignmentRecordModel)
+                    typeof(VehicleAssignmentRecordModel),
+                    typeof(VehicleInvoiceModel),
+                    typeof(InvoiceLineItemModel)
             }
                 , obj =>
+
                 {
                     var vehicleModel = obj[0] as VehicleModel;
-                    var vehicleAssignmentRecord = obj[1] as VehicleAssignmentRecordModel;
+                    var vehicleAssignmentRecordModel = obj[1] as VehicleAssignmentRecordModel;
+                    var vehicleInvoiceModel = obj[2] as VehicleInvoiceModel;
+                    var invoiceLineItemModel = obj[3] as InvoiceLineItemModel;
+
 
                     var vehicleEntity = new VehicleModel();
                     if (!vehicles.TryGetValue(vehicleModel.Id, out vehicleEntity))
@@ -304,15 +310,41 @@ namespace SimplyEmployeeTracker.DataAccess
                     {
                         vehicleEntity.Assignments = new ObservableCollection<VehicleAssignmentRecordModel>();
                     }
-                    if (vehicleAssignmentRecord != null)
+                    if (vehicleAssignmentRecordModel != null)
                     {
-                        if (!vehicleEntity.Assignments.Any(x => x.Id == vehicleAssignmentRecord.Id))
+                        if (!vehicleEntity.Assignments.Any(x => x.Id == vehicleAssignmentRecordModel.Id))
                         {
-                            vehicleEntity.Assignments.Add(vehicleAssignmentRecord);
+                            vehicleEntity.Assignments.Add(vehicleAssignmentRecordModel);
                         }
+
+                        if (vehicleEntity.InvoiceHistory == null)
+                        {
+                            vehicleEntity.InvoiceHistory = new ObservableCollection<VehicleInvoiceModel>();
+                        }
+                        if (!vehicleEntity.InvoiceHistory.Any(x => x.Id == vehicleInvoiceModel.Id))
+                        {
+                            vehicleEntity.InvoiceHistory.Add(vehicleInvoiceModel);
+                        }
+                        foreach (VehicleInvoiceModel item in vehicleEntity.InvoiceHistory)
+                            if (item.LineItems == null)
+                            {
+                                item.LineItems = new ObservableCollection<InvoiceLineItemModel>();
+                                if (item.LineItems.Any(x => x.Id == invoiceLineItemModel.Id))
+                                {
+                                    item.LineItems.Add(invoiceLineItemModel);
+                                }
+                            }
+                            else
+                            {
+                                if (item.LineItems.Any(x => x.Id == invoiceLineItemModel.Id))
+                                {
+                                    item.LineItems.Add(invoiceLineItemModel);
+                                }
+                            }
                     }
                     return vehicleEntity;
                 }); ;
+
                 var result = vehicles.Values.ToList();
                 var vehicleCollection = new ObservableCollection<VehicleModel>(result);
                 return vehicleCollection;

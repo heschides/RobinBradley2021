@@ -17,8 +17,7 @@ namespace SimplyEmployeeTracker.Models
         public string GasCardNumber { get; set; }
         public DateTime RegistrationDueDate { get; set; }
         public DateTime InspectionDueDate { get; set; }
-        public DateTime PurchaseDate { get; set }
-
+        public DateTime PurchaseDate { get; set; }
         public bool IsAssigned { get; set; }
         public ObservableCollection<VehicleInvoiceModel>InvoiceHistory { get; set; } 
         public ObservableCollection<VehicleAssignmentRecordModel> Assignments { get; set; }

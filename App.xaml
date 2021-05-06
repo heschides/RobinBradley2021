@@ -7,10 +7,10 @@
 
           <LinearGradientBrush x:Key="HeadingBackgroundBrush1">
                <GradientStop Offset="0" Color="Gainsboro" />
-               <GradientStop Offset="1" Color="LightGray" />
+               <GradientStop Offset="1" Color="WhiteSmoke" />
           </LinearGradientBrush>
           <LinearGradientBrush x:Key="HeadingBackgroundBrush2">
-               <GradientStop Offset="0" Color="LightGray" />
+               <GradientStop Offset="0" Color="WhiteSmoke" />
                <GradientStop Offset="1" Color="Gainsboro" />
           </LinearGradientBrush>
           <LinearGradientBrush x:Key="DashboardTopBrush">
@@ -39,6 +39,12 @@
                </Setter>
           </Style>
 
+          <Style x:Key="FormLabels" TargetType="TextBlock">
+               <Setter Property="Padding" Value="5,0,20,0" />
+               <Setter Property="VerticalAlignment" Value="Center" />
+               <Setter Property="HorizontalAlignment" Value="Right" />
+          </Style>
+
           <Style TargetType="Button" x:Key="TopButtons">
                <Setter Property="Height" Value="30" />
                <Setter Property="Width" Value="161" />
@@ -48,7 +54,6 @@
                <Setter Property="Background" Value="#758b94" />
                <Setter Property="BorderThickness" Value="0,0,0,0" />
                <Setter Property="BorderBrush" Value="{DynamicResource HeadingBackgroundBrush1}" />
-              
           </Style>
 
           <LinearGradientBrush x:Key="WindowBackground" StartPoint="0,0" EndPoint="0,1">
@@ -58,12 +63,21 @@
                <GradientStop Color="#7c939c" Offset=".75" />
                <GradientStop Color="#7c939c" Offset="1.0" />
           </LinearGradientBrush>
-          <Style TargetType="TextBlock" x:Key="LabelsLight">
-               <Setter Property="Foreground" Value="White" />
+          
+          <Style TargetType="TextBlock" x:Key="LabelsLight1">
+               <Setter Property="Foreground" Value="DarkSlateGray" />
+               <Setter Property="Background" Value="{DynamicResource HeadingBackgroundBrush1 }" />
+               <Setter Property="Height" Value="30" />
+               <Setter Property="Padding" Value="10,5,0,0" />
           </Style>
-          <Style TargetType="TextBlock" x:Key="LabelsDark">
-               <Setter Property="Foreground" Value="Black" />
+          <Style TargetType="TextBlock" x:Key="LabelsLight2">
+               <Setter Property="Foreground" Value="DarkSlateGray" />
+               <Setter Property="Background" Value="{DynamicResource HeadingBackgroundBrush2 }" />
+               <Setter Property="Height" Value="30" />
+               <Setter Property="Padding" Value="10,5,0,0" />
           </Style>
+
+        
 
      </Application.Resources>
 </Application>

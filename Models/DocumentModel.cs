@@ -24,7 +24,6 @@ namespace SimplyEmployeeTracker.Models
         }
 
         private string _safeName;
-
         public string SafeName
         {
             get { return _safeName; }

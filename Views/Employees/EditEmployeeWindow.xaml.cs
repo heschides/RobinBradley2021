@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SimplyEmployeeTracker.Views
+namespace SimplyEmployeeTracker.Views.Employees
 {
     /// <summary>
-    /// Interaction logic for AddVehicleWindow.xaml
+    /// Interaction logic for EditEmployeeWindow.xaml
     /// </summary>
-    public partial class AddVehicleWindow : Window
+    public partial class EditEmployeeWindow : Window
     {
-        public AddVehicleWindow()
+        public EditEmployeeWindow()
         {
             InitializeComponent();
         }

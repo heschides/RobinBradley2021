@@ -1,0 +1,58 @@
+﻿<Window x:Class="SimplyEmployeeTracker.Views.Vehicles.ReturnVehicleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SimplyEmployeeTracker.Views.Vehicles"
+        mc:Ignorable="d"
+        Title="Return Vehicle" Height="325" Width="425" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" ResizeMode="NoResize" Topmost="True">
+     <Window.Resources>
+          <Style x:Key="VehicleReturnLabels" TargetType="TextBlock">
+               <Setter Property="Padding" Value="5,0,20,0" />
+               <Setter Property="VerticalAlignment" Value="Center" />
+               <Setter Property="HorizontalAlignment" Value="Right" />
+          </Style>
+     </Window.Resources>
+          <Grid>
+               <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="125" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="20" />
+               </Grid.RowDefinitions>
+               <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="50" />
+               </Grid.ColumnDefinitions>
+          <TextBlock Text="Record Vehicle Return" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" FontSize="16" />
+          <Grid Grid.Row="3" Grid.Column="1">
+               <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+               </Grid.RowDefinitions>
+               <TextBlock Text="Fleet #" Grid.Row="0" Style="{StaticResource VehicleReturnLabels}" />
+               <TextBlock Text="Condition" Grid.Row="1" Style="{StaticResource VehicleReturnLabels}" />
+               <TextBlock Text="Fuel Level" Grid.Row="2" Style="{StaticResource VehicleReturnLabels}" />
+          </Grid>
+          <Grid Grid.Row="3" Grid.Column="2">
+               <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="30" />
+               </Grid.RowDefinitions>
+               <ComboBox x:Name="FleetNumber" Grid.Row="0"/>
+               <ComboBox x:Name="Condition" Grid.Row="1" />
+               <ComboBox x:Name="FuelLevel" Grid.Row="2" />
+          </Grid>
+          <Button Content="Submit" Grid.Row="4" Grid.Column="2" />
+     </Grid>
+     
+</Window>

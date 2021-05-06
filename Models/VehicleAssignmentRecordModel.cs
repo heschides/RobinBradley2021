@@ -14,8 +14,13 @@ namespace SimplyEmployeeTracker.Models
         public DateTime DateOut { get; set; }
         public DateTime DateIn { get; set; }
         public DateTime DueDate { get; set; }
-        public enum ConditionOut { Excellent, Good, Fair, Poor  }
-        public enum ConditionIn { Excellent, Good, Fair, Poor, Unacceptable }
+        public Condition ConditionOut{ get; set; }
+        public Condition ConditionIn { get; set; }
         public bool IsResolved { get; set; }
+        public enum Condition { Excellent, Good, Fair, Poor }
+
     }
+
+    
+
 }

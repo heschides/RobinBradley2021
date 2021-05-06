@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Data;
 using System.ComponentModel;
+using SimplyEmployeeTracker.Views.Employees;
 
 namespace SimplyEmployeeTracker.ViewModels
 {
@@ -25,7 +26,8 @@ namespace SimplyEmployeeTracker.ViewModels
         public EmployeeModel SelectedEmployee
         {
             get { return _selectedEmployee; }
-            set {
+            set
+            {
                 OnPropertyChanged(ref _selectedEmployee, value);
                 EquipmentAssignments = SelectedEmployee.EquipmentAssignments;
             }
@@ -40,10 +42,14 @@ namespace SimplyEmployeeTracker.ViewModels
                 {
                     var result = value.Where(x => x.IsStandardIssue == true);
                     var resultCollection = new ObservableCollection<EquipmentAssignmentRecordModel>(result);
-                    OnPropertyChanged<ObservableCollection<EquipmentAssignmentRecordModel>>(ref _equipmentAssignments, resultCollection) ;
+                    OnPropertyChanged<ObservableCollection<EquipmentAssignmentRecordModel>>(ref _equipmentAssignments, resultCollection);
                 }
             }
         }
+
+        public string SelectedEmployeeName { get; set; }
+
+
         //COMMANDS
 
         public RelayCommand<object> OpenAddEmployeeWindowCommand { get; private set; }
@@ -74,12 +80,18 @@ namespace SimplyEmployeeTracker.ViewModels
         }
 
         public RelayCommand<object> OpenAddEmployeeCertificationWindowCommand { get; private set; }
-        public static void OpenAddEmployeeCertificationWindow (object e)
+        public static void OpenAddEmployeeCertificationWindow(object e)
         {
             var w = new AddEmployeeCertificationWindow();
             w.Show();
         }
 
+        public RelayCommand<object> OpenEditEmployeeWindowCommand { get; private set; }
+        public static void OpenEditEmployeeWindow(object e)
+        {
+            var window = new EditEmployeeWindow();
+            window.Show();
+        }
 
         //CONSTRUCTORS
         public EmployeeTabViewModel()
@@ -91,6 +103,11 @@ namespace SimplyEmployeeTracker.ViewModels
             OpenAddEmployeeWindowCommand = new RelayCommand<object>(OpenAddEmployee);
             RefreshEmployeesCommand = new RelayCommand<object>(RefreshEmployees);
             OpenAddEmployeeCertificationWindowCommand = new RelayCommand<object>(OpenAddEmployeeCertificationWindow);
+            OpenEditEmployeeWindowCommand = new RelayCommand<object>(OpenEditEmployeeWindow);
+            SelectedEmployeeName = SelectedEmployee.FirstName;
         }
+
+
     }
 }
+
