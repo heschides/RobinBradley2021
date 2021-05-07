@@ -30,9 +30,11 @@ namespace RobinBradley2021.ViewModels
             get { return _selectedEmployee; }
             set
             {
-                Set(ref _selectedEmployee, value);
-                Messenger.Default.Send(new EmployeeToken(value));
-                EquipmentAssignments = SelectedEmployee.EquipmentAssignments;
+                if (Set(ref _selectedEmployee, value))
+                {
+                    Messenger.Default.Send(new EmployeeToken(value));
+                    EquipmentAssignments = SelectedEmployee.EquipmentAssignments;
+                }
             }
         }
         private ObservableCollection<EquipmentAssignmentRecordModel> _equipmentAssignments;
