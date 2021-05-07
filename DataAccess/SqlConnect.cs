@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyEmployeeTracker.DataAccess
+namespace RobinBradley2021.DataAccess
 {
     public static class SqlConnect
     {

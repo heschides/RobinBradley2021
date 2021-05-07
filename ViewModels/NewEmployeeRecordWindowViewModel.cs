@@ -1,12 +1,13 @@
-﻿using SimplyEmployeeTracker.DataAccess;
-using SimplyEmployeeTracker.Models;
-using SimplyEmployeeTracker.Other;
+﻿using GalaSoft.MvvmLight;
+using RobinBradley2021.DataAccess;
+using RobinBradley2021.Models;
+using RobinBradley2021.Other;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace SimplyEmployeeTracker.ViewModels
+namespace RobinBradley2021.ViewModels
 {
 public  class NewEmployeeRecordWindowViewModel : ViewModelBase
     {
@@ -14,28 +15,28 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public string FirstName
         {
             get { return _firstName; }
-            set { OnPropertyChanged(ref _firstName, value); }
+            set { Set(ref _firstName, value); }
         }
 
         private string _lastName;
         public string LastName
         {
             get { return _lastName; }
-            set { OnPropertyChanged(ref _lastName, value); }
+            set { Set(ref _lastName, value); }
         }
 
         private string _nickname;
         public string Nickname
         {
             get { return _nickname; }
-            set { OnPropertyChanged(ref _nickname, value); }
+            set { Set(ref _nickname, value); }
         }
 
         private DateTime _hireDate;
         public DateTime HireDate
         {
             get { return _hireDate; }
-            set { OnPropertyChanged(ref _hireDate, value); }
+            set { Set(ref _hireDate, value); }
         }
 
         public static ObservableCollection<JobTitleModel> JobTitles { get; private set; }
@@ -43,7 +44,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public JobTitleModel SelectedJobTitle
         {
             get { return _selectedJobTitle; }
-            set { OnPropertyChanged(ref _selectedJobTitle, value); }
+            set { Set(ref _selectedJobTitle, value); }
         }
 
         public static ObservableCollection<DepartmentModel> Departments { get; private set; }
@@ -51,7 +52,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public DepartmentModel SelectedDepartment
         {
             get { return _selectedDepartment; }
-            set { OnPropertyChanged(ref _selectedDepartment, value); }
+            set { Set(ref _selectedDepartment, value); }
         }
 
         public ObservableCollection<PhoneModel> Phones { get; private set; }
@@ -66,14 +67,14 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public string NewPhoneNumber
         {
             get { return _newPhoneNumber; }
-            set { OnPropertyChanged(ref _newPhoneNumber, value); }
+            set { Set(ref _newPhoneNumber, value); }
         }
 
         private string _newPhoneType;
         public string NewPhoneType
         {
             get { return _newPhoneType; }
-            set { OnPropertyChanged(ref _newPhoneType, value); }
+            set { Set(ref _newPhoneType, value); }
         }
 
         
@@ -87,14 +88,14 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public string NewEmailAddress
         {
             get { return _newEmailAddress; }
-            set { OnPropertyChanged(ref _newEmailAddress, value); }
+            set { Set(ref _newEmailAddress, value); }
         }
 
         private string _newEmailType;
         public string NewEmailType
         {
             get { return _newEmailType; }
-            set { OnPropertyChanged(ref _newEmailType, value); }
+            set { Set(ref _newEmailType, value); }
         }
 
         public static ObservableCollection<CertificationModel> Certifications { get; private set; }
@@ -104,7 +105,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public CertificationModel SelectedCertification
         {
             get { return _selectedCertification; }
-            set { OnPropertyChanged(ref _selectedCertification, value); }
+            set { Set(ref _selectedCertification, value); }
         }
 
         private DateTime _newCertificationExpirationDate;
@@ -122,7 +123,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
         public RestrictionModel SelectedRestriction
         {
             get { return _selectedRestriction; }
-            set { OnPropertyChanged(ref _selectedRestriction, value); }
+            set { Set(ref _selectedRestriction, value); }
         }
 
         private DateTime _newRestrictionEndDate;

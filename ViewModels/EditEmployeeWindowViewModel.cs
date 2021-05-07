@@ -1,22 +1,28 @@
-﻿using SimplyEmployeeTracker.Other;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using RobinBradley2021.Models;
+using RobinBradley2021.Models.Tokens;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace SimplyEmployeeTracker.ViewModels
+namespace RobinBradley2021.ViewModels
 {
     public class EditEmployeeWindowViewModel : ViewModelBase
     {
-        private int _selectedEmployee;
-        public int SelectedEmployee
+        private EmployeeModel _selectedEmployee;
+        public EmployeeModel SelectedEmployee
         {
             get { return _selectedEmployee; }
-            set { OnPropertyChanged(ref _selectedEmployee, value); }
+            set { Set(ref _selectedEmployee, value); }
         }
 
+        public EditEmployeeWindowViewModel()
+        {
+            Messenger.Default.Register<EmployeeToken>(this, OnNewEmployeeToken);
+        }
 
-
+        private void OnNewEmployeeToken(EmployeeToken token)
+        {
+            SelectedEmployee = token.SelectedEmployee;
+        }
     }
 }

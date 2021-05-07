@@ -1,18 +1,20 @@
-﻿using SimplyEmployeeTracker.DataAccess;
-using SimplyEmployeeTracker.Models;
-using SimplyEmployeeTracker.Other;
+﻿using GalaSoft.MvvmLight;
+using RobinBradley2021.DataAccess;
+using RobinBradley2021.Models;
+using RobinBradley2021.Other;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static SimplyEmployeeTracker.ViewModels.EmployeeTabViewModel;
-namespace SimplyEmployeeTracker.ViewModels
+using static RobinBradley2021.ViewModels.EmployeeTabViewModel;
+namespace RobinBradley2021.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
         public EquipmentTabViewModel EquipmentTabVM { get; set; }
         public EmployeeTabViewModel EmployeeTabVM { get; set; }
+        public EditEmployeeWindowViewModel EditEmployeeVM { get; set; }
         public VehicleTabViewModel VehicleTabVM { get; set; }
         public RelayCommand<object> LoadInitialDataCommand { get; set; }
 
@@ -53,6 +55,7 @@ namespace SimplyEmployeeTracker.ViewModels
         {
             EquipmentTabVM = new EquipmentTabViewModel();
             EmployeeTabVM = new EmployeeTabViewModel();
+            EditEmployeeVM = new EditEmployeeWindowViewModel();
             VehicleTabVM = new VehicleTabViewModel();
             LoadInitialDataCommand = new RelayCommand<object>(LoadInitialData);
         }

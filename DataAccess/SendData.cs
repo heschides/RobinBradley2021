@@ -1,15 +1,15 @@
-﻿using SimplyEmployeeTracker.Models;
+﻿using RobinBradley2021.Models;
 using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static SimplyEmployeeTracker.DataAccess.SqlConnect;
-using static SimplyEmployeeTracker.Functions.GenerateRandom;
+using static RobinBradley2021.DataAccess.SqlConnect;
+using static RobinBradley2021.Functions.GenerateRandom;
 
 
-namespace SimplyEmployeeTracker.DataAccess
+namespace RobinBradley2021.DataAccess
 {
     public class SendData
     {

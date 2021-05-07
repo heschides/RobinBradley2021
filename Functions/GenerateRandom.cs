@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyEmployeeTracker.Functions
+namespace RobinBradley2021.Functions
 {
    public class GenerateRandom
     {

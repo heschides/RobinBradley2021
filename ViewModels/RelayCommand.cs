@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace SimplyEmployeeTracker.ViewModels
+namespace RobinBradley2021.ViewModels
 {
     public class RelayCommand<T> : ICommand
     {

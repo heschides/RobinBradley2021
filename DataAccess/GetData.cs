@@ -1,13 +1,13 @@
 ﻿using Dapper;
 using System;
-using SimplyEmployeeTracker.Models;
+using RobinBradley2021.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using static SimplyEmployeeTracker.DataAccess.SqlConnect;
+using static RobinBradley2021.DataAccess.SqlConnect;
 
-namespace SimplyEmployeeTracker.DataAccess
+namespace RobinBradley2021.DataAccess
 {
     public class GetData
     {

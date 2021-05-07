@@ -1,13 +1,14 @@
-﻿using SimplyEmployeeTracker.Models;
-using SimplyEmployeeTracker.Other;
+﻿using GalaSoft.MvvmLight;
+using RobinBradley2021.Models;
+using RobinBradley2021.Other;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static SimplyEmployeeTracker.DataAccess.GetData;
-namespace SimplyEmployeeTracker.ViewModels
+using static RobinBradley2021.DataAccess.GetData;
+namespace RobinBradley2021.ViewModels
 {
     public class DashboardViewModel : ViewModelBase
     {

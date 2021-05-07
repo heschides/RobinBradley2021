@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using static SimplyEmployeeTracker.ViewModels.NewEmployeeRecordWindowViewModel;
+using static RobinBradley2021.ViewModels.NewEmployeeRecordWindowViewModel;
 
-namespace SimplyEmployeeTracker.Views
+namespace RobinBradley2021.Views
 {
     /// <summary>
     /// Interaction logic for CreateNewEmployeeRecord.xaml

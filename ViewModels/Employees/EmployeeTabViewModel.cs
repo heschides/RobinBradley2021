@@ -1,26 +1,28 @@
-﻿using SimplyEmployeeTracker.Models;
-using SimplyEmployeeTracker.Other;
+﻿using RobinBradley2021.Models;
+using RobinBradley2021.Other;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using SimplyEmployeeTracker.Views;
+using RobinBradley2021.Views;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SimplyEmployeeTracker.DataAccess;
+using RobinBradley2021.DataAccess;
 using System.Windows.Input;
 using System.Windows;
 using System.Windows.Data;
 using System.ComponentModel;
-using SimplyEmployeeTracker.Views.Employees;
+using RobinBradley2021.Views.Employees;
+using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using RobinBradley2021.Models.Tokens;
 
-namespace SimplyEmployeeTracker.ViewModels
+namespace RobinBradley2021.ViewModels
 {
     public class EmployeeTabViewModel : ViewModelBase
     {
         //PROPERTIES
-
         public ObservableCollection<EmployeeModel> Employees { get; set; }
         private EmployeeModel _selectedEmployee;
         public EmployeeModel SelectedEmployee
@@ -28,7 +30,8 @@ namespace SimplyEmployeeTracker.ViewModels
             get { return _selectedEmployee; }
             set
             {
-                OnPropertyChanged(ref _selectedEmployee, value);
+                Set(ref _selectedEmployee, value);
+                Messenger.Default.Send(new EmployeeToken(value));
                 EquipmentAssignments = SelectedEmployee.EquipmentAssignments;
             }
         }
@@ -42,16 +45,12 @@ namespace SimplyEmployeeTracker.ViewModels
                 {
                     var result = value.Where(x => x.IsStandardIssue == true);
                     var resultCollection = new ObservableCollection<EquipmentAssignmentRecordModel>(result);
-                    OnPropertyChanged<ObservableCollection<EquipmentAssignmentRecordModel>>(ref _equipmentAssignments, resultCollection);
+                    Set<ObservableCollection<EquipmentAssignmentRecordModel>>(ref _equipmentAssignments, resultCollection);
                 }
             }
         }
-
         public string SelectedEmployeeName { get; set; }
-
-
         //COMMANDS
-
         public RelayCommand<object> OpenAddEmployeeWindowCommand { get; private set; }
         public static void OpenAddEmployee(object e)
         {
@@ -70,7 +69,6 @@ namespace SimplyEmployeeTracker.ViewModels
             var employees = await GetData.EmployeeQueryAsync();
             var Ids = new List<int>();
             foreach (EmployeeModel _employee in Employees) { Ids.Add(_employee.Id); }
-
             foreach (EmployeeModel _employee in employees)
             {
                 if (Ids.Contains(_employee.Id))
@@ -78,21 +76,18 @@ namespace SimplyEmployeeTracker.ViewModels
                 else { Employees.Add(_employee); }
             }
         }
-
         public RelayCommand<object> OpenAddEmployeeCertificationWindowCommand { get; private set; }
         public static void OpenAddEmployeeCertificationWindow(object e)
         {
             var w = new AddEmployeeCertificationWindow();
             w.Show();
         }
-
         public RelayCommand<object> OpenEditEmployeeWindowCommand { get; private set; }
         public static void OpenEditEmployeeWindow(object e)
         {
             var window = new EditEmployeeWindow();
             window.Show();
         }
-
         //CONSTRUCTORS
         public EmployeeTabViewModel()
         {
@@ -106,8 +101,5 @@ namespace SimplyEmployeeTracker.ViewModels
             OpenEditEmployeeWindowCommand = new RelayCommand<object>(OpenEditEmployeeWindow);
             SelectedEmployeeName = SelectedEmployee.FirstName;
         }
-
-
     }
 }
-

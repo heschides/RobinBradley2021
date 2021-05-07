@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace SimplyEmployeeTracker.Views.Employees
+namespace RobinBradley2021.Views.Employees
 {
     /// <summary>
     /// Interaction logic for EditEmployeeWindow.xaml

@@ -1,15 +1,15 @@
-﻿using RobinBradley2021.Models.Tokens;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RobinBradley2021.Models
+namespace RobinBradley2021.Models.Tokens
 {
-    public class EmployeeModel
+    public class EmployeeToken
     {
+        public EmployeeModel SelectedEmployee { get; private set; }
+        public EmployeeToken(EmployeeModel employee)
+        {
+            SelectedEmployee = employee;
+        }
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -22,15 +22,6 @@ namespace RobinBradley2021.Models
         public EmployeeStatusModel Status { get; set; }
         public DepartmentModel Department { get; set; }
         public DateTime HireDate { get; set; }
-
-        public static explicit operator EmployeeModel(EmployeeToken v)
-        {
-            var employee = new EmployeeModel();
-            employee.FirstName = v.FirstName;
-            employee.LastName = v.LastName;
-            return employee;
-        }
-
         public ObservableCollection<EmailModel> Emails { get; set; }
         public ObservableCollection<PhoneModel> Phones { get; set; }
         public ObservableCollection<CertificationModel> Certifications { get; set; }
@@ -40,4 +31,3 @@ namespace RobinBradley2021.Models
         public ObservableCollection<DocumentModel> Documents { get; set; }
     }
 }
-

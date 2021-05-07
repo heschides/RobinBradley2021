@@ -1,6 +1,6 @@
-﻿using SimplyEmployeeTracker.DataAccess;
-using SimplyEmployeeTracker.Models;
-using SimplyEmployeeTracker.Views;
+﻿using RobinBradley2021.DataAccess;
+using RobinBradley2021.Models;
+using RobinBradley2021.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyEmployeeTracker.ViewModels
+namespace RobinBradley2021.ViewModels
 {
     public class EquipmentTabViewModel
     {

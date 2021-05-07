@@ -1,6 +1,6 @@
-﻿using SimplyEmployeeTracker.DataAccess;
-using SimplyEmployeeTracker.ViewModels;
-using SimplyEmployeeTracker.Views;
+﻿using RobinBradley2021.DataAccess;
+using RobinBradley2021.ViewModels;
+using RobinBradley2021.Views;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SimplyEmployeeTracker
+namespace RobinBradley2021
 {
     /// <summary>
     /// Interaction logic for App.xaml

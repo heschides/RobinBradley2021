@@ -1,9 +1,9 @@
-﻿<Window x:Class="SimplyEmployeeTracker.Views.Vehicles.AssignVehicleWindow"
+﻿<Window x:Class="RobinBradley2021.Views.Vehicles.AssignVehicleWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SimplyEmployeeTracker.Views.Vehicles"
+        xmlns:local="clr-namespace:RobinBradley2021.Views.Vehicles"
         mc:Ignorable="d"
         Title="AssignVehicleWindow" Height="405" Width="425" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Topmost="True">
      <Window.Resources>

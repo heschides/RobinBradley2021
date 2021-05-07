@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimplyEmployeeTracker.ViewModels
+namespace RobinBradley2021.ViewModels
 {
     public class CICModel
     {

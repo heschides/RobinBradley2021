@@ -1,6 +1,7 @@
-﻿using SimplyEmployeeTracker.DataAccess;
-using SimplyEmployeeTracker.Models;
-using SimplyEmployeeTracker.Other;
+﻿using GalaSoft.MvvmLight;
+using RobinBradley2021.DataAccess;
+using RobinBradley2021.Models;
+using RobinBradley2021.Other;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SimplyEmployeeTracker.ViewModels
+namespace RobinBradley2021.ViewModels
 {
     public class AssignItemWindowViewModel : ViewModelBase
     {
@@ -27,49 +28,49 @@ namespace SimplyEmployeeTracker.ViewModels
         public bool IsStandardIssue
         {
             get { return _isStandardIssue; }
-            set { OnPropertyChanged(ref _isStandardIssue, value); }
+            set { Set(ref _isStandardIssue, value); }
         }
 
         private bool _isIndividual;
         public bool IsIndividual
         {
             get { return _isIndividual; }
-            set { OnPropertyChanged(ref _isIndividual, value); }
+            set { Set(ref _isIndividual, value); }
         }
 
         private bool _isDepartment;
         public bool IsDepartment
         {
             get { return _isDepartment; }
-            set { OnPropertyChanged(ref _isDepartment, value); }
+            set { Set(ref _isDepartment, value); }
         }
 
         private DateTime _assignedDate;
         public DateTime AssignedDate
         {
             get { return _assignedDate; }
-            set { OnPropertyChanged(ref _assignedDate, value); }
+            set { Set(ref _assignedDate, value); }
         }
 
         private DateTime _dueDate;
         public DateTime DueDate
         {
             get { return _dueDate; }
-            set { OnPropertyChanged(ref _dueDate, value); }
+            set { Set(ref _dueDate, value); }
         }
 
         private string _addedItem;
         public string AddedItem
         {
             get { return _addedItem; }
-            set { OnPropertyChanged(ref _addedItem, value); }
+            set { Set(ref _addedItem, value); }
         }
 
         private JobsiteModel _destination;
         public JobsiteModel Destination
         {
             get { return _destination; }
-            set { OnPropertyChanged(ref _destination, value); }
+            set { Set(ref _destination, value); }
         }
 
 
@@ -77,21 +78,21 @@ namespace SimplyEmployeeTracker.ViewModels
         public EquipmentModel SelectedItem
         {
             get { return _selectedItem; }
-            set { OnPropertyChanged(ref _selectedItem, value); }
+            set { Set(ref _selectedItem, value); }
         }
 
         private EmployeeModel _selectedEmployee;
         public EmployeeModel SelectedEmployee
         {
             get { return _selectedEmployee; }
-            set { OnPropertyChanged(ref _selectedEmployee, value); }
+            set { Set(ref _selectedEmployee, value); }
         }
 
         private DepartmentModel _selectedDepartment;
         public DepartmentModel SelectedDepartment
         {
             get { return _selectedDepartment; }
-            set { OnPropertyChanged(ref _selectedDepartment, value); }
+            set { Set(ref _selectedDepartment, value); }
         }
 
         

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplyEmployeeTracker.Models
+namespace RobinBradley2021.Models
 {
     public class VehicleAssignmentRecordModel
     {

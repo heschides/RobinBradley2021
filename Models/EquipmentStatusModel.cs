@@ -1,4 +1,4 @@
-﻿namespace SimplyEmployeeTracker.Models
+﻿namespace RobinBradley2021.Models
 {
     public class EquipmentStatusModel
     {

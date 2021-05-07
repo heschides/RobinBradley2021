@@ -1,13 +1,13 @@
 ﻿using Dapper;
-using SimplyEmployeeTracker.Models;
+using RobinBradley2021.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static SimplyEmployeeTracker.DataAccess.SqlConnect;
+using static RobinBradley2021.DataAccess.SqlConnect;
 
-namespace SimplyEmployeeTracker.DataAccess
+namespace RobinBradley2021.DataAccess
 {
     public static class DeleteData
     {
