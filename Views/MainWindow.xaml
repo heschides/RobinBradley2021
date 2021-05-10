@@ -49,7 +49,7 @@
                          </Grid.RowDefinitions>
 
                          <DockPanel x:Name="dashButtons" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" LastChildFill="True">
-                              <Button Style="{StaticResource TopButtons}" Command="{Binding VehicleTab}">
+                              <Button Style="{StaticResource TopButtons}" Command="{Binding VehicleTabVM.OpenAssignVehicleWindowCommand}">
                                    <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Assign Vehicle" />
                                    </StackPanel>
@@ -126,7 +126,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Equipment Assignments" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding RecentEquipmentAssignments}">
+                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.RecentEquipmentAssignments}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
@@ -144,7 +144,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding RecentVehicleAssignments}">
+                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.RecentVehicleAssignments}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="25" Header="#" DisplayMemberBinding="{Binding Path=VehicleId}" />
@@ -163,7 +163,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Equipment Assignments" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DueEquipmentAssignments}">
+                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.DueEquipmentAssignments}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
@@ -180,7 +180,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DueVehicleAssignments}">
+                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.DueVehicleAssignments}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=VehicleId}" />
@@ -197,7 +197,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="CIC" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DueCIC}">
+                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.DueCIC}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="100" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
@@ -216,7 +216,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Employee Certifications" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DueEmployeeCertifications}">
+                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.DueEmployeeCertifications}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="125" Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
@@ -233,7 +233,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Equipment Assignments" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding OverdueEquipmentAssignments}">
+                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.OverdueEquipmentAssignments}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
@@ -250,7 +250,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="CIC" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding OverdueCIC}">
+                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.OverdueCIC}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="100" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
@@ -268,7 +268,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding OverdueVehicleAssignments}">
+                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.OverdueVehicleAssignments}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="20" Header="#" DisplayMemberBinding="{Binding Path=VehicleId}" />
@@ -285,7 +285,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Employee Certification" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Certifications}">
+                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.OverdueEmployeeCertifications}">
                                    <ListView.View>
                                         <GridView>
                                              <GridViewColumn Width="125" Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
@@ -456,7 +456,7 @@
                                              <GridViewColumn Width="150" Header="Type" DisplayMemberBinding="{Binding Path=Name}" />
                                              <GridViewColumn Width="180" Header="Description" DisplayMemberBinding="{Binding Path=Description}" />
                                              <GridViewColumn Width="60" Header="Issued" DisplayMemberBinding="{Binding Path=BeginDate, StringFormat=d}" />
-                                             <GridViewColumn Width="60" Header="Expiration" DisplayMemberBinding="{Binding Path=ExpirationDate, StringFormat=d}" />
+                                             <GridViewColumn Width="60" Header="Expiration" DisplayMemberBinding="{Binding Path=EndDate, StringFormat=d}" />
                                         </GridView>
                                    </ListView.View>
                               </ListView>
@@ -514,7 +514,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Text="Vehicle History" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="1" FontSize="11" ItemsSource="{Binding EmployeeTabVM.TempListForTestBinding}">
+                              <ListView Grid.Row="1" FontSize="11" ItemsSource="{Binding EmployeeTabVM.VehicleAssignments}">
                                    <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                              <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -565,7 +565,7 @@
                                         <TextBlock Text="Assign" FontSize="10" />
                                    </StackPanel>
                               </Button>
-                              <Button Style="{DynamicResource TopButtons}" Command="{Binding OpenReturnItemWindowCommand}">
+                              <Button Style="{DynamicResource TopButtons}" Command="{Binding EquipmentTabVM.OpenReturnItemWindowCommand}">
                                    <StackPanel>
 
                                         <TextBlock Text="Return" FontSize="10" />
@@ -755,10 +755,70 @@
                </TabItem>
                <!--#endregion-->
                <!--#region Productivity Tab-->
-               <TabItem Header="Productivity" Width="100" Style="{DynamicResource NavigationTab}"></TabItem>
+               <TabItem Header="Productivity" Width="100" Style="{DynamicResource NavigationTab}">
+                    <Grid>
+                         <Grid.RowDefinitions>
+                              <RowDefinition Height="10" />
+                              <RowDefinition Height="*" />
+                              <RowDefinition Height="10" />
+                         </Grid.RowDefinitions>
+                         <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="10" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="10" />
+                         </Grid.ColumnDefinitions>
+                         <Grid Grid.Row="1" Grid.Column="1">
+                              <Grid.RowDefinitions>
+                                   <RowDefinition />
+                                   <RowDefinition />
+                                   <RowDefinition />
+                                   <RowDefinition />
+                                   <RowDefinition />
+                              </Grid.RowDefinitions>
+                              <Grid.ColumnDefinitions>
+                                   <ColumnDefinition />
+                                   <ColumnDefinition />
+                                   <ColumnDefinition />
+                                   <ColumnDefinition />
+                              </Grid.ColumnDefinitions>
+                              <TextBlock Text="This Is The Way The World Ends" Grid.Row="0" Grid.Column="0" />
+                         </Grid>
+
+                    </Grid>
+               </TabItem>
                <!--#endregion-->
                <!--#region Administration Tab-->
-               <TabItem Header="Administration" Width="100" Style="{DynamicResource NavigationTab}"></TabItem>
+               <TabItem Header="Administration" Width="100" Style="{DynamicResource NavigationTab}">
+                    <Grid>
+                         <Grid.RowDefinitions>
+                              <RowDefinition Height="10" />
+                              <RowDefinition Height="*" />
+                              <RowDefinition Height="10" />
+                         </Grid.RowDefinitions>
+                         <Grid.ColumnDefinitions>
+                              <ColumnDefinition Width="10" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="10" />
+                         </Grid.ColumnDefinitions>
+                         <Grid Grid.Row="1" Grid.Column="1">
+                              <Grid.RowDefinitions>
+                                   <RowDefinition />
+                                   <RowDefinition />
+                                   <RowDefinition />
+                                   <RowDefinition />
+                                   <RowDefinition />
+                              </Grid.RowDefinitions>
+                              <Grid.ColumnDefinitions>
+                                   <ColumnDefinition />
+                                   <ColumnDefinition />
+                                   <ColumnDefinition />
+                                   <ColumnDefinition />
+                              </Grid.ColumnDefinitions>
+                              <TextBlock Text="This Is The Way The World Ends" Grid.Row="0" Grid.Column="0" />
+                         </Grid>
+   
+                    </Grid>
+               </TabItem>
           </TabControl>
           <!--EndRegion-->
 

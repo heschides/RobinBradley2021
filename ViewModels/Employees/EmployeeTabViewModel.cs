@@ -37,6 +37,7 @@ namespace RobinBradley2021.ViewModels
                 }
             }
         }
+        public ObservableCollection<VehicleAssignmentRecordModel> VehicleAssignments { get; set; }
         private ObservableCollection<EquipmentAssignmentRecordModel> _equipmentAssignments;
         public ObservableCollection<EquipmentAssignmentRecordModel> EquipmentAssignments
         {
@@ -51,21 +52,23 @@ namespace RobinBradley2021.ViewModels
                 }
             }
         }
-        public string SelectedEmployeeName { get; set; }
         //COMMANDS
         public RelayCommand<object> OpenAddEmployeeWindowCommand { get; private set; }
-        public static void OpenAddEmployee(object e)
+        public RelayCommand<object> RemoveEmployeeCommand { get; private set; }
+        public RelayCommand<object> RefreshEmployeesCommand { get; private set; }
+        public RelayCommand<object> OpenEditEmployeeWindowCommand { get; private set; }
+        public RelayCommand<object> OpenAddEmployeeCertificationWindowCommand { get; private set; }
+        //METHODS
+        public void OpenAddEmployee(object e)
         {
             var w = new CreateNewEmployeeRecord();
             w.Show();
         }
-        public RelayCommand<object> RemoveEmployeeCommand { get; private set; }
         public void RemoveEmployee(object employee)
         {
             Employees.Remove(employee as EmployeeModel);
             DeleteData.DeleteEmployee(employee as EmployeeModel);
         }
-        public RelayCommand<object> RefreshEmployeesCommand { get; private set; }
         public async void RefreshEmployees(object e)
         {
             var employees = await GetData.EmployeeQueryAsync();
@@ -78,13 +81,11 @@ namespace RobinBradley2021.ViewModels
                 else { Employees.Add(_employee); }
             }
         }
-        public RelayCommand<object> OpenAddEmployeeCertificationWindowCommand { get; private set; }
         public static void OpenAddEmployeeCertificationWindow(object e)
         {
             var w = new AddEmployeeCertificationWindow();
             w.Show();
         }
-        public RelayCommand<object> OpenEditEmployeeWindowCommand { get; private set; }
         public static void OpenEditEmployeeWindow(object e)
         {
             var window = new EditEmployeeWindow();
@@ -93,15 +94,17 @@ namespace RobinBradley2021.ViewModels
         //CONSTRUCTORS
         public EmployeeTabViewModel()
         {
+            //properties
             Employees = new ObservableCollection<EmployeeModel>();
             SelectedEmployee = new EmployeeModel();
             EquipmentAssignments = new ObservableCollection<EquipmentAssignmentRecordModel>();
+            VehicleAssignments = new ObservableCollection<VehicleAssignmentRecordModel>();
+            //commands
             RemoveEmployeeCommand = new RelayCommand<object>(RemoveEmployee);
-            OpenAddEmployeeWindowCommand = new RelayCommand<object>(OpenAddEmployee);
             RefreshEmployeesCommand = new RelayCommand<object>(RefreshEmployees);
-            OpenAddEmployeeCertificationWindowCommand = new RelayCommand<object>(OpenAddEmployeeCertificationWindow);
+            OpenAddEmployeeWindowCommand = new RelayCommand<object>(OpenAddEmployee);
             OpenEditEmployeeWindowCommand = new RelayCommand<object>(OpenEditEmployeeWindow);
-            SelectedEmployeeName = SelectedEmployee.FirstName;
+            OpenAddEmployeeCertificationWindowCommand = new RelayCommand<object>(OpenAddEmployeeCertificationWindow);
         }
     }
 }

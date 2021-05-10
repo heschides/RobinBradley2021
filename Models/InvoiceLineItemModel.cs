@@ -10,8 +10,10 @@ namespace RobinBradley2021.Models
    public class InvoiceLineItemModel
     {
         public int Id { get; set; }
-        public enum Class { [Display(Name ="Routine Maintenance")] RoutineMaintenance, [Display(Name ="Mechanical Failure")] MechanicalFailure, [Display(Name = "Accident Damage")] AccidentDamage }
+        public ClassOption Class { get; set; }
         public string Description { get; set; }
         public decimal Cost { get; set; }
+
+        public enum ClassOption {[Display(Name = "Routine Maintenance")] RoutineMaintenance, [Display(Name = "Mechanical Failure")] MechanicalFailure, [Display(Name = "Accident Damage")] AccidentDamage }
     }
 }

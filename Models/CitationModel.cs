@@ -8,29 +8,14 @@ namespace RobinBradley2021.Models
 {
 public    class CitationModel
     {
-        private int _id;
-
-        public int Id
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public DateTime Date { get; set; }
+        public string Description { get; set; }
+        public override string ToString()
         {
-            get { return _id; }
-            set { _id = value; }
+            return Name + ": " + Date.ToShortDateString();
         }
-
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-        private string _description;
-
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; }
-        }
-
 
     }
 }

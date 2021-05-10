@@ -11,7 +11,9 @@ namespace RobinBradley2021.DataAccess
 {
     public class GetData
     {
-        static string database = "WorkDeskDB";
+        //PROPERTIES
+        static readonly string database = "WorkDeskDB";
+        //METHODS
         public static async Task<ObservableCollection<CertificationModel>> CertificationQueryAsync()
         {
             using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(database)))
@@ -62,14 +64,12 @@ namespace RobinBradley2021.DataAccess
                 CertificationModel certificationModel = obj[7] as CertificationModel;
                 EquipmentAssignmentRecordModel equipmentAssignmentRecord = obj[8] as EquipmentAssignmentRecordModel;
                 RestrictionModel restrictionModel = obj[9] as RestrictionModel;
-
                 //employeemodel
                 var employeeEntity = new EmployeeModel();
                 if (!employees.TryGetValue(employeeModel.Id, out employeeEntity))
                 {
                     employees.Add(employeeModel.Id, employeeEntity = employeeModel);
                 }
-
                 //list<emailmodel>
                 if (employeeEntity.Emails == null)
                 {
@@ -82,7 +82,6 @@ namespace RobinBradley2021.DataAccess
                         employeeEntity.Emails.Add(emailModel);
                     }
                 }
-
                 //phonemodel
                 if (employeeEntity.Phones == null)
                 {
@@ -95,7 +94,6 @@ namespace RobinBradley2021.DataAccess
                         employeeEntity.Phones.Add(phoneModel);
                     }
                 }
-
                 //title
                 if (employeeEntity.JobTitle == null)
                 {
@@ -104,7 +102,6 @@ namespace RobinBradley2021.DataAccess
                         employeeEntity.JobTitle = titleModel;
                     }
                 }
-
                 //department
                 if (employeeEntity.Department == null)
                 {
@@ -113,7 +110,6 @@ namespace RobinBradley2021.DataAccess
                         employeeEntity.Department = departmentModel;
                     }
                 }
-
                 //status
                 if (employeeEntity.Status == null)
                 {
@@ -122,7 +118,6 @@ namespace RobinBradley2021.DataAccess
                         employeeEntity.Status = statusModel;
                     }
                 }
-
                 //citation
                 if (employeeEntity.Citations == null)
                 {
@@ -135,7 +130,6 @@ namespace RobinBradley2021.DataAccess
                         employeeEntity.Citations.Add(citationModel);
                     }
                 }
-
                 //certification
                 if (employeeEntity.Certifications == null)
                 {
@@ -148,7 +142,6 @@ namespace RobinBradley2021.DataAccess
                         employeeEntity.Certifications.Add(certificationModel);
                     }
                 }
-
                 //restriction
                 if (employeeEntity.Restrictions == null)
                 {
@@ -161,7 +154,6 @@ namespace RobinBradley2021.DataAccess
                         employeeEntity.Restrictions.Add(restrictionModel);
                     }
                 }
-
                 //equipment record
                 if (employeeEntity.EquipmentAssignments == null)
                 {
@@ -176,7 +168,6 @@ namespace RobinBradley2021.DataAccess
                 }
                 return employeeEntity;
             }); ;
-
                 var result = employees.Values.ToList();
                 var employeeCollection = new ObservableCollection<EmployeeModel>(result);
                 return employeeCollection;
@@ -196,7 +187,6 @@ namespace RobinBradley2021.DataAccess
                   {
                       var equipmentModel = obj[0] as EquipmentModel;
                       var equipmentAssignmentRecord = obj[1] as EquipmentAssignmentRecordModel;
-
                       var equipmentEntity = new EquipmentModel();
                       if (!equipment.TryGetValue(equipmentModel.Id, out equipmentEntity))
                       {
@@ -229,6 +219,16 @@ namespace RobinBradley2021.DataAccess
                 var jobTitlesCollection = new ObservableCollection<JobTitleModel>(result);
                 return jobTitlesCollection;
             }
+        }
+        public static async Task<ObservableCollection<EmployeeStatusModel>> EmployeeStatusQueryAsync()
+        {
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(database)))
+                {
+                var employeeStatuses = await connection.QueryAsync<EmployeeStatusModel>("dbo.spGetEmployeeStatuses_All ", commandType: System.Data.CommandType.StoredProcedure);
+                var result = employeeStatuses.ToList();
+                var employeeStatusesCollection = new ObservableCollection<EmployeeStatusModel>(result);
+                return employeeStatusesCollection;
+            } 
         }
         public static async Task<ObservableCollection<RestrictionModel>> RestrictionQueryAsync()
         {
@@ -293,14 +293,11 @@ namespace RobinBradley2021.DataAccess
                     typeof(InvoiceLineItemModel)
             }
                 , obj =>
-
                 {
                     var vehicleModel = obj[0] as VehicleModel;
                     var vehicleAssignmentRecordModel = obj[1] as VehicleAssignmentRecordModel;
                     var vehicleInvoiceModel = obj[2] as VehicleInvoiceModel;
                     var invoiceLineItemModel = obj[3] as InvoiceLineItemModel;
-
-
                     var vehicleEntity = new VehicleModel();
                     if (!vehicles.TryGetValue(vehicleModel.Id, out vehicleEntity))
                     {
@@ -316,7 +313,6 @@ namespace RobinBradley2021.DataAccess
                         {
                             vehicleEntity.Assignments.Add(vehicleAssignmentRecordModel);
                         }
-
                         if (vehicleEntity.InvoiceHistory == null)
                         {
                             vehicleEntity.InvoiceHistory = new ObservableCollection<VehicleInvoiceModel>();
@@ -344,15 +340,11 @@ namespace RobinBradley2021.DataAccess
                     }
                     return vehicleEntity;
                 }); ;
-
                 var result = vehicles.Values.ToList();
                 var vehicleCollection = new ObservableCollection<VehicleModel>(result);
                 return vehicleCollection;
             }
         }
-
-
-
     }
 }
 

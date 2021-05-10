@@ -6,39 +6,38 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using static RobinBradley2021.Models.Enums;
 
 namespace RobinBradley2021.ViewModels
 {
-public  class NewEmployeeRecordWindowViewModel : ViewModelBase
+    public class NewEmployeeRecordWindowViewModel : ViewModelBase
     {
+      
+        //PROPERTIES
         private string _firstName;
         public string FirstName
         {
             get { return _firstName; }
             set { Set(ref _firstName, value); }
         }
-
         private string _lastName;
         public string LastName
         {
             get { return _lastName; }
             set { Set(ref _lastName, value); }
         }
-
         private string _nickname;
         public string Nickname
         {
             get { return _nickname; }
             set { Set(ref _nickname, value); }
         }
-
         private DateTime _hireDate;
         public DateTime HireDate
         {
             get { return _hireDate; }
             set { Set(ref _hireDate, value); }
         }
-
         public static ObservableCollection<JobTitleModel> JobTitles { get; private set; }
         private JobTitleModel _selectedJobTitle;
         public JobTitleModel SelectedJobTitle
@@ -46,7 +45,6 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             get { return _selectedJobTitle; }
             set { Set(ref _selectedJobTitle, value); }
         }
-
         public static ObservableCollection<DepartmentModel> Departments { get; private set; }
         private DepartmentModel _selectedDepartment;
         public DepartmentModel SelectedDepartment
@@ -54,97 +52,76 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             get { return _selectedDepartment; }
             set { Set(ref _selectedDepartment, value); }
         }
-
         public ObservableCollection<PhoneModel> Phones { get; private set; }
-        public static List<string> PhoneTypes
-        {
-            get 
-            {
-                return new List<string>() { "Home", "Work", "Cell" };
-            }
-        }
+        public PhoneType PhoneTypes { get; private set; }
         private string _newPhoneNumber;
         public string NewPhoneNumber
         {
             get { return _newPhoneNumber; }
             set { Set(ref _newPhoneNumber, value); }
         }
-
-        private string _newPhoneType;
-        public string NewPhoneType
+        private PhoneType _newPhoneType;
+        public PhoneType NewPhoneType
         {
             get { return _newPhoneType; }
             set { Set(ref _newPhoneType, value); }
         }
-
-        
         public ObservableCollection<EmailModel> Emails { get; private set; }
         public List<string> EmailTypes
         {
             get { return new List<string>() { "Personal", "Work" }; }
         }
         private string _newEmailAddress;
-
         public string NewEmailAddress
         {
             get { return _newEmailAddress; }
             set { Set(ref _newEmailAddress, value); }
         }
-
         private string _newEmailType;
         public string NewEmailType
         {
             get { return _newEmailType; }
             set { Set(ref _newEmailType, value); }
         }
-
         public static ObservableCollection<CertificationModel> Certifications { get; private set; }
-        public static ObservableCollection<CertificationModel> CertificationTypes {get; private set;}
-        
+        public static ObservableCollection<CertificationModel> CertificationTypes { get; private set; }
         private CertificationModel _selectedCertification;
         public CertificationModel SelectedCertification
         {
             get { return _selectedCertification; }
             set { Set(ref _selectedCertification, value); }
         }
-
         private DateTime _newCertificationExpirationDate;
         public DateTime NewCertificationExpirationDate
         {
             get { return _newCertificationExpirationDate; }
             set { _newCertificationExpirationDate = value; }
         }
-
-
         public static ObservableCollection<RestrictionModel> Restrictions { get; private set; }
         public static ObservableCollection<RestrictionModel> RestrictionTypes { get; private set; }
-
         private RestrictionModel _selectedRestriction;
         public RestrictionModel SelectedRestriction
         {
             get { return _selectedRestriction; }
             set { Set(ref _selectedRestriction, value); }
         }
-
         private DateTime _newRestrictionEndDate;
         public DateTime NewRestrictionEndDate
         {
             get { return _newRestrictionEndDate; }
             set { _newRestrictionEndDate = value; }
         }
-
-
+        
+        
         //COMMANDS
-
         public RelayCommand<object> AddPhoneCommand { get; private set; }
         public void AddEmployeeForm_AddPhone(object e)
         {
-            PhoneModel newPhone = new PhoneModel();
+            var newPhone = new PhoneModel();
             newPhone.Number = _newPhoneNumber;
             newPhone.Type = _newPhoneType;
             Phones.Add(newPhone);
         }
-
         public RelayCommand<object> AddEmailCommand { get; private set; }
         public void AddEmployeeForm_AddEmail(object e)
         {
@@ -153,29 +130,26 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             newEmail.Type = _newEmailType;
             Emails.Add(newEmail);
         }
-
         public RelayCommand<object> AddCertificationCommand { get; private set; }
         public void AddEmployeeForm_AddCertification(object e)
         {
             var newCertification = new CertificationModel();
             newCertification.Name = SelectedCertification.Name;
-                newCertification.ExpirationDate = _newCertificationExpirationDate;
+            newCertification.EndDate = _newCertificationExpirationDate;
             newCertification.Id = SelectedCertification.Id;
             Certifications.Add(newCertification);
         }
-
         public RelayCommand<object> AddRestrictionCommand { get; private set; }
         public void AddEmployeeForm_AddRestriction(object e)
         {
             DateTime today = DateTime.Today;
             var newRestriction = new RestrictionModel();
-            newRestriction.Name =  _selectedRestriction.Name;
+            newRestriction.Name = _selectedRestriction.Name;
             newRestriction.EndDate = _newRestrictionEndDate;
-            newRestriction.Id = _selectedRestriction.Id ;
+            newRestriction.Id = _selectedRestriction.Id;
             newRestriction.BeginDate = today;
             Restrictions.Add(newRestriction);
         }
-
         public RelayCommand<object> CreateNewEmployeeCommand { get; private set; }
         public void CreateNewEmployee(object e)
         {
@@ -195,7 +169,6 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             newEmployee.Status = newEmployeeStatus;
             SendData.CreateEmployee(newEmployee);
         }
-
         public RelayCommand<object> LoadComboBoxesCommand { get; private set; }
         public async void LoadComboBoxes(object e)
         {
@@ -206,7 +179,7 @@ public  class NewEmployeeRecordWindowViewModel : ViewModelBase
             var departments = await GetData.DepartmentQueryAsync();
             foreach (DepartmentModel department in departments) { Departments.Add(department); }
             var jobTitles = await GetData.JobTitleQueryAsync();
-            foreach(JobTitleModel jobTitle in jobTitles) { JobTitles.Add(jobTitle); }
+            foreach (JobTitleModel jobTitle in jobTitles) { JobTitles.Add(jobTitle); }
         }
 
 

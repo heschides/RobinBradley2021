@@ -108,7 +108,7 @@
                     <ListView.View>
                          <GridView>
                               <GridViewColumn Width="110" Header="Type" DisplayMemberBinding="{Binding Path=Name}" />
-                              <GridViewColumn Width="100" Header="Expiration Date" DisplayMemberBinding="{Binding Path=ExpirationDate, StringFormat=d}" />
+                              <GridViewColumn Width="100" Header="Expiration Date" DisplayMemberBinding="{Binding Path=EndDate, StringFormat=d}" />
                          </GridView>
                     </ListView.View>
                </ListView>

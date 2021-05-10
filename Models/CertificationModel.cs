@@ -8,40 +8,14 @@ namespace RobinBradley2021.Models
 {
 public    class CertificationModel
     {
-        private int _id;
-
-        public int Id
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime BeginDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public override string ToString()
         {
-            get { return _id; }
-            set { _id = value; }
-        }
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-        private string _description;
-
-        public string Description
-        {
-            get { return _description; }
-            set { _description = value; }
-        }
-        private DateTime _beginDate;
-
-        public DateTime BeginDate
-        {
-            get { return _beginDate; }
-            set { _beginDate = value; }
-        }
-        private DateTime _expirationDate;
-
-        public DateTime ExpirationDate
-        {
-            get { return _expirationDate; }
-            set { _expirationDate = value; }
+            return Name + ": " + BeginDate.ToShortDateString() + " until " +EndDate.ToShortDateString() ;
         }
     }
 }

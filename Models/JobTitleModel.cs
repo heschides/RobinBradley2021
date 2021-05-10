@@ -8,28 +8,9 @@ namespace RobinBradley2021.Models
 {
 public    class JobTitleModel
     {
-        private int _id;
-
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-        private string _name;
-
-        public string Name
-        {
-            get { return _name; }
-            set { _name = value; }
-        }
-
-        private int _baseSalary;
-
-        public int BaseSalary
-        {
-            get { return _baseSalary; }
-            set { _baseSalary = value; }
-        }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal BaseSalary { get; set; }
 
         public override string ToString()
         {

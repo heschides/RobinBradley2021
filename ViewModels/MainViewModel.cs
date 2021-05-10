@@ -12,12 +12,16 @@ namespace RobinBradley2021.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public EquipmentTabViewModel EquipmentTabVM { get; set; }
-        public EmployeeTabViewModel EmployeeTabVM { get; set; }
-        public EditEmployeeWindowViewModel EditEmployeeVM { get; set; }
-        public VehicleTabViewModel VehicleTabVM { get; set; }
-        public RelayCommand<object> LoadInitialDataCommand { get; set; }
 
+        //PROPERTIES
+        public EquipmentTabViewModel EquipmentTabVM { get; private set; }
+        public EmployeeTabViewModel EmployeeTabVM { get; private set; }
+        public EditEmployeeWindowViewModel EditEmployeeVM { get; private set; }
+        public VehicleTabViewModel VehicleTabVM { get; private set; }
+        public DashboardViewModel DashboardVM { get; private set; }
+        //COMMANDS
+        public RelayCommand<object> LoadInitialDataCommand { get; set; }
+        //METHODS
         //The loops in the LoadInitialData Method allow the asynchronous queries to be completed before the binding takes place.
         public async void LoadInitialData(object e)
         {
@@ -50,13 +54,15 @@ namespace RobinBradley2021.ViewModels
                 else { VehicleTabVM.Vehicles.Add(_vehicle); }
             }
         }
-
+        //CONSTRUCTOR
         public MainViewModel()
         {
             EquipmentTabVM = new EquipmentTabViewModel();
             EmployeeTabVM = new EmployeeTabViewModel();
             EditEmployeeVM = new EditEmployeeWindowViewModel();
             VehicleTabVM = new VehicleTabViewModel();
+            DashboardVM = new DashboardViewModel();
+            
             LoadInitialDataCommand = new RelayCommand<object>(LoadInitialData);
         }
 

@@ -1,39 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static RobinBradley2021.Models.Enums;
 
 namespace RobinBradley2021.Models
 {
- public   class PhoneModel
+    public class PhoneModel
     {
-        private int _id;
-
-        public int Id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-        private string _number;
-
-        public string Number
-        {
-            get { return _number; }
-            set { _number = value; }
-        }
-        private string _type;
-
-        public string Type
-        {
-            get { return _type; }
-            set { _type = value; }
-        }
-
+        public int Id { get; set; }
+        public string Number { get; set; }
+        public PhoneType Type { get; set; }
         public override string ToString()
         {
             return Number + " : " + Type;
         }
-
     }
 }

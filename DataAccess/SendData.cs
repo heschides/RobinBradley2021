@@ -53,7 +53,7 @@ namespace RobinBradley2021.DataAccess
                     DateTime thisDay = DateTime.Today;
                     certifications.Add("@CertificationNameId", certification.Id);
                     certifications.Add("@CertificationInitialDate", thisDay);
-                    certifications.Add("@CertificationEndDate", certification.ExpirationDate);
+                    certifications.Add("@CertificationEndDate", certification.EndDate);
                     certifications.Add("@EmployeeId", e.Id);
                     connection.Execute("dbo.spEmployeesCertificationType_Insert", certifications, commandType: System.Data.CommandType.StoredProcedure);
                 }
