@@ -23,8 +23,7 @@ namespace RobinBradley2021.ViewModels
         public ObservableCollection<CICModel> DueCIC { get; set; }
         public ObservableCollection<CICModel> OverdueCIC { get; set; }
 
-        public RelayCommand<object> LoadInitialDataCommand { get; set; }
-        public async void LoadInitialData(object e)
+        public async void LoadInitialData()
         {
             var equipmentAssignments = await EquipmentAssignmentQueryAsync();
             RecentEquipmentAssignments = new ObservableCollection<EquipmentAssignmentRecordModel>(equipmentAssignments.Where(x => x.DateOut >= DateTime.Now.AddDays(-2) && x.DateOut <=DateTime.Today ));
@@ -38,7 +37,16 @@ namespace RobinBradley2021.ViewModels
 
         public DashboardViewModel()
         {
-              
+            RecentEquipmentAssignments = new ObservableCollection<EquipmentAssignmentRecordModel>();
+            DueEquipmentAssignments = new ObservableCollection<EquipmentAssignmentRecordModel>();
+            OverdueEquipmentAssignments = new ObservableCollection<EquipmentAssignmentRecordModel>();
+            RecentVehicleAssignments = new ObservableCollection<VehicleAssignmentRecordModel>();
+            DueVehicleAssignments = new ObservableCollection<VehicleAssignmentRecordModel>();
+            OverdueVehicleAssignments = new ObservableCollection<VehicleAssignmentRecordModel>();
+            DueEmployeeCertifications = new ObservableCollection<CertificationModel>();
+            OverdueEmployeeCertifications = new ObservableCollection<CertificationModel>();
+            DueCIC = new ObservableCollection<CICModel>();
+            OverdueCIC = new ObservableCollection<CICModel>();
         }
     }
 }

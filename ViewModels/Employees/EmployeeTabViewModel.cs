@@ -33,25 +33,40 @@ namespace RobinBradley2021.ViewModels
                 if (Set(ref _selectedEmployee, value))
                 {
                     Messenger.Default.Send(new EmployeeToken(value));
-                    EquipmentAssignments = SelectedEmployee.EquipmentAssignments;
+                    if (EquipmentAssignments_StandardIssue != null)
+                    {
+                        EquipmentAssignments_StandardIssue.Clear();
+                    }
+                    if (EquipmentAssignments_AdHoc != null)
+                    {
+                        EquipmentAssignments_AdHoc.Clear();
+                    }
+                    if (SelectedEmployee.EquipmentAssignments != null)
+                    {
+                        var resultFalse = SelectedEmployee.EquipmentAssignments.Where(x => x.IsStandardIssue == false);
+                        var resultTrue = SelectedEmployee.EquipmentAssignments.Where(x => x.IsStandardIssue == true);
+                        if (resultFalse != null )
+                        {
+                            foreach(EquipmentAssignmentRecordModel record in resultFalse)
+                            {
+                                EquipmentAssignments_AdHoc.Add(record);
+                            }
+                        }
+                        if (resultTrue !=null)
+                           foreach (EquipmentAssignmentRecordModel record in resultTrue)
+                            {
+                                EquipmentAssignments_StandardIssue.Add(record);
+                            }
+                    }
                 }
             }
         }
+
         public ObservableCollection<VehicleAssignmentRecordModel> VehicleAssignments { get; set; }
-        private ObservableCollection<EquipmentAssignmentRecordModel> _equipmentAssignments;
-        public ObservableCollection<EquipmentAssignmentRecordModel> EquipmentAssignments
-        {
-            get { return _equipmentAssignments; }
-            set
-            {
-                if (value != null)
-                {
-                    var result = value.Where(x => x.IsStandardIssue == true);
-                    var resultCollection = new ObservableCollection<EquipmentAssignmentRecordModel>(result);
-                    Set<ObservableCollection<EquipmentAssignmentRecordModel>>(ref _equipmentAssignments, resultCollection);
-                }
-            }
-        }
+        public ObservableCollection<EquipmentAssignmentRecordModel> EquipmentAssignments_StandardIssue { get; private set; }
+
+        public ObservableCollection<EquipmentAssignmentRecordModel> EquipmentAssignments_AdHoc { get; private set; }
+
         //COMMANDS
         public RelayCommand<object> OpenAddEmployeeWindowCommand { get; private set; }
         public RelayCommand<object> RemoveEmployeeCommand { get; private set; }
@@ -97,7 +112,8 @@ namespace RobinBradley2021.ViewModels
             //properties
             Employees = new ObservableCollection<EmployeeModel>();
             SelectedEmployee = new EmployeeModel();
-            EquipmentAssignments = new ObservableCollection<EquipmentAssignmentRecordModel>();
+            EquipmentAssignments_StandardIssue = new ObservableCollection<EquipmentAssignmentRecordModel>();
+            EquipmentAssignments_AdHoc = new ObservableCollection<EquipmentAssignmentRecordModel>();
             VehicleAssignments = new ObservableCollection<VehicleAssignmentRecordModel>();
             //commands
             RemoveEmployeeCommand = new RelayCommand<object>(RemoveEmployee);

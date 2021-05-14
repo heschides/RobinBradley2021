@@ -1,5 +1,4 @@
 ﻿<Window x:Class="RobinBradley2021.Views.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:RobinBradley2021.Views" xmlns:vms="clr-namespace:RobinBradley2021.ViewModels" mc:Ignorable="d" Title="Robin-Bradley 2021" Height="1000" MinHeight="650" Width="1800" MinWidth="1300" WindowStartupLocation="CenterScreen">
-
      <!--#region  Meta and Structure-->
      <behaviors:Interaction.Triggers>
           <behaviors:EventTrigger EventName="Loaded">
@@ -9,7 +8,6 @@
      <Window.DataContext>
           <vms:MainViewModel />
      </Window.DataContext>
-
      <Grid Background="#7c939c">
           <Grid.RowDefinitions>
                <RowDefinition Height="Auto" />
@@ -21,12 +19,10 @@
                     <MenuItem Header="Edit" />
                </Menu>
           </DockPanel>
-
           <TabControl BorderThickness="0" Grid.Row="1" Background="{DynamicResource WindowBackground}">
                <!--#endregion-->
                <!--#region Dashboard Tab-->
                <TabItem Header="Dashboard" Width="106" Style="{DynamicResource NavigationTab}">
-
                     <Grid>
                          <Grid.ColumnDefinitions>
                               <ColumnDefinition Width="10" />
@@ -47,7 +43,6 @@
                               <RowDefinition Height="*" />
                               <RowDefinition Height="Auto" />
                          </Grid.RowDefinitions>
-
                          <DockPanel x:Name="dashButtons" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" LastChildFill="True">
                               <Button Style="{StaticResource TopButtons}" Command="{Binding VehicleTabVM.OpenAssignVehicleWindowCommand}">
                                    <StackPanel Orientation="Vertical">
@@ -62,7 +57,6 @@
                                         <TextBlock Text="Return Vehicle" />
                                    </StackPanel>
                               </Button>
-
                               <Button Style="{DynamicResource TopButtons}" Command="{Binding EquipmentTabVM.OpenAssignItemWindowCommand}">
                                    <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Assign Equipment" />
@@ -104,7 +98,6 @@
                                    </StackPanel>
                               </Button>
                          </DockPanel>
-
                          <StackPanel x:Name="DashboardHeader" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
                               <TextBlock Text="Welcome, Joshua." FontSize="16" Margin="0, 5,0,0" Foreground="White" FontFamily="Corsiva" FontWeight="SemiBold" HorizontalAlignment="left" />
                               <TextBlock Text="You have no current items to address." FontSize="12" FontFamily="Corsiva" Foreground="wHITE" HorizontalAlignment="left" Margin="10,0,0,0" />
@@ -119,7 +112,6 @@
                          <StackPanel x:Name="RowHeaderDue" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Height="30" Background="#70aeba">
                               <TextBlock FontSize="16" Foreground="White" Text="Due" Margin="10,4,0,0" />
                          </StackPanel>
-
                          <Grid Grid.Row="4" Grid.Column="2">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -137,7 +129,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="5" Grid.Column="2">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -156,7 +147,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="4" Grid.Column="3">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -173,7 +163,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="5" Grid.Column="3">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -190,7 +179,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="5" Grid.Column="4">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -204,12 +192,10 @@
                                              <GridViewColumn Width="125" Header="User" DisplayMemberBinding="{Binding Path=AssignedUserId}" />
                                              <GridViewColumn Width="125" Header="Type" DisplayMemberBinding="{Binding Path=Type}" />
                                              <GridViewColumn Width="125" Header="Period" DisplayMemberBinding="{Binding Path=Period}" />
-
                                         </GridView>
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="4" Grid.Column="4">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -226,7 +212,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="4" Grid.Column="5">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -243,7 +228,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="5" Grid.Column="6">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -261,7 +245,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="5" Grid.Column="5">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -278,7 +261,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <Grid Grid.Row="4" Grid.Column="6">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
@@ -295,7 +277,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                     </Grid>
                </TabItem>
                <!--#endregion-->
@@ -326,10 +307,8 @@
                                    <RowDefinition Height="*" />
                                    <RowDefinition Height="50" />
                               </Grid.RowDefinitions>
-
                               <TextBlock Text="Select Department" Grid.Column="0" Grid.Row="0" Style="{DynamicResource LabelsLight1}" />
                               <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" />
-
                               <ListView x:Name="listviewEmployees" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding EmployeeTabVM.Employees, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}" SelectedItem="{Binding EmployeeTabVM.SelectedEmployee}" BorderThickness="0">
                                    <ListView.View>
                                         <GridView>
@@ -341,7 +320,6 @@
                                    </ListView.View>
                               </ListView>
                               <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
-
                                    <Button Width="100" Height="50" Grid.Column="0" Grid.Row="2" BorderThickness="0" Background="{DynamicResource 
                                         ResourceKey=HeadingBackgroundBrush1}" Margin="0,0,0,2" Command="{Binding EmployeeTabVM.OpenAddEmployeeWindowCommand}">
                                         <StackPanel Orientation="Vertical">
@@ -377,19 +355,14 @@
                                    <RowDefinition MinHeight="100" Height="*" />
                                    <RowDefinition MinHeight="100" Height="*" />
                               </Grid.RowDefinitions>
-
                               <!--EMPLOYEE INFORMATION SECTION-->
                               <TextBlock Text="Employee Information" Grid.ColumnSpan="2" Grid.Row="0" Style="{DynamicResource LabelsLight1}" FontSize="16" />
-
                               <TextBlock Text="Job Title" Grid.Column="0" Grid.Row="1" Style="{DynamicResource LabelsLight1}" />
                               <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.JobTitle.Name}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
-
                               <TextBlock Text="Status" Grid.Column="0" Grid.Row="2" Style="{DynamicResource LabelsLight1}" />
                               <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.Status.Name}" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
-
                               <TextBlock Text="Hire Date" Grid.Column="0" Grid.Row="3" Style="{DynamicResource LabelsLight1}" />
                               <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.HireDate, StringFormat=d}" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
-
                               <TextBlock Text="Phone" Grid.Column="0" Grid.Row="4" Padding="10,5,0,0" Background="{DynamicResource HeadingBackgroundBrush1}" Foreground="DarkSlateGray" />
                               <ListBox MinHeight="100" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Phones}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                    <ListBox.ItemContainerStyle>
@@ -406,9 +379,7 @@
                                         </Style>
                                    </ListBox.ItemContainerStyle>
                               </ListBox>
-                              
                          </Grid>
-
                          <Grid Grid.Row="1" Grid.Column="2" Width="Auto" Height="Auto">
                               <Grid.ColumnDefinitions>
                                    <ColumnDefinition />
@@ -417,10 +388,9 @@
                                    <RowDefinition Height="25" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
-
                               <!--Standard Issue Listbox-->
                               <TextBlock Text="Standard Issue" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Style="{DynamicResource LabelsLight1}" />
-                              <ListView FontSize="11" MinHeight="275" Grid.Row="1" ItemsSource="{Binding EmployeeTabVM.EquipmentAssignments}" HorizontalContentAlignment="Stretch">
+                              <ListView FontSize="11" MinHeight="275" Grid.Row="1" ItemsSource="{Binding EmployeeTabVM.EquipmentAssignments_StandardIssue, Mode=OneWay, NotifyOnSourceUpdated=True}"  HorizontalContentAlignment="Stretch" >
                                    <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                              <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -436,14 +406,12 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <!--Certifications Listbox-->
                          <Grid Grid.Row="2" Grid.Column="2">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="Auto" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
-
                               <TextBlock Grid.Row="0" Text="Certifications" Style="{DynamicResource LabelsLight2}" Padding="7" />
                               <ListView Grid.Row="1" FontSize="11" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Certifications}">
                                    <ListView.ItemContainerStyle>
@@ -461,7 +429,6 @@
                                    </ListView.View>
                               </ListView>
                          </Grid>
-
                          <!--Ad Hoc ListBox-->
                          <Grid Grid.Row="1" Grid.Column="3">
                               <Grid.RowDefinitions>
@@ -469,7 +436,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Text="Ad Hoc Issue" Grid.Row="0" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="1" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.EquipmentAssignments}" FontSize="11">
+                              <ListView Grid.Row="1" ItemsSource="{Binding EmployeeTabVM.EquipmentAssignments_AdHoc}" FontSize="11">
                                    <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                              <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -552,7 +519,6 @@
                               <RowDefinition Height="*" />
                               <RowDefinition Height="Auto" />
                          </Grid.RowDefinitions>
-
                          <StackPanel x:Name="EquipmentTabButtons" Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4">
                               <Button Style="{DynamicResource TopButtons}" Command="{Binding EquipmentTabVM.OpenAddItemWindowCommand}">
                                    <StackPanel>
@@ -561,19 +527,16 @@
                               </Button>
                               <Button Style="{DynamicResource TopButtons}" Command="{Binding EquipmentTabVM.OpenAssignItemWindowCommand}">
                                    <StackPanel>
-
                                         <TextBlock Text="Assign" FontSize="10" />
                                    </StackPanel>
                               </Button>
                               <Button Style="{DynamicResource TopButtons}" Command="{Binding EquipmentTabVM.OpenReturnItemWindowCommand}">
                                    <StackPanel>
-
                                         <TextBlock Text="Return" FontSize="10" />
                                    </StackPanel>
                               </Button>
                               <Button Style="{DynamicResource TopButtons}" Command="{Binding EquipmentTabVM.OpenAddCICRecordWindowCommand}">
                                    <StackPanel>
-
                                         <TextBlock Text="CIC Record" FontSize="10" />
                                    </StackPanel>
                               </Button>
@@ -588,7 +551,6 @@
                                    </StackPanel>
                               </Button>
                          </StackPanel>
-
                          <TextBlock Text="Equipment List" Style="{DynamicResource LabelsLight1}" Background="{DynamicResource HeadingBackgroundBrush1}" Grid.Row="1" Grid.Column="1" />
                          <ListView x:Name="EquipmentTabEquipmentList" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" FontSize="10" ItemsSource="{Binding EquipmentTabVM.Equipment}">
                               <ListView.View>
@@ -599,7 +561,6 @@
                                    </GridView>
                               </ListView.View>
                          </ListView>
-
                          <TextBlock Text="Assignment History" Style="{DynamicResource LabelsLight2}" Grid.Row="1" Grid.Column="2" />
                          <ListView MinHeight="250" Grid.Row="2" Grid.Column="2">
                               <ListView.View>
@@ -613,7 +574,6 @@
                                    </GridView>
                               </ListView.View>
                          </ListView>
-
                          <TextBlock Text="Maintenance History" Style="{DynamicResource LabelsLight2}" Grid.Row="3" Grid.Column="2" />
                          <ListView MinHeight="278" Grid.Row="4" Grid.Column="2">
                               <ListView.View>
@@ -626,7 +586,6 @@
                                    </GridView>
                               </ListView.View>
                          </ListView>
-
                     </Grid>
                </TabItem>
                <!--#endregion-->
@@ -648,7 +607,6 @@
                               <RowDefinition Height="*" />
                               <RowDefinition Height="30" />
                          </Grid.RowDefinitions>
-
                          <StackPanel x:Name="Buttons" Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2">
                               <Button Width="100" Height="40" Command="{Binding VehicleTabVM.OpenAssignVehicleWindowCommand}" Style="{DynamicResource TopButtons}">
                                    <StackPanel>
@@ -686,7 +644,6 @@
                                    </StackPanel>
                               </Button>
                          </StackPanel>
-
                          <TextBlock HorizontalAlignment="Stretch" Text="Vehicle List" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight1}" />
                          <ListView MinHeight="420" MinWidth="700" FontSize="10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding VehicleTabVM.Vehicles}">
                               <ListView.View>
@@ -703,11 +660,9 @@
                                         <GridViewColumn Width="100" Header="Inspection Due" DisplayMemberBinding="{Binding Path=InspectionDueDate}" />
                                         <GridViewColumn Width="100" Header="Condition" DisplayMemberBinding="{Binding Path=Condition}" />
                                         <GridViewColumn Width="100" Header="Is Assigned" DisplayMemberBinding="{Binding Path=IsAssigned}" />
-
                                    </GridView>
                               </ListView.View>
                          </ListView>
-
                          <TextBlock Text="Assignment History" HorizontalAlignment="Stretch" Style="{DynamicResource LabelsLight2}" Grid.Column="3" Grid.Row="1" />
                          <ListView FontSize="10" Grid.Row="2" Grid.Column="3" Grid.RowSpan="3">
                               <ListView.View>
@@ -721,7 +676,6 @@
                                    </GridView>
                               </ListView.View>
                          </ListView>
-
                          <TextBlock Text="Invoice History" Style="{DynamicResource LabelsLight1}" Grid.Column="1" Grid.Row="3" />
                          <ListView MinHeight="400" Grid.Row="4" Grid.Column="1">
                               <ListView.View>
@@ -737,7 +691,6 @@
                                    </GridView>
                               </ListView.View>
                          </ListView>
-
                          <TextBlock Text="Cost Of Ownership" Style="{DynamicResource LabelsLight2}" Grid.Row="3" Grid.Column="2" />
                          <ListView MinHeight="400" MinWidth="525" Grid.Row="4" Grid.Column="2">
                               <ListView.View>
@@ -750,7 +703,6 @@
                                    </GridView>
                               </ListView.View>
                          </ListView>
-
                     </Grid>
                </TabItem>
                <!--#endregion-->
@@ -769,21 +721,179 @@
                          </Grid.ColumnDefinitions>
                          <Grid Grid.Row="1" Grid.Column="1">
                               <Grid.RowDefinitions>
-                                   <RowDefinition />
-                                   <RowDefinition />
-                                   <RowDefinition />
-                                   <RowDefinition />
-                                   <RowDefinition />
+                                   <RowDefinition Height="30" />
+                                   <RowDefinition Height="0" />
+                                   <RowDefinition Height="30" />
+                                   <RowDefinition Height="30" />
+                                   <RowDefinition Height="165"/>
+                                   <RowDefinition Height="30" />
+                                   <RowDefinition Height="250" />
+                                   <RowDefinition Height="5" />
+                                   <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="550"/>
+                                   <ColumnDefinition Width="10"/>
+                                   <ColumnDefinition Width="100"/>
                                    <ColumnDefinition />
-                                   <ColumnDefinition />
-                                   <ColumnDefinition />
-                                   <ColumnDefinition />
+                                   <ColumnDefinition Width="10"/>
+                                   <ColumnDefinition Width="1.5*"/>
                               </Grid.ColumnDefinitions>
-                              <TextBlock Text="This Is The Way The World Ends" Grid.Row="0" Grid.Column="0" />
-                         </Grid>
+                              <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">
+                                   <TextBlock Text="Select Employee"  Width="230" Style="{DynamicResource LabelsLight1}" />
+                                   <ComboBox Width="320"/>
+                              </StackPanel>
+                              <TextBlock Text="Project List" Grid.Row="2" Style="{DynamicResource LabelsLight1}" FontSize="14"/>
+                              <ListView Grid.Row="3" Grid.RowSpan="4" >
+                                   <ListView.View>
+                                        <GridView>
+                                             <GridView.Columns>
+                                                  <GridViewColumn Header="Job Number" Width="100"/>
+                                                  <GridViewColumn Header="Customer" Width="300" />
+                                                  <GridViewColumn Header="Status" Width="100" />
+                                             </GridView.Columns>
+                                        </GridView>
+                                   </ListView.View>
+                              </ListView>
+                              <TextBlock Text="Selected Project" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight2}" FontSize="14"/>
+                              <TextBlock Text="Customer Information" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight2}" />
+                              <Grid Grid.Row="4" Grid.Column="2">
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Text="Address" Grid.Row="0" Style="{DynamicResource LabelsLight2}" />
+                                   <TextBlock Text="Primary Phone" Grid.Row="1" Style="{DynamicResource LabelsLight2}"/>
+                                   <TextBlock Text="Years Served" Grid.Row="2" Style="{DynamicResource LabelsLight2}"/>
+                                   <TextBlock Text="Industry" Grid.Row="3" Style="{DynamicResource LabelsLight2}"/>
+                                   <TextBlock Text="Primary Contact" Grid.Row="4" Style="{DynamicResource LabelsLight2}"/>
+                              </Grid>
+                              <Grid Grid.Row="4" Grid.Column="3">
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                   </Grid.RowDefinitions>
+                                   <TextBox x:Name="txtAddress" Grid.Row="0" HorizontalContentAlignment="Center"/>
+                                   <TextBox x:Name="txtPrimaryPhone" Grid.Row="1" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtYearsServed" Grid.Row="2" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtIndustry" Grid.Row="3" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtPrimaryContact" Grid.Row="4" HorizontalContentAlignment="Center" />
+                              </Grid>
+                              <TextBlock Text="Project Information}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight2}"/>
+                              <Grid Grid.Row="6" Grid.Column="2">
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Text="Start Date" Grid.Row="0" Style="{DynamicResource LabelsLight2}" />
+                                   <TextBlock Text="Close Date" Grid.Row="1" Style="{DynamicResource LabelsLight2}" />
+                                   <TextBlock Text="Proj. Close Date" Grid.Row="2" Style="{DynamicResource LabelsLight2}" />
+                                   <TextBlock Text="Projected Cost" Grid.Row="3" Style="{DynamicResource LabelsLight2}" />
+                                   <TextBlock Text="Cost To Date" Grid.Row="4" Style="{DynamicResource LabelsLight2}" />
+                                   <TextBlock Text="Cost Overrun" Grid.Row="5" Style="{DynamicResource LabelsLight2}" />
+                                   <TextBlock Text="Money Received" Grid.Row="6" Style="{DynamicResource LabelsLight2}" />
+                                   <TextBlock Text="Balance Due" Grid.Row="7" Style="{DynamicResource LabelsLight2}" />
+                              </Grid>
 
+                              <Grid Grid.Row="6" Grid.Column="3">
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                   </Grid.RowDefinitions>
+                                   <TextBox x:Name="txtddress" Grid.Row="0" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtrimaryPhone" Grid.Row="1" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtearsServed" Grid.Row="2" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtndustry" Grid.Row="3" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtrimaryContact" Grid.Row="4" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtarsServed" Grid.Row="5" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txndustry" Grid.Row="6" HorizontalContentAlignment="Center" />
+                                   <TextBox x:Name="txtrimaryontact" Grid.Row="7" HorizontalContentAlignment="Center" />
+                              </Grid>
+                              <Grid Grid.Row="8" Grid.Column="0">
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="*" />
+
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Text="Equipment History" Style="{DynamicResource LabelsLight1}" />
+                                   <TextBox Grid.Row="1" HorizontalContentAlignment="Center" />
+                                   <TextBox  Grid.Row="2" HorizontalContentAlignment="Center" />
+                                   <TextBox  Grid.Row="3" HorizontalContentAlignment="Center" />
+                                   <TextBox  Grid.Row="4" HorizontalContentAlignment="Center" />
+                                   <TextBox  Grid.Row="5" HorizontalContentAlignment="Center" />
+                                   <TextBox  Grid.Row="6" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="7" HorizontalContentAlignment="Center" />
+                              </Grid>
+                              <Grid Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2">
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="*" />
+
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Text="Vehicle History" Style="{DynamicResource LabelsLight1}" />
+                                   <TextBox  Grid.Row="1" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="2" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="3" HorizontalContentAlignment="Center" />
+                                   <TextBox  Grid.Row="4" HorizontalContentAlignment="Center" />
+                                   <TextBox  Grid.Row="5" HorizontalContentAlignment="Center" />
+                                   <TextBox  Grid.Row="6" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="7" HorizontalContentAlignment="Center" />
+                              </Grid>
+                              <TextBlock Text="All Projects" Style="{DynamicResource LabelsLight1}" Grid.Row="2" Grid.Column="5" FontSize="14"/>
+                              <Grid Grid.Row="3" Grid.RowSpan="6" Grid.Column="6" >
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+                                        <RowDefinition Height="30" />
+
+                                   </Grid.RowDefinitions>
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+                                   <TextBlock Text="Open Projects Count"  Grid.Row="0" Style="{DynamicResource LabelsLight1}"/>
+                                   <TextBlock  Text="Total Projects Count" Grid.Row="1" Style="{DynamicResource LabelsLight1}" />
+                                   <TextBlock  Text="Net Days +/-" Grid.Row="2" Style="{DynamicResource LabelsLight1}" />
+                                   <TextBlock  Text="Total Revenue" Grid.Row="3" Style="{DynamicResource LabelsLight1}" />
+                                   <TextBlock  Text="Total Cost" Grid.Row="4" Style="{DynamicResource LabelsLight1}" />
+                                   <TextBlock Text="Bid Accuracy" Grid.Row="5" Style="{DynamicResource LabelsLight1}" />
+
+                                   <TextBox Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Center" />
+                                   <TextBox Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Center" />
+
+                              </Grid>
+                         </Grid>
+                         
                     </Grid>
                </TabItem>
                <!--#endregion-->
@@ -802,25 +912,252 @@
                          </Grid.ColumnDefinitions>
                          <Grid Grid.Row="1" Grid.Column="1">
                               <Grid.RowDefinitions>
-                                   <RowDefinition />
-                                   <RowDefinition />
-                                   <RowDefinition />
-                                   <RowDefinition />
-                                   <RowDefinition />
+                                   <RowDefinition Height="35" />
+                                   <RowDefinition Height="25" />
+                                   <RowDefinition Height="*" />
+                                   <RowDefinition Height="25" />
+                                   <RowDefinition Height="25" />
+                                   <RowDefinition Height="*" />
+                                   <RowDefinition Height="25" />
+                                   <RowDefinition Height="25" />
+                                   <RowDefinition Height="*" />
+                                   <RowDefinition Height="25" />
+                                   <RowDefinition Height="25" />
+                                   <RowDefinition Height="*" />
+                                   <RowDefinition Height="25" />
+
                               </Grid.RowDefinitions>
                               <Grid.ColumnDefinitions>
-                                   <ColumnDefinition />
-                                   <ColumnDefinition />
-                                   <ColumnDefinition />
-                                   <ColumnDefinition />
+                                   <ColumnDefinition Width="*" />
+                                   <ColumnDefinition Width="5" />
+                                   <ColumnDefinition Width="*" />
+                                   <ColumnDefinition Width="5" />
+                                   <ColumnDefinition Width=".75*" />
+                                   <ColumnDefinition Width="5" />
+                                   <ColumnDefinition Width=".75*" />
+                                   <ColumnDefinition Width="5" />
+                                   <ColumnDefinition Width=".75*" />
                               </Grid.ColumnDefinitions>
-                              <TextBlock Text="This Is The Way The World Ends" Grid.Row="0" Grid.Column="0" />
+                              
+                              <!--COLUMNS ONE AND TWO-->
+                                   <TextBlock Text="Employees" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource LabelsLight1}" FontSize="14" />
+                              <TextBlock Text="Certifications" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource LabelsLight1}" /> 
+                              <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="1,1,0,1">
+                                   <ListView.View>
+                                        <GridView>
+                                             <GridView.Columns>
+                                                  <GridViewColumn Header="Name" Width="150" />
+                                                  <GridViewColumn Header="Description" Width="Auto"/>
+                                             </GridView.Columns>
+                                        </GridView>
+                                   </ListView.View>
+                              </ListView>
+                              <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1"/>
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1" />
+                              </Grid>
+
+                              <TextBlock Text="Citations" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource LabelsLight1}" />
+                              <ListView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="1,1,0,1">
+                                   <ListViewItem FontSize="10" />
+                                   <ListView.View>
+                                        <GridView>
+                                             <GridView.Columns>
+                                                  <GridViewColumn Header="Name" Width="150" />
+                                                  <GridViewColumn Header="Description" Width="Auto" />
+                                             </GridView.Columns>
+                                        </GridView>
+                                   </ListView.View>
+                              </ListView>
+                              <Grid Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1" />
+                              </Grid>
+                              <TextBlock Text="Employee Statuses" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight1}" />
+                              <ListBox Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" />
+
+                              <Grid Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,1,1" />
+                              </Grid>
+                              <TextBlock Text="Restrictions" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource LabelsLight1}" />
+                              <ListView Grid.Row="11" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="1,1,0,1">
+                                   <ListView.View>
+                                        <GridView>
+                                             <GridView.Columns>
+                                                  <GridViewColumn Header="Name" Width="150" />
+                                                  <GridViewColumn Header="Description" Width="Auto" />
+                                             </GridView.Columns>
+                                        </GridView>
+                                   </ListView.View>
+                              </ListView>
+                              <Grid Grid.Row="12" Grid.Column="0" Grid.ColumnSpan="3">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1"/>
+                              </Grid>
+                              <TextBlock Text="Job Titles" Grid.Row="7" Grid.Column="2" Style="{DynamicResource LabelsLight1}" />
+                              <ListBox Grid.Row="8" Grid.Column="2" BorderThickness="1,1,0,1" />
+
+                              <Grid Grid.Row="9" Grid.Column="2">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1"/>
+                              </Grid>
+                              
+                              <!--Column 3 -->
+    
+                              <TextBlock Text="Equipment" Grid.Row="0" Grid.Column="4" Style="{DynamicResource LabelsLight1}" FontSize="14" />
+                              <TextBlock Text="Equipment Classes" Grid.Row="1" Grid.Column="4" Style="{DynamicResource LabelsLight1}" />
+                              <ListBox Grid.Row="2" Grid.Column="4" BorderThickness="0,1,0,0" />
+
+                              <Grid Grid.Row="3" Grid.Column="4">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
+                              <TextBlock Text="Equipment Brands" Grid.Row="4" Grid.Column="4" Style="{DynamicResource LabelsLight1}" />
+                              <ListBox Grid.Row="5" Grid.Column="4" BorderThickness="0,1,0,0" />
+
+                              <Grid Grid.Row="6" Grid.Column="4">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
+                              <TextBlock Text="Equipment Models" Grid.Row="7" Grid.Column="4" Style="{DynamicResource LabelsLight1}" />
+                              <ListView Grid.Row="8" Grid.RowSpan="4" Grid.Column="4" BorderThickness="0,1,0,0">
+                                   <ListView.View>
+                                        <GridView>
+                                             <GridView.Columns>
+                                                  <GridViewColumn Header="Name" Width="150" />
+                                             </GridView.Columns>
+                                        </GridView>
+                                   </ListView.View>
+                              </ListView>
+                              <Grid Grid.Row="12" Grid.Column="6">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
+
+                              <!--Column 4 -->
+                              <TextBlock Text="Vehicles" Grid.Row="0" Grid.Column="6" Style="{DynamicResource LabelsLight1}" FontSize="14" />
+                              <TextBlock Text="Vehicle Classes" Grid.Row="1" Grid.Column="6" Style="{DynamicResource LabelsLight1}" />
+                              <ListBox Grid.Row="2" Grid.Column="6" BorderThickness="0,1,0,0" />
+                              <Grid Grid.Row="3" Grid.Column="6">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
+                              <TextBlock Text="Vehicle Makes" Grid.Row="4" Grid.Column="6" Style="{DynamicResource LabelsLight1}" />
+                              <ListBox Grid.Row="5" Grid.Column="6" BorderThickness="0,1,0,0" />
+
+                              <Grid Grid.Row="6" Grid.Column="6">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
+                              <TextBlock Text="Vehicle Models" Grid.Row="7" Grid.Column="6" Style="{DynamicResource LabelsLight1}" />
+                              <ListView Grid.Row="8" Grid.RowSpan="4" Grid.Column="6" BorderThickness="0,1,0,0">
+                                   <ListView.View>
+                                        <GridView>
+                                             <GridView.Columns>
+                                                  <GridViewColumn Header="Name" Width="150" />
+                                             </GridView.Columns>
+                                        </GridView>
+                                   </ListView.View>
+                              </ListView>
+                              <Grid Grid.Row="12" Grid.Column="4">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
+
+                              <!-- Column 5 -->
+                              <TextBlock Text="Office" Grid.Row="0" Grid.Column="8" Style="{DynamicResource LabelsLight1}" FontSize="14" />
+                              <TextBlock Text="Departments" Grid.Row="1" Grid.Column="8" Style="{DynamicResource LabelsLight1}" />
+                              <ListBox Grid.Row="2" Grid.Column="8" BorderThickness="0,1,0,0" />
+                              <Grid Grid.Row="3" Grid.Column="8">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
+                              <TextBlock Text="Jobsites" Grid.Row="4" Grid.Column="8" Style="{DynamicResource LabelsLight1}" />
+                              <ListBox Grid.Row="5" Grid.Column="8" BorderThickness="0,1,0,0" />
+
+                              <Grid Grid.Row="6" Grid.Column="8">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
+                              <TextBlock Text="Service Providers" Grid.Row="7" Grid.Column="8" Style="{DynamicResource LabelsLight1}" />
+                              <ListView Grid.Row="8" Grid.RowSpan="4" Grid.Column="8" BorderThickness="0,1,0,0">
+                                   <ListView.View>
+                                        <GridView>
+                                             <GridView.Columns>
+                                                  <GridViewColumn Header="Name" Width="150" />
+                                             </GridView.Columns>
+                                        </GridView>
+                                   </ListView.View>
+                              </ListView>
+                              <Grid Grid.Row="12" Grid.Column="8">
+                                   <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                   </Grid.ColumnDefinitions>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,1,0,1" />
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,1,0,1" />
+                              </Grid>
                          </Grid>
-   
                     </Grid>
                </TabItem>
           </TabControl>
           <!--EndRegion-->
-
      </Grid>
 </Window>

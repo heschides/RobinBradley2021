@@ -173,6 +173,15 @@ namespace RobinBradley2021.DataAccess
                 return employeeCollection;
             }
         }
+        public static async Task<EmployeeModel> SelectedEmployeeQueryAsync(int Id)
+        {
+            using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(database)))
+            {
+                
+                var selectedEmployee = await connection.QuerySingleAsync<EmployeeModel>("dbo.spGetSelectedEmployee", Id ,commandType: System.Data.CommandType.StoredProcedure);
+                return selectedEmployee;
+            }
+        }
         public async static Task<ObservableCollection<EquipmentModel>> EquipmentQueryAsync()
         {
             using (var connection = new System.Data.SqlClient.SqlConnection(CnnString(database)))

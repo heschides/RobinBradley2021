@@ -1,4 +1,4 @@
-﻿<Window x:Class="RobinBradley2021.Views.Employees.EditEmployeeWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vms="clr-namespace:RobinBradley2021.ViewModels" xmlns:local="clr-namespace:RobinBradley2021.Views.Employees" mc:Ignorable="d" Title="Edit Employee Record" Height="925" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Topmost="True">
+﻿<Window x:Class="RobinBradley2021.Views.Employees.EditEmployeeWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:vms="clr-namespace:RobinBradley2021.ViewModels" xmlns:local="clr-namespace:RobinBradley2021.Views.Employees" mc:Ignorable="d" Title="Edit Employee Record" Height="925" Width="800" ResizeMode="NoResize" WindowStartupLocation="Manual" Topmost="True">
 
      <behaviors:Interaction.Triggers>
           <behaviors:EventTrigger EventName="Loaded">
@@ -102,23 +102,23 @@
                <ComboBox x:Name="txtJobTitle" Grid.Row="10" ItemsSource="{Binding EditEmployeeVM.JobTitles}" SelectedValue="{Binding EditEmployeeVM.SelectedEmployee.JobTitle}" SelectedValuePath="Name" />
                <DatePicker x:Name="dateHireDate" Grid.Row="12" BorderThickness="0" SelectedDate="{Binding EditEmployeeVM.SelectedEmployee.HireDate}" />
           </Grid>
+         
           <Grid Grid.Row="3" Grid.Column="2">
                <Grid.RowDefinitions>
                     <RowDefinition Height="150" />
                     <RowDefinition Height="200" />
                     <RowDefinition Height="175" />
                </Grid.RowDefinitions>
-
                <StackPanel Grid.Row="0">
                     <ListBox x:Name="listboxPhones" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Phones}" FontSize="10" Height="80" Margin="0,0,0,5" SelectedItem="{Binding EditEmployeeVM.SelectedPhone}" />
                     <StackPanel Orientation="Horizontal">
-                         <TextBox Width="120" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewPhoneNumber, Mode=TwoWay}" />
+                         <TextBox Width="120" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewPhone.Number, Mode=TwoWay}" />
                          <ComboBox Height="25" Width="80" VerticalAlignment="Top" FontSize="12" ItemsSource="{Binding EditEmployeeVM.PhoneTypeValues}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="25">
                          <Button Content="Add" Width="100" Command="{Binding EditEmployeeVM.AddPhoneCommand}" />
                          <Button Content="Remove" Width="100" Command="{Binding EditEmployeeVM.RemovePhoneCommand}" />
-                    </StackPanel>
+                    </StackPanel
                </StackPanel>
 
                <StackPanel Grid.Row="1" Margin="0,0,0,5">
@@ -133,12 +133,12 @@
                </StackPanel>
 
                <StackPanel Grid.Row="2">
-                    <ListBox x:Name="listboxCitations" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Citations}" FontSize="10" Height="85" Margin="0,0,0,5" />
-                    <TextBox Width="200" Height="25" Margin="0,0,0,5" />
-                    <DatePicker Margin="0,0,0,5" />
+                    <ListBox x:Name="listboxCitations" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Citations, Mode=OneWay, NotifyOnSourceUpdated=True}" FontSize="10" Height="85" Margin="0,0,0,5" />
+                    <TextBox Width="200" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewCitation.Name}"/>
+                    <DatePicker Margin="0,0,0,5" SelectedDate="{Binding EditEmployeeVM.NewCitation.Date}"/>
                     <StackPanel Orientation="Horizontal" Height="25">
-                         <Button Content="Add" Width="100" />
-                         <Button Content="Remove" Width="100" />
+                         <Button Content="Add" Width="100" Command="{Binding EditEmployeeVM.AddCitationCommand}" />
+                         <Button Content="Remove" Width="100" Command="{Binding EditEmployeeVM.RemoveCitationCommand}"/>
                     </StackPanel>
                </StackPanel>
           </Grid>
@@ -147,10 +147,8 @@
                     <RowDefinition Height="110" />
                     <RowDefinition Height="70" />
                </Grid.RowDefinitions>
-
-          </Grid>
+          </Grid
           <Canvas Grid.Row="3" Grid.Column="4">
-
                <TextBlock Text="Emails" Canvas.Right="5" Canvas.Top="37" />
                <TextBlock Text="New Email" FontSize="10" Canvas.Top="91" Canvas.Right="5" />
                <TextBlock Text="Restrictions" Canvas.Top="170" Canvas.Right="5" />
@@ -158,7 +156,6 @@
                <TextBlock Text="Documents" Canvas.Top="374" Canvas.Right="5" />
                <TextBlock Text="Start Date" FontSize="10" Canvas.Top="255" Canvas.Right="5" />
                <TextBlock Text="End Date" FontSize="10" Canvas.Top="285" Canvas.Right="5" />
-         
           </Canvas>
           <Grid Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="1">
                <Grid.RowDefinitions>
@@ -166,16 +163,14 @@
                </Grid.RowDefinitions>
                <Image Source="/Images/defaultUserImage.jpg" Height="180" VerticalAlignment="Top" HorizontalAlignment="Center"/>
                <Button Content="Change Image" Height="40" Width="228" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,20" Opacity=".5" />
-
           </Grid>
           <Grid Grid.Row="3" Grid.Column="5">
-
                <Grid.RowDefinitions>
                     <RowDefinition Height="150" />
                     <RowDefinition Height="200" />
                     <RowDefinition Height="200" />
                </Grid.RowDefinitions>
-
+              
                <StackPanel Grid.Row="0">
                     <ListBox x:Name="listboxEmails" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Emails}" FontSize="10" Height="80" Margin="0,0,0,5" />
                     <StackPanel Orientation="Horizontal">
@@ -189,10 +184,10 @@
                </StackPanel>
 
                <StackPanel Grid.Row="1" Margin="0,0,0,5">
-                    <ListView ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Citations}" FontSize="10" Height="65" Margin="0,0,0,5" />
-                    <TextBox Width="200" Height="25" Margin="0,0,0,5" />
-                    <DatePicker Margin="0,0,0,5" />
-                    <DatePicker Margin="0,0,0,5" />
+                    <ListView ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Restrictions}" FontSize="10" Height="65" Margin="0,0,0,5" />
+                    <TextBox Width="200" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewRestriction.Name}"/>
+                    <DatePicker Margin="0,0,0,5" SelectedDate="{Binding EditEmployeeVM.NewRestriction.BeginDate}"/>
+                    <DatePicker Margin="0,0,0,5" SelectedDate="{Binding EditEmployeeVM.NewRestriction.EndDate}"/>
                     <StackPanel Orientation="Horizontal" Height="25">
                          <Button Content="Add" Width="100" />
                          <Button Content="Remove" Width="100" />

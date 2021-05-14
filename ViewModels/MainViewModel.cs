@@ -52,8 +52,11 @@ namespace RobinBradley2021.ViewModels
                 if (vIds.Contains(_vehicle.Id))
                 { }
                 else { VehicleTabVM.Vehicles.Add(_vehicle); }
+
+                DashboardVM.LoadInitialData();
             }
         }
+
         //CONSTRUCTOR
         public MainViewModel()
         {
