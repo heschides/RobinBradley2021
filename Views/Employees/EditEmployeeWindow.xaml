@@ -112,20 +112,20 @@
                <StackPanel Grid.Row="0">
                     <ListBox x:Name="listboxPhones" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Phones}" FontSize="10" Height="80" Margin="0,0,0,5" SelectedItem="{Binding EditEmployeeVM.SelectedPhone}" />
                     <StackPanel Orientation="Horizontal">
-                         <TextBox Width="120" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewPhone.Number, Mode=TwoWay}" />
-                         <ComboBox Height="25" Width="80" VerticalAlignment="Top" FontSize="12" ItemsSource="{Binding EditEmployeeVM.PhoneTypeValues}" />
+                         <TextBox Width="120" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewPhone.Number, Mode=OneWayToSource}" />
+                         <ComboBox Height="25" Width="80" VerticalAlignment="Top" FontSize="12" ItemsSource="{Binding EditEmployeeVM.PhoneTypeValues}" SelectedItem="{Binding EditEmployeeVM.SelectedPhone.Type}" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="25">
                          <Button Content="Add" Width="100" Command="{Binding EditEmployeeVM.AddPhoneCommand}" />
                          <Button Content="Remove" Width="100" Command="{Binding EditEmployeeVM.RemovePhoneCommand}" />
-                    </StackPanel
+                    </StackPanel>
                </StackPanel>
 
                <StackPanel Grid.Row="1" Margin="0,0,0,5">
-                    <ListView ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Certifications}" FontSize="10" Height="65" Margin="0,0,0,5" />
-                    <TextBox Width="200" Height="25" Margin="0,0,0,5" />
-                    <DatePicker Margin="0,0,0,5" />
-                    <DatePicker Margin="0,0,0,5" />
+                    <ListView ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Certifications}" SelectedItem="{Binding EditEmployeeVM.SelectedCertification}"  FontSize="10" Height="65" Margin="0,0,0,5" />
+                    <TextBox Width="200" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewCertification.Name}"/>
+                    <DatePicker Margin="0,0,0,5" SelectedDate="{Binding EditEmployeeVM.SelectedCertification.BeginDate}"/>
+                    <DatePicker Margin="0,0,0,5" SelectedDate="{Binding EditEmployeeVM.SelectedCertification.EndDate}"/>
                     <StackPanel Orientation="Horizontal" Height="25">
                          <Button Content="Add" Width="100" />
                          <Button Content="Remove" Width="100" />
@@ -133,7 +133,7 @@
                </StackPanel>
 
                <StackPanel Grid.Row="2">
-                    <ListBox x:Name="listboxCitations" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Citations, Mode=OneWay, NotifyOnSourceUpdated=True}" FontSize="10" Height="85" Margin="0,0,0,5" />
+                    <ListBox x:Name="listboxCitations" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Citations, Mode=OneWay, NotifyOnSourceUpdated=True}" SelectedItem="{Binding EditEmployeeVM.SelectedCitation, Mode=OneWayToSource}" FontSize="10" Height="85" Margin="0,0,0,5" />
                     <TextBox Width="200" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewCitation.Name}"/>
                     <DatePicker Margin="0,0,0,5" SelectedDate="{Binding EditEmployeeVM.NewCitation.Date}"/>
                     <StackPanel Orientation="Horizontal" Height="25">
@@ -147,7 +147,7 @@
                     <RowDefinition Height="110" />
                     <RowDefinition Height="70" />
                </Grid.RowDefinitions>
-          </Grid
+          </Grid>
           <Canvas Grid.Row="3" Grid.Column="4">
                <TextBlock Text="Emails" Canvas.Right="5" Canvas.Top="37" />
                <TextBlock Text="New Email" FontSize="10" Canvas.Top="91" Canvas.Right="5" />
@@ -172,10 +172,10 @@
                </Grid.RowDefinitions>
               
                <StackPanel Grid.Row="0">
-                    <ListBox x:Name="listboxEmails" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Emails}" FontSize="10" Height="80" Margin="0,0,0,5" />
+                    <ListBox x:Name="listboxEmails" ItemsSource="{Binding EditEmployeeVM.SelectedEmployee.Emails}" SelectedItem="{Binding EditEmployeeVM.SelectedEmail}" FontSize="10" Height="80" Margin="0,0,0,5" />
                     <StackPanel Orientation="Horizontal">
-                         <TextBox Width="125" Height="25" Margin="0,0,0,5" />
-                         <ComboBox Width="75" Height="25" Margin="0,0,0,5" />
+                         <TextBox Width="125" Height="25" Margin="0,0,0,5" Text="{Binding EditEmployeeVM.NewEmail.Address}" />
+                         <ComboBox Width="75" Height="25" Margin="0,0,0,5" ItemsSource="{Binding EditEmployeeVM.EmailTypeValues}" SelectedItem="{Binding EditEmployeeVM.NewEmail.Type}"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="25">
                          <Button Content="Add" Width="100" />

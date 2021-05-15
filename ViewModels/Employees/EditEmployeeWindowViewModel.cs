@@ -19,80 +19,79 @@ namespace RobinBradley2021.ViewModels
         public EmployeeModel SelectedEmployee
         {
             get { return _selectedEmployee; }
-            set { Set(ref _selectedEmployee, value); }
+            set {  Set(ref _selectedEmployee, value); }
         }
         private PhoneModel _newPhone;
         public PhoneModel NewPhone
         {
             get { return _newPhone; }
-            set { if (Set(ref _newPhone, value)) ; }
+            set { Set(ref _newPhone, value) ; }
         }
         private EmailModel _newEmail;
         public EmailModel NewEmail
         {
             get { return _newEmail; }
-            set { if (Set(ref _newEmail, value)) ; }
+            set { Set(ref _newEmail, value); }
         }
         private RestrictionModel _newRestriction;
         public RestrictionModel NewRestriction
         {
             get { return _newRestriction; }
-            set { if (Set(ref _newRestriction, value)) ; }
+            set { Set(ref _newRestriction, value) ; }
         }
         private CertificationModel _newCertification;
         public CertificationModel NewCertification
         {
             get { return _newCertification; }
-            set { if (Set(ref _newCertification, value)) ; }
+            set { Set(ref _newCertification, value) ; }
         }
         private CitationModel _newCitation;
         public CitationModel NewCitation
         {
             get { return _newCitation; }
-            set { if (Set(ref _newCitation, value)) ; }
+            set {Set(ref _newCitation, value) ; }
         }
         private DocumentModel _newDocument;
         public DocumentModel NewDocument
         {
             get { return _newDocument; }
-            set { if (Set(ref _newDocument, value)) ; }
+            set {Set(ref _newDocument, value) ; }
         }
-
         private PhoneModel _selectedPhone;
         public PhoneModel SelectedPhone
         {
             get { return _selectedPhone; }
-            set { _selectedPhone = value; }
+            set { Set(ref _selectedPhone, value); }
         }
         private EmailModel _emailModel;
         public EmailModel SelectedEmail
         {
             get { return _emailModel; }
-            set { if (Set(ref _emailModel, value)) ; }
+            set { Set(ref _emailModel, value) ; }
         }
         private RestrictionModel _selectedRestriction;
         public RestrictionModel SelectedRestriction
         {
             get { return _selectedRestriction; }
-            set { if (Set(ref _selectedRestriction, value)) ; }
+            set { Set(ref _selectedRestriction, value) ; }
         }
         private CertificationModel _selectedCertification;
         public CertificationModel SelectedCertification
         {
             get { return _selectedCertification; }
-            set { if (Set(ref _selectedCertification, value)) ; }
+            set { Set(ref _selectedCertification, value); }
         }
         private CitationModel _selectedCitation;
         public CitationModel SelectedCitation
         {
             get { return _selectedCitation; }
-            set { if (Set(ref _selectedCitation, value)) ; }
+            set { Set(ref _selectedCitation, value) ; }
         }
         private DocumentModel _selectedDocument;
         public DocumentModel SelectedDocument
         {
             get { return _selectedDocument; }
-            set { if (Set(ref _selectedDocument, value)) ; }
+            set { Set(ref _selectedDocument, value) ; }
         }
 
         public ObservableCollection<DepartmentModel> Departments { get; private set; }
@@ -103,6 +102,13 @@ namespace RobinBradley2021.ViewModels
             get
             {
                 return Enum.GetValues(typeof(PhoneType)).Cast<PhoneType>();
+            }
+        }
+        public IEnumerable<EmailType> EmailTypeValues
+        {
+            get
+            {
+                return Enum.GetValues(typeof(EmailType)).Cast<EmailType>();
             }
         }
 
@@ -190,14 +196,18 @@ namespace RobinBradley2021.ViewModels
                 if (certificationModel.Id != SelectedCertification.Id)
                     newList.Add(certificationModel);
             }
-
+            SelectedEmployee.Certifications.Clear();
+            foreach (CertificationModel certification in newList)
+            {
+                SelectedEmployee.Certifications.Add(certification);
+            }
         }
         public void RemoveCitation(object e)
         {
             var newList = new List<CitationModel>();
             if (SelectedEmployee.Citations != null)
             {
-                foreach (CitationModel citation in SelectedEmployee.Citations)
+                foreach (CitationModel citation in SelectedEmployee.Citations.Where(x => x.Id != SelectedCitation.Id))
                 {
                     newList.Add(citation);
                 }
@@ -229,7 +239,7 @@ namespace RobinBradley2021.ViewModels
             var newList = new List<DocumentModel>();
             if (SelectedEmployee.Documents != null)
             {
-                foreach (DocumentModel document in SelectedEmployee.Documents)
+                foreach (DocumentModel document in SelectedEmployee.Documents.Where(x => x.Id != SelectedDocument.Id))
                 {
                     newList.Add(document);
                 }
@@ -273,7 +283,7 @@ namespace RobinBradley2021.ViewModels
             Departments = new ObservableCollection<DepartmentModel>();
             JobTitles = new ObservableCollection<JobTitleModel>();
             NewCitation = new CitationModel();
-            
+            NewPhone = new PhoneModel();
             AddPhoneCommand = new RelayCommand<object>(AddPhone);
             AddEmailCommand = new RelayCommand<object>(AddEmail);
             AddCertificationCommand = new RelayCommand<object>(AddCertification);

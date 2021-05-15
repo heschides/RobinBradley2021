@@ -17,6 +17,7 @@ using RobinBradley2021.Views.Employees;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using RobinBradley2021.Models.Tokens;
+using System.Runtime.CompilerServices;
 
 namespace RobinBradley2021.ViewModels
 {
@@ -27,45 +28,45 @@ namespace RobinBradley2021.ViewModels
         private EmployeeModel _selectedEmployee;
         public EmployeeModel SelectedEmployee
         {
-            get { return _selectedEmployee; }
+            get => _selectedEmployee;
             set
             {
-                if (Set(ref _selectedEmployee, value))
                 {
-                    Messenger.Default.Send(new EmployeeToken(value));
-                    if (EquipmentAssignments_StandardIssue != null)
+                    if (Set(ref _selectedEmployee, value))
                     {
-                        EquipmentAssignments_StandardIssue.Clear();
-                    }
-                    if (EquipmentAssignments_AdHoc != null)
-                    {
-                        EquipmentAssignments_AdHoc.Clear();
-                    }
-                    if (SelectedEmployee.EquipmentAssignments != null)
-                    {
-                        var resultFalse = SelectedEmployee.EquipmentAssignments.Where(x => x.IsStandardIssue == false);
-                        var resultTrue = SelectedEmployee.EquipmentAssignments.Where(x => x.IsStandardIssue == true);
-                        if (resultFalse != null )
-                        {
-                            foreach(EquipmentAssignmentRecordModel record in resultFalse)
-                            {
-                                EquipmentAssignments_AdHoc.Add(record);
-                            }
-                        }
-                        if (resultTrue !=null)
-                           foreach (EquipmentAssignmentRecordModel record in resultTrue)
-                            {
-                                EquipmentAssignments_StandardIssue.Add(record);
-                            }
+                        Messenger.Default.Send(new EmployeeToken(value));
+                        RaisePropertyChanged(nameof(EquipmentAssignments_StandardIssue));
+                        RaisePropertyChanged(nameof(EquipmentAssignments_AdHoc));
                     }
                 }
             }
         }
+        public ICollectionView EquipmentAssignments_StandardIssue
+        {
+            get
+            {
+                if (SelectedEmployee?.EquipmentAssignments == null)
+                    return null;
+                var view = new CollectionViewSource { Source = SelectedEmployee.EquipmentAssignments }.View;
+                view.Filter = item => item is EquipmentAssignmentRecordModel model && model.IsStandardIssue;
+                return view;
+            }
+        }
+        public ICollectionView EquipmentAssignments_AdHoc
+        {
+            get
+            {
+                if (SelectedEmployee?.EquipmentAssignments == null)
+
+                    return null;
+                var view = new CollectionViewSource { Source = SelectedEmployee.EquipmentAssignments }.View;
+                view.Filter = item => item is EquipmentAssignmentRecordModel model && model.IsStandardIssue;
+                return view;
+
+            }
+        }
 
         public ObservableCollection<VehicleAssignmentRecordModel> VehicleAssignments { get; set; }
-        public ObservableCollection<EquipmentAssignmentRecordModel> EquipmentAssignments_StandardIssue { get; private set; }
-
-        public ObservableCollection<EquipmentAssignmentRecordModel> EquipmentAssignments_AdHoc { get; private set; }
 
         //COMMANDS
         public RelayCommand<object> OpenAddEmployeeWindowCommand { get; private set; }
@@ -112,8 +113,6 @@ namespace RobinBradley2021.ViewModels
             //properties
             Employees = new ObservableCollection<EmployeeModel>();
             SelectedEmployee = new EmployeeModel();
-            EquipmentAssignments_StandardIssue = new ObservableCollection<EquipmentAssignmentRecordModel>();
-            EquipmentAssignments_AdHoc = new ObservableCollection<EquipmentAssignmentRecordModel>();
             VehicleAssignments = new ObservableCollection<VehicleAssignmentRecordModel>();
             //commands
             RemoveEmployeeCommand = new RelayCommand<object>(RemoveEmployee);
