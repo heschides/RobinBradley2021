@@ -1,23 +1,14 @@
-﻿using RobinBradley2021.Models;
-using RobinBradley2021.Other;
-using System;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
+using RobinBradley2021.DataAccess;
+using RobinBradley2021.Models;
+using RobinBradley2021.Models.Tokens;
+using RobinBradley2021.Views;
+using RobinBradley2021.Views.Employees;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using RobinBradley2021.Views;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RobinBradley2021.DataAccess;
-using System.Windows.Input;
-using System.Windows;
-using System.Windows.Data;
 using System.ComponentModel;
-using RobinBradley2021.Views.Employees;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using RobinBradley2021.Models.Tokens;
-using System.Runtime.CompilerServices;
+using System.Windows.Data;
 
 namespace RobinBradley2021.ViewModels
 {
@@ -74,6 +65,7 @@ namespace RobinBradley2021.ViewModels
         public RelayCommand<object> RefreshEmployeesCommand { get; private set; }
         public RelayCommand<object> OpenEditEmployeeWindowCommand { get; private set; }
         public RelayCommand<object> OpenAddEmployeeCertificationWindowCommand { get; private set; }
+
         //METHODS
         public void OpenAddEmployee(object e)
         {

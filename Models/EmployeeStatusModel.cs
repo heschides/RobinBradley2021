@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RobinBradley2021.Models
 {
-public    class EmployeeStatusModel
+    public class EmployeeStatusModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -14,6 +14,5 @@ public    class EmployeeStatusModel
         {
             return Name;
         }
-
     }
 }

@@ -1,6 +1,8 @@
-﻿using GalaSoft.MvvmLight;
+﻿using FluentValidation.Results;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using RobinBradley2021.DataAccess;
+using RobinBradley2021.DataValidation;
 using RobinBradley2021.Models;
 using RobinBradley2021.Models.Tokens;
 using System;
@@ -9,6 +11,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Windows;
+using static RobinBradley2021.Functions.ReferenceAction;
 using static RobinBradley2021.Models.Enums;
 namespace RobinBradley2021.ViewModels
 {
@@ -19,7 +23,13 @@ namespace RobinBradley2021.ViewModels
         public EmployeeModel SelectedEmployee
         {
             get { return _selectedEmployee; }
-            set {  Set(ref _selectedEmployee, value); }
+            set
+            {
+                Set(ref _selectedEmployee, value);
+                ReplaceReferences(EmployeeStatuses, SelectedEmployee);
+                ReplaceReferences(JobTitles, SelectedEmployee );
+                ReplaceReferences(Departments, SelectedEmployee);
+            }
         }
         private PhoneModel _newPhone;
         public PhoneModel NewPhone
@@ -111,6 +121,8 @@ namespace RobinBradley2021.ViewModels
                 return Enum.GetValues(typeof(EmailType)).Cast<EmailType>();
             }
         }
+        public ObservableCollection<string>ValidationErrors { get; private set; }
+
 
         //COMMANDS
         public RelayCommand<object> AddPhoneCommand { get; private set; }
@@ -119,6 +131,7 @@ namespace RobinBradley2021.ViewModels
         public RelayCommand<object> AddCitationCommand { get; private set; }
         public RelayCommand<object> AddRestrictionCommand { get; private set; }
         public RelayCommand<object> AddDocumentCommand { get; private set; }
+        public RelayCommand<object> ValidateNewEmployeeCommand { get; private set; }
         public RelayCommand<ObservableCollection<PhoneModel>> RemovePhoneCommand { get; private set; }
         public RelayCommand<ObservableCollection<EmailModel>> RemoveEmailCommand { get; private set; }
         public RelayCommand<ObservableCollection<CertificationModel>> RemoveCertificationCommand { get; private set; }
@@ -255,6 +268,8 @@ namespace RobinBradley2021.ViewModels
             var departments = await GetData.DepartmentQueryAsync();
             var jobTitles = await GetData.JobTitleQueryAsync();
             var employeeStatuses = await GetData.EmployeeStatusQueryAsync();
+
+
             foreach (DepartmentModel department in departments)
             {
                 Departments.Add(department);
@@ -268,16 +283,35 @@ namespace RobinBradley2021.ViewModels
                 EmployeeStatuses.Add(employeeStatus);
             }
         }
+        public void ValidateNewEmployee(object e)
+        {
+            var employeeValidator = new EmployeeValidation();
+            if (SelectedEmployee != null)
+            {
+                var results = employeeValidator.Validate(SelectedEmployee);
+
+                if (results.IsValid == false)
+                {
+                    foreach (ValidationFailure failure in results.Errors)
+                    {
+                        ValidationErrors.Add($"{failure.PropertyName }: {failure.ErrorMessage}");
+                    }
+                    MessageBox.Show("Mistakes were made.");
+                }
+            }
+        }
         private void OnNewEmployeeToken(EmployeeToken token)
         {
             SelectedEmployee = token.SelectedEmployee;
         }
+        
         
         //CONSTRUCTOR
         public EditEmployeeWindowViewModel()
         {
             LoadComboboxesCommand = new RelayCommand<object>(LoadComboboxes);
             EmployeeStatuses = new ObservableCollection<EmployeeStatusModel>();
+            ValidationErrors = new ObservableCollection<string>();
             Messenger.Default.Register<EmployeeToken>(this, OnNewEmployeeToken);
 
             Departments = new ObservableCollection<DepartmentModel>();
@@ -296,6 +330,8 @@ namespace RobinBradley2021.ViewModels
             RemoveCitationCommand = new RelayCommand<ObservableCollection<CitationModel>>(RemoveCitation);
             RemoveRestrictionCommand = new RelayCommand<ObservableCollection<RestrictionModel>>(RemoveRestriction);
             RemoveDocumentCommand = new RelayCommand<ObservableCollection<DocumentModel>>(RemoveDocument);
+            ValidateNewEmployeeCommand = new RelayCommand<object>(ValidateNewEmployee);
+
         }
     }
 }
