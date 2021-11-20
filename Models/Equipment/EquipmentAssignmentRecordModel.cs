@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobinBradley2021.Models.Equipment;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,11 +11,10 @@ namespace RobinBradley2021.Models
    public class EquipmentAssignmentRecordModel
     {
         public int Id{ get; set; }
-        public string InventoryId { get; set; }
         public string Description { get; set; }
-        public List<EquipmentModel> SelectedItems { get; set; }
-        public int EmployeeId { get; set; }
-        public int DepartmentId { get; set; }
+        public ObservableCollection<EquipmentAssignmentLineItemModel> LineItems { get; set; }
+        public EmployeeModel AssigneePerson { get; set; }
+        public DepartmentModel AssigneeDepartment { get; set; }
         public DateTime DateOut { get; set; }
         public DateTime DateIn { get; set; }
         public DateTime DueDate { get; set; }

@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using RobinBradley2021.DataAccess;
 using RobinBradley2021.Models;
+using RobinBradley2021.Models.Employees;
 using RobinBradley2021.Other;
 using System;
 using System.Collections.Generic;
@@ -77,16 +78,16 @@ namespace RobinBradley2021.ViewModels
             get { return _newEmailAddress; }
             set { Set(ref _newEmailAddress, value); }
         }
-        private string _newEmailType;
-        public string NewEmailType
+        private EmailType _newEmailType;
+        public EmailType NewEmailType
         {
             get { return _newEmailType; }
             set { Set(ref _newEmailType, value); }
         }
-        public static ObservableCollection<CertificationModel> Certifications { get; private set; }
-        public static ObservableCollection<CertificationModel> CertificationTypes { get; private set; }
-        private CertificationModel _selectedCertification;
-        public CertificationModel SelectedCertification
+        public static ObservableCollection<CertificationRecordModel> Certifications { get; private set; }
+        public static ObservableCollection<CertificationRecordModel> CertificationTypes { get; private set; }
+        private CertificationRecordModel _selectedCertification;
+        public CertificationRecordModel SelectedCertification
         {
             get { return _selectedCertification; }
             set { Set(ref _selectedCertification, value); }
@@ -133,9 +134,9 @@ namespace RobinBradley2021.ViewModels
         public RelayCommand<object> AddCertificationCommand { get; private set; }
         public void AddEmployeeForm_AddCertification(object e)
         {
-            var newCertification = new CertificationModel();
-            newCertification.Name = SelectedCertification.Name;
-            newCertification.EndDate = _newCertificationExpirationDate;
+            var newCertification = new CertificationRecordModel();
+            newCertification.Class = SelectedCertification.Class;
+            newCertification.DateEnd = _newCertificationExpirationDate;
             newCertification.Id = SelectedCertification.Id;
             Certifications.Add(newCertification);
         }
@@ -167,18 +168,18 @@ namespace RobinBradley2021.ViewModels
             EmployeeStatusModel newEmployeeStatus = new EmployeeStatusModel();
             newEmployeeStatus.Id = 1;
             newEmployee.Status = newEmployeeStatus;
-            SendData.CreateEmployee(newEmployee);
+            EmployeeRepository.CreateEmployee(newEmployee);
         }
         public RelayCommand<object> LoadComboBoxesCommand { get; private set; }
         public async void LoadComboBoxes(object e)
         {
-            var certificationTypes = await GetData.CertificationQueryAsync();
-            foreach (CertificationModel certification in certificationTypes) { CertificationTypes.Add(certification); }
-            var restrictionTypes = await GetData.RestrictionQueryAsync();
+            var certificationTypes = await AdministrationRepository.CertificationQueryAsync();
+            foreach (CertificationRecordModel certification in certificationTypes) { CertificationTypes.Add(certification); }
+            var restrictionTypes = await AdministrationRepository.RestrictionQueryAsync();
             foreach (RestrictionModel restrictionType in restrictionTypes) { RestrictionTypes.Add(restrictionType); }
-            var departments = await GetData.DepartmentQueryAsync();
+            var departments = await AdministrationRepository.DepartmentQueryAsync();
             foreach (DepartmentModel department in departments) { Departments.Add(department); }
-            var jobTitles = await GetData.JobTitleQueryAsync();
+            var jobTitles = await AdministrationRepository.JobTitleQueryAsync();
             foreach (JobTitleModel jobTitle in jobTitles) { JobTitles.Add(jobTitle); }
         }
 
@@ -188,8 +189,8 @@ namespace RobinBradley2021.ViewModels
         {
             Phones = new ObservableCollection<PhoneModel>();
             Emails = new ObservableCollection<EmailModel>();
-            Certifications = new ObservableCollection<CertificationModel>();
-            CertificationTypes = new ObservableCollection<CertificationModel>();
+            Certifications = new ObservableCollection<CertificationRecordModel>();
+            CertificationTypes = new ObservableCollection<CertificationRecordModel>();
             Restrictions = new ObservableCollection<RestrictionModel>();
             RestrictionTypes = new ObservableCollection<RestrictionModel>();
             JobTitles = new ObservableCollection<JobTitleModel>();

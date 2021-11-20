@@ -8,42 +8,47 @@
      <Window.DataContext>
           <vms:MainViewModel />
      </Window.DataContext>
-     <Grid Background="#7c939c">
+     <Grid Background="{DynamicResource HeaderTabsBackground}">
           <Grid.RowDefinitions>
                <RowDefinition Height="Auto" />
                <RowDefinition Height="*" />
           </Grid.RowDefinitions>
           <DockPanel Grid.Row="0">
-               <Menu DockPanel.Dock="Top">
+               <Menu DockPanel.Dock="Top" Background="#758b94" Foreground="White">
                     <MenuItem Header="File" Margin="15,0,0,0" />
                     <MenuItem Header="Edit" />
                </Menu>
           </DockPanel>
-          <TabControl BorderThickness="0" Grid.Row="1" Background="{DynamicResource WindowBackground}">
+          <TabControl TabStripPlacement="Top" BorderThickness="0" Grid.Row="1" Background="{DynamicResource WindowBackground}">
                <!--#endregion-->
                <!--#region Dashboard Tab-->
                <TabItem Header="Dashboard" Width="106" Style="{DynamicResource NavigationTab}">
                     <Grid>
                          <Grid.ColumnDefinitions>
-                              <ColumnDefinition Width="10" />
-                              <ColumnDefinition Width="0" />
-                              <ColumnDefinition Width="2*" />
-                              <ColumnDefinition Width="2*" />
-                              <ColumnDefinition Width="1*" />
-                              <ColumnDefinition Width="2*" />
-                              <ColumnDefinition Width="1*" />
-                              <ColumnDefinition Width="10" />
+                              <ColumnDefinition Width="5" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="*" />
+                              <ColumnDefinition Width="5" />
                          </Grid.ColumnDefinitions>
                          <Grid.RowDefinitions>
                               <RowDefinition Height="Auto" />
-                              <RowDefinition Height="Auto" />
-                              <RowDefinition Height="Auto" />
+                              <RowDefinition Height="75" />
+                              <RowDefinition Height="0" />
                               <RowDefinition Height="Auto" />
                               <RowDefinition Height="*" />
                               <RowDefinition Height="*" />
-                              <RowDefinition Height="Auto" />
+                              <RowDefinition Height="*" />
+                              <RowDefinition Height="30" />
+                              <RowDefinition Height="10" />
                          </Grid.RowDefinitions>
-                         <DockPanel x:Name="dashButtons" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="6" LastChildFill="True">
+                         <DockPanel x:Name="dashButtons" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="9" LastChildFill="True">
                               <Button Style="{StaticResource TopButtons}" Command="{Binding VehicleTabVM.OpenAssignVehicleWindowCommand}">
                                    <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Assign Vehicle" />
@@ -94,189 +99,398 @@
                               </Button>
                               <Button Style="{StaticResource TopButtons}">
                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Record Vehicle Invoice" />
+                                   </StackPanel>
+                              </Button>
+                              <Button Style="{StaticResource TopButtons}">
+                                   <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="Seek Professional Help" />
+                                   </StackPanel>
+                              </Button>
+                              <Button Style="{StaticResource TopButtons}">
+                                   <StackPanel Orientation="Vertical">
                                         <TextBlock Text="Seek Professional Help" />
                                    </StackPanel>
                               </Button>
                          </DockPanel>
-                         <StackPanel x:Name="DashboardHeader" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-                              <TextBlock Text="Welcome, Joshua." FontSize="16" Margin="0, 5,0,0" Foreground="White" FontFamily="Corsiva" FontWeight="SemiBold" HorizontalAlignment="left" />
-                              <TextBlock Text="You have no current items to address." FontSize="12" FontFamily="Corsiva" Foreground="wHITE" HorizontalAlignment="left" Margin="10,0,0,0" />
-                              <TextBlock FontFamily="Corsiva" Text="You have no urgent items to address." FontSize="12" Foreground="white" HorizontalAlignment="left" Margin="20,0,0,10" />
+                         <StackPanel x:Name="DashboardHeader" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6" HorizontalAlignment="Left" Orientation="Vertical">
+                              <TextBlock Text="Welcome, Joshua." FontSize="20" Margin="0, 5,0,0" Foreground="Black" FontFamily="Corsiva" FontWeight="SemiBold" HorizontalAlignment="left" />
+                              <TextBlock Text="You have no current items to address." FontSize="16" FontFamily="Corsiva" Foreground="Black" VerticalAlignment="Bottom" Margin="0,20,0,0" />
                          </StackPanel>
-                         <StackPanel x:Name="RowHeadersRecent" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="1" Height="30" Background="#8cad9a">
-                              <TextBlock FontSize="16" Foreground="White" Text="Recent" Margin="10,4,0,0" />
+
+                         <TextBlock FontSize="16" Foreground="Green" Text="Recent" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" Padding="10,4,0,0" Style="{DynamicResource LabelsLight1}" />
+                         <TextBlock Grid.Row="3" Grid.Column="7" Grid.ColumnSpan="3" FontSize="16" Foreground="#D63434" Text="Overdue" Padding="10,4,0,0" Style="{DynamicResource LabelsLight1}" />
+                         <TextBlock Grid.Row="3" Grid.Column="4" Grid.ColumnSpan="3" FontSize="16" Foreground="DarkSlateBlue" Text="Due" Padding="10,2,0,0" Background="{DynamicResource HeadingBackgroundBrush2}" />
+
+                         <StackPanel Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Background="#F5FFF5"  Grid.RowSpan="2">
+                         <Grid >
+                              <Grid.ColumnDefinitions>
+                                   <ColumnDefinition Width="*" />
+                                   <ColumnDefinition Width="*" />
+                                   <ColumnDefinition Width="*" />
+                              </Grid.ColumnDefinitions>
+                              <Grid.RowDefinitions>
+                                   <RowDefinition Height="25" />
+                                   <RowDefinition Height="*" />
+                              </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Equipment Assignments" Style="{DynamicResource LabelsLight1}" Foreground="Green" />
+                                   <StackPanel Grid.Row="1" Background="#F5FFF5" Grid.ColumnSpan="3">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.EquipmentAssignmentsCollectionRecent}" SelectedItem="{Binding DashboardVM.SelectedAssignmentRecent, NotifyOnSourceUpdated=True, Mode=TwoWay}" Style="{DynamicResource DataGrids1}" HorizontalContentAlignment="Right" Foreground="Green" >
+                                        <DataGrid.RowStyle>
+                                             <Style TargetType="DataGridRow">
+                                                  <Setter Property="Background" Value="#F5FFF5" />
+                                                  <Setter Property="Foreground" Value="Green" />
+                                             </Style>
+                                        </DataGrid.RowStyle>
+                                        <DataGrid.Columns>
+                                                  <DataGridTextColumn MinWidth="120" Header="Employee" Binding="{Binding Path=AssigneePerson.FullName}" />
+                                                  <DataGridTextColumn Width="*" Header="Jobsite" Binding="{Binding Path=Jobsite.Name}" />
+                                                  <DataGridTextColumn Width="70" Header="Date Out" Binding="{Binding Path=DateOut, StringFormat=MM/dd}" />
+                                                  <DataGridTextColumn Width="70" Header="Due Date" Binding="{Binding Path=DueDate, StringFormat=MM/dd}" />
+                                             </DataGrid.Columns>
+                                   </DataGrid >
+                              </StackPanel>
+                         </Grid>
                          </StackPanel>
-                         <StackPanel x:Name="RowHeaderOverdue" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="2" Height="30" Background="#ba7070">
-                              <TextBlock FontSize="16" Foreground="White" Text="Overdue" Margin="10,4,0,0" />
+                         <StackPanel Grid.Row="4" Grid.Column="3" Background="#FBFDFB">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Line Items" Style="{DynamicResource LabelsLight2}" Foreground="Green"/>
+                                   <DataGrid Grid.Row="1" ItemsSource="{Binding DashboardVM.RecentAssignmentLineItems, Mode=OneWay, NotifyOnSourceUpdated=True}" Style="{DynamicResource DataGrids1}" Foreground="Green" >
+                                        <DataGrid.RowStyle>
+                                             <Style TargetType="DataGridRow">
+                                                  <Setter Property="Background" Value="#FBFDFB" />
+                                                  <Setter Property="Foreground" Value="Green" />
+                                             </Style>
+                                        </DataGrid.RowStyle>
+                                        <DataGrid.Columns>
+                                             <DataGridTextColumn Width="50" Header="#" Binding="{Binding Path=Equipment.InventoryId}" />
+                                             <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Path=Equipment.Description}"/>
+                                        </DataGrid.Columns>
+                                   </DataGrid>
+                              </Grid>
                          </StackPanel>
-                         <StackPanel x:Name="RowHeaderDue" Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2" Height="30" Background="#70aeba">
-                              <TextBlock FontSize="16" Foreground="White" Text="Due" Margin="10,4,0,0" />
+                         <StackPanel Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Background="#F5FFF5">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight1}" Foreground="Green"/>
+                                   <StackPanel Grid.Row="1" Background="#F5FFF5">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.VehicleAssignmentsCollectionRecent}" Style="{DynamicResource DataGrids1}" Foreground="Green">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#F5FFF5" />
+                                                       <Setter Property="Foreground" Value="Green" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn Width="50" Header="#" Binding="{Binding Path=AssignedVehicle.FleetNumber}" />
+                                                  <DataGridTextColumn Width="*" Header="Driver" Binding="{Binding Path=Assignee.FullName}" />
+                                                  <DataGridTextColumn Width="*" Header="Jobsite" Binding="{Binding Path=Jobsite.Name}" />
+                                                  <DataGridTextColumn Width="70" Header="Date Out" Binding="{Binding Path=DateOut, StringFormat=MM/dd}" />
+                                                  <DataGridTextColumn Width="70" Header="Date Due" Binding="{Binding Path=DueDate, StringFormat=MM/dd}" />
+
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
                          </StackPanel>
-                         <Grid Grid.Row="4" Grid.Column="2">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="Equipment Assignments" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.RecentEquipmentAssignments}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
-                                             <GridViewColumn Width="155" Header="Description" DisplayMemberBinding="{Binding Path=Description}" />
-                                             <GridViewColumn Width="75" Header="Issued" DisplayMemberBinding="{Binding Path=DateOut, StringFormat=d}" />
-                                             <GridViewColumn Width="155" Header="Due" DisplayMemberBinding="{Binding Path=DueDate, StringFormat=d}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
-                         <Grid Grid.Row="5" Grid.Column="2">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.RecentVehicleAssignments}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="25" Header="#" DisplayMemberBinding="{Binding Path=VehicleId}" />
-                                             <GridViewColumn Width="105" Header="Assigned" DisplayMemberBinding="{Binding Path=DateOut}" />
-                                             <GridViewColumn Width="75" Header="Due" DisplayMemberBinding="{Binding Path=DueDate, StringFormat=d}" />
-                                             <GridViewColumn Width="75" Header="Destination" DisplayMemberBinding="{Binding Path=Destination, StringFormat=d}" />
-                                             <GridViewColumn Width="105" Header="User" DisplayMemberBinding="{Binding Path=EmployeeId, StringFormat=d}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
-                         <Grid Grid.Row="4" Grid.Column="3">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="Equipment Assignments" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.DueEquipmentAssignments}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
-                                             <GridViewColumn Width="170" Header="User" DisplayMemberBinding="{Binding Path=EmployeeId}" />
-                                             <GridViewColumn Width="175" Header="Jobsite" DisplayMemberBinding="{Binding Path=Jobsite}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
-                         <Grid Grid.Row="5" Grid.Column="3">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.DueVehicleAssignments}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=VehicleId}" />
-                                             <GridViewColumn Width="170" Header="User" DisplayMemberBinding="{Binding Path=EmployeeId}" />
-                                             <GridViewColumn Width="175" Header="Jobsite" DisplayMemberBinding="{Binding Path=Jobsite}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
-                         <Grid Grid.Row="5" Grid.Column="4">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="CIC" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.DueCIC}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="100" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
-                                             <GridViewColumn Width="125" Header="User" DisplayMemberBinding="{Binding Path=AssignedUserId}" />
-                                             <GridViewColumn Width="125" Header="Type" DisplayMemberBinding="{Binding Path=Type}" />
-                                             <GridViewColumn Width="125" Header="Period" DisplayMemberBinding="{Binding Path=Period}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
-                         <Grid Grid.Row="4" Grid.Column="4">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="Employee Certifications" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.DueEmployeeCertifications}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="125" Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
-                                             <GridViewColumn Width="100" Header="Type" DisplayMemberBinding="{Binding Path=Description}" />
-                                             <GridViewColumn Width="100" Header="Period" DisplayMemberBinding="{Binding Path=Period}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
-                         <Grid Grid.Row="4" Grid.Column="5">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="Equipment Assignments" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.OverdueEquipmentAssignments}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="75" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
-                                             <GridViewColumn Width="170" Header="User" DisplayMemberBinding="{Binding Path=EmployeeId}" />
-                                             <GridViewColumn Width="175" Header="Due" DisplayMemberBinding="{Binding Path=DueDate}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
-                         <Grid Grid.Row="5" Grid.Column="6">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="CIC" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.OverdueCIC}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="100" Header="Id" DisplayMemberBinding="{Binding Path=InventoryId}" />
-                                             <GridViewColumn Width="125" Header="User" DisplayMemberBinding="{Binding Path=AssignedUserId}" />
-                                             <GridViewColumn Width="125" Header="Type" DisplayMemberBinding="{Binding Path=Type}" />
-                                             <GridViewColumn Width="125" Header="Period" DisplayMemberBinding="{Binding Path=Period}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
-                         <Grid Grid.Row="5" Grid.Column="5">
-                              <Grid.RowDefinitions>
-                                   <RowDefinition Height="25" />
-                                   <RowDefinition Height="*" />
-                              </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="2" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.OverdueVehicleAssignments}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="20" Header="#" DisplayMemberBinding="{Binding Path=VehicleId}" />
-                                             <GridViewColumn Width="75" Header="User" DisplayMemberBinding="{Binding Path=EmployeeId}" />
-                                             <GridViewColumn Width="150" Header="Due" DisplayMemberBinding="{Binding Path=DueDate, StringFormat=d}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                         </Grid>
+                         <StackPanel Grid.Row="6" Grid.Column="1" Background="#F5FFF5">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Certifications" Style="{DynamicResource LabelsLight2}" Foreground="Green"/>
+                                   <StackPanel Grid.Row="1" Background="#F5FFF5">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.CertificationsCollectionRecent}" Style="{DynamicResource DataGrids1}" Foreground="Green">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#F5FFF5" />
+                                                       <Setter Property="Foreground" Value="Green" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn Width="50" Header="Code" Binding="{Binding Path=AssignedVehicle.FleetNumber}" />
+                                                  <DataGridTextColumn Width="*" Header="Employee" Binding="{Binding Path=Assignee.FullName}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+                         <StackPanel Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2" Background="#F5FFF5">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="CIC" Style="{DynamicResource LabelsLight1}" Foreground="Green" />
+                                   <StackPanel Grid.Row="1" Background="#F5FFF5">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.CICCollectionRecent}" Style="{DynamicResource DataGrids1}" Foreground="Green">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#F5FFF5" />
+                                                       <Setter Property="Foreground" Value="Green" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn Width="50" Header="Code" Binding="{Binding Path=AssignedVehicle.FleetNumber}" />
+                                                  <DataGridTextColumn Width="*" Header="Iten" Binding="{Binding Path=Assignee.FullName}" />
+                                                  <DataGridTextColumn Width="*" Header="Due Date" Binding="{Binding Path=DueDate}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+
+                         <StackPanel Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" Background="#EEF3FC">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="CIC" Style="{DynamicResource LabelsLight1}" Foreground="DarkSlateBlue"/>
+                                   <StackPanel Grid.Row="1" Background="#EEF3FC">
+                                        <DataGrid Style="{DynamicResource DataGrids1}" RowHeaderWidth="0" ItemsSource="{Binding DashboardVM.CCICCollectionDue}" ScrollViewer.VerticalScrollBarVisibility="Disabled" Foreground="DarkSlateBlue">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#EEF3FC" />
+                                                       <Setter Property="Foreground" Value="DarkSlateBlue" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn Width="*" Header="Code" Binding="{Binding Path=Equipment.InventoryId}" />
+                                                  <DataGridTextColumn Width="*" Header="Jobsite" Binding="{Binding Path=Jobsite.Name}" />
+                                                  <DataGridTextColumn Width="*" Header="Due Date" Binding="{Binding Path=DueDate}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+                         <StackPanel Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="3" Background="#EEF3FC">
+                              <Grid >
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight2}" Foreground="DarkSlateBlue"/>
+                                   <StackPanel Grid.Row="1" Background="#EEF3FC">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.VehicleAssignmentsCollectionDue}" Style="{DynamicResource DataGrids1}" Foreground="DarkSlateBlue">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#EEF3FC" />
+                                                       <Setter Property="Foreground" Value="DarkSlateBlue" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Path=AssignedVehicle.FleetNumber}" />
+                                                  <DataGridTextColumn Width="*" Header="User" Binding="{Binding Path=Assignee.FullName}" />
+                                                  <DataGridTextColumn Width="*" Header="Jobsite" Binding="{Binding Path=Jobsite.Name}" />
+                                                  <DataGridTextColumn Width="70" Header="Date Out" Binding="{Binding Path=DateOut, StringFormat=MM/dd}" />
+                                                  <DataGridTextColumn Width="70" Header="Due Date" Binding="{Binding Path=DueDate, StringFormat=MM/dd}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+                         <StackPanel Grid.Row="6" Grid.Column="4" Background="#EEF3FC">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Certifications" Style="{DynamicResource LabelsLight2}" Foreground="DarkSlateBlue"/>
+                                   <StackPanel Grid.Row="1" Background="#EEF3FC">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.CertificationsCollectionDue}" Style="{DynamicResource DataGrids1}" Foreground="DarkSlateBlue">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#EEF3FC" />
+                                                       <Setter Property="Foreground" Value="DarkSlateBlue" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn Width="50" Header="Id" Binding="{Binding Path=AssignedVehicle.FleetNumber}" />
+                                                  <DataGridTextColumn Width="*" Header="User" Binding="{Binding Path=Assignee.FullName}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+                         <StackPanel Background="#EEF3FC" Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2">
+                              <Grid  >
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Equipment Assignments" Style="{DynamicResource LabelsLight1}" Foreground="DarkSlateBlue"/>
+                                   <StackPanel Grid.Row="2" Style="{DynamicResource PanelBackground}" Background="#EEF3FC">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.EquipmentAssignmentCollectionDue}" SelectedItem="{Binding DashboardVM.SelectedAssignmentDue, Mode=TwoWay}" Style="{DynamicResource DataGrids1}" Foreground="DarkSlateBlue">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#EEF3FC" />
+                                                       <Setter Property="Foreground" Value="DarkSlateBlue" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn MinWidth="120" Header="Employee" Binding="{Binding Path=AssigneePerson.FullName}" />
+                                                  <DataGridTextColumn Width="*" Header="Jobsite" Binding="{Binding Path=Jobsite.Name}" />
+                                                  <DataGridTextColumn Width="90" Header="Assigned Date" Binding="{Binding Path=DateOut, StringFormat=MM/d/yy}" />
+                                                  <DataGridTextColumn Width="75" Header="Due Date" Binding="{Binding Path=DueDate, StringFormat=MM/d/yy}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+                         
                          <Grid Grid.Row="4" Grid.Column="6">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
+                                   <RowDefinition Height="400" />
+                              </Grid.RowDefinitions>
+                              <TextBlock Grid.Row="0" Text="Line Items" Style="{DynamicResource LabelsLight2}" Foreground="DarkSlateBlue"/>
+                              <StackPanel Grid.Row="1" Style="{DynamicResource PanelBackground}" Background="#F3F6FC" >
+                                   <DataGrid ItemsSource="{Binding DashboardVM.DueAssignmentLineItems}" Style="{DynamicResource DataGrids1}" Foreground="DarkSlateBlue">
+                                        <DataGrid.RowStyle>
+                                             <Style TargetType="DataGridRow">
+                                                  <Setter Property="Background" Value="AliceBlue" />
+                                                  <Setter Property="Foreground" Value="DarkSlateBlue" />
+                                             </Style>
+                                        </DataGrid.RowStyle>
+                                        <DataGrid.Columns>
+                                             <DataGridTextColumn Width="50" Header="#" Binding="{Binding Path=Equipment.InventoryId}" />
+                                             <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Path=Equipment.Description}" />
+                                        </DataGrid.Columns>
+                                   </DataGrid>
+                              </StackPanel>
+                         </Grid>
+                         <StackPanel Grid.Row="4" Grid.Column="7" Grid.ColumnSpan="2" Background="#FCF3EE">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Equipment Assignments" Style="{DynamicResource LabelsLight1}" Foreground="#D63434"/>
+                                   <StackPanel Grid.Row="2" Style="{DynamicResource PanelBackground}" Background="#FCF3EE">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.EquipmentAssignmentsCollectionOverdue }" SelectedItem="{Binding DashboardVM.SelectedAssignmentOverdue, Mode=TwoWay}" Style="{DynamicResource DataGrids1}" ScrollViewer.VerticalScrollBarVisibility="Disabled" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Foreground="#D63434">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#FCF3EE" />
+                                                       <Setter Property="Foreground" Value="#D63434" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn MinWidth="120" Header="Employee" Binding="{Binding Path=AssigneePerson.FullName}" />
+                                                  <DataGridTextColumn Width="*" Header="Jobsite" Binding="{Binding Path=Jobsite.Name}" />
+                                                  <DataGridTextColumn Width="90" Header="Assigned Date" Binding="{Binding Path=DateOut, StringFormat=MM/dd}" />
+                                                  <DataGridTextColumn Width="75" Header="Due Date" Binding="{Binding Path=DueDate, StringFormat=MM/dd}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+
+                         <Grid Grid.Row="4" Grid.Column="9">
+                              <Grid.RowDefinitions>
+                                   <RowDefinition Height="25" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
-                              <TextBlock Grid.Row="0" Text="Employee Certification" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="1" MinHeight="275" FontSize="10" ItemsSource="{Binding DashboardVM.OverdueEmployeeCertifications}">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="125" Header="Name" DisplayMemberBinding="{Binding Path=Name}" />
-                                             <GridViewColumn Width="100" Header="Type" DisplayMemberBinding="{Binding Path=Description}" />
-                                             <GridViewColumn Width="100" Header="Period" DisplayMemberBinding="{Binding Path=Period}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
+                              <TextBlock Grid.Row="0" Text="Line Items" Style="{DynamicResource LabelsLight2}" Foreground="#D63434"/>
+                              <StackPanel Grid.Row="1" Style="{DynamicResource PanelBackground}" Background="#FCF6F3">
+                                   <DataGrid ItemsSource="{Binding DashboardVM.OverdueAssignmentLineItems}" Style="{DynamicResource DataGrids1}" Foreground="#D63434">
+                                        <DataGrid.RowStyle>
+                                             <Style TargetType="DataGridRow">
+                                                  <Setter Property="Background" Value="#FCF6F3" />
+                                                  <Setter Property="Foreground" Value="#D63434" />
+                                             </Style>
+                                        </DataGrid.RowStyle>
+                                        <DataGrid.Columns>
+                                             <DataGridTextColumn Width="50" Header="#" Binding="{Binding Path=Equipment.InventoryId}" />
+                                             <DataGridTextColumn Width="*" Header="Type" Binding="{Binding Path=Equipment.Description}" />
+                                        </DataGrid.Columns>
+                                   </DataGrid>
+                              </StackPanel>
                          </Grid>
+                         <StackPanel Grid.Row="6" Grid.Column="7" Background="#FCF3EE">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Certifications" Style="{DynamicResource LabelsLight2}" Foreground="#D63434"/>
+                                   <StackPanel Grid.Row="1">
+                                        <DataGrid Style="{DynamicResource DataGrids1}" ItemsSource="{Binding DashboardVM.Certifications}" Foreground="#D63434">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#FCF3EE" />
+                                                       <Setter Property="Foreground" Value="#D63434" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn MinWidth="120" Header="Code" Binding="{Binding Path=AssigneePerson.FullName}" />
+                                                  <DataGridTextColumn Width="*" Header="Employee" Binding="{Binding Path=Jobsite.Name}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+                         <StackPanel Grid.Row="6" Grid.Column="8" Grid.ColumnSpan="2" Background="#FCF3EE">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="CIC" Style="{DynamicResource LabelsLight1}" Foreground="#D63434"/>
+                                   <StackPanel Grid.Row="1">
+                                        <DataGrid Style="{DynamicResource DataGrids1}" Foreground="#D63434">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#FCF3EE" />
+                                                       <Setter Property="Foreground" Value="#D63434" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn Width="50" Header="Code" Binding="{Binding Path=InventoryId}" />
+                                                  <DataGridTextColumn Width="*" Header="Equipment ID" Binding="{Binding Path=AssignedUserId}" />
+                                                  <DataGridTextColumn Width="*" Header="Due Date" Binding="{Binding Path=DueDate, StringFormat=MM/dd}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+                         <StackPanel Grid.Row="5" Grid.Column="7" Grid.ColumnSpan="3" Background="#FCF3EE">
+                              <Grid>
+                                   <Grid.RowDefinitions>
+                                        <RowDefinition Height="25" />
+                                        <RowDefinition Height="*" />
+                                   </Grid.RowDefinitions>
+                                   <TextBlock Grid.Row="0" Text="Vehicle Assignments" Style="{DynamicResource LabelsLight1}" Foreground="#D63434"/>
+                                   <StackPanel Grid.Row="2" Background="#FCF3EE">
+                                        <DataGrid ItemsSource="{Binding DashboardVM.VehicleAssignmentsCollectionOverdue}" Style="{DynamicResource DataGrids1}" Foreground="#D63434">
+                                             <DataGrid.RowStyle>
+                                                  <Style TargetType="DataGridRow">
+                                                       <Setter Property="Background" Value="#FCF3EE" />
+                                                       <Setter Property="Foreground" Value="#D63434" />
+                                                  </Style>
+                                             </DataGrid.RowStyle>
+                                             <DataGrid.Columns>
+                                                  <DataGridTextColumn Width="50" Header="#" Binding="{Binding Path=AssignedVehicle.FleetNumber}" />
+                                                  <DataGridTextColumn Width="*" Header="User" Binding="{Binding Path=Assignee.FullName}" />
+                                                  <DataGridTextColumn Width="*" Header="Jobsite" Binding="{Binding Path=Jobsite.Name}" />
+                                                  <DataGridTextColumn Width="70" Header="Date Out" Binding="{Binding Path=DateOut, StringFormat=MM/dd}" />
+                                                  <DataGridTextColumn Width="70" Header="Due Date" Binding="{Binding Path=DueDate, StringFormat=MM/dd}" />
+                                             </DataGrid.Columns>
+                                        </DataGrid>
+                                   </StackPanel>
+                              </Grid>
+                         </StackPanel>
+                        
                     </Grid>
                </TabItem>
                <!--#endregion-->
@@ -308,17 +522,15 @@
                                    <RowDefinition Height="50" />
                               </Grid.RowDefinitions>
                               <TextBlock Text="Select Department" Grid.Column="0" Grid.Row="0" Style="{DynamicResource LabelsLight1}" />
-                              <ComboBox Grid.Row="0" Grid.Column="1" Margin="0,0,0,0" />
-                              <ListView x:Name="listviewEmployees" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding EmployeeTabVM.Employees, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}" SelectedItem="{Binding EmployeeTabVM.SelectedEmployee}" BorderThickness="0">
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridViewColumn Width="Auto" Header="First Name" DisplayMemberBinding="{Binding Path=FirstName}" />
-                                             <GridViewColumn Width="Auto" Header="Last Name" DisplayMemberBinding="{Binding Path=LastName}" />
-                                             <GridViewColumn Width="Auto" Header="Department" DisplayMemberBinding="{Binding Path=Department}" />
-                                             <GridViewColumn Width="Auto" Header="Id" DisplayMemberBinding="{Binding Path=Id}" />
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
+                              <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding EmployeeTabVM.Departments}" SelectedItem="{Binding EmployeeTabVM.SelectedDepartment, NotifyOnSourceUpdated=True, Mode=TwoWay}" />
+                              <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Background="White">
+                              <DataGrid x:Name="EmployeeCollection" ItemsSource="{Binding EmployeeTabVM.EmployeeCollection,  NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}" SelectedItem="{Binding EmployeeTabVM.SelectedEmployee}" Style="{DynamicResource DataGrids1}">
+                                   <DataGrid.Columns>
+                                        <DataGridTextColumn Header="Last Name" Binding="{Binding Path=LastName}" Width="150" />
+                                        <DataGridTextColumn Header="First Name" Binding="{Binding Path=FirstName}" Width="140" />
+                                   </DataGrid.Columns>
+                              </DataGrid>
+                              </StackPanel>
                               <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Orientation="Horizontal">
                                    <Button Width="100" Height="50" Grid.Column="0" Grid.Row="2" BorderThickness="0" Background="{DynamicResource 
                                         ResourceKey=HeadingBackgroundBrush1}" Margin="0,0,0,2" Command="{Binding EmployeeTabVM.OpenAddEmployeeWindowCommand}">
@@ -330,7 +542,7 @@
                                    <Button Width="100" Height="50" Grid.Column="1" Grid.Row="2" BorderThickness="0" Margin="2,0,0,2" Background="{DynamicResource ResourceKey=HeadingBackgroundBrush2}" Command="{Binding EmployeeTabVM.OpenEditEmployeeWindowCommand}">
                                         <StackPanel Orientation="Vertical">
                                              <Image Source="/Images/edit.png" Stretch="None" />
-                                             <TextBlock Text="Edit Selected" />
+                                             <TextBlock Text="Edit Employee" />
                                         </StackPanel>
                                    </Button>
                                    <Button Width="100" Height="50" Grid.Column="0" Grid.Row="2" BorderThickness="0" Background="{DynamicResource 
@@ -358,13 +570,13 @@
                               <!--EMPLOYEE INFORMATION SECTION-->
                               <TextBlock Text="Employee Information" Grid.ColumnSpan="2" Grid.Row="0" Style="{DynamicResource LabelsLight1}" FontSize="16" />
                               <TextBlock Text="Job Title" Grid.Column="0" Grid.Row="1" Style="{DynamicResource LabelsLight1}" />
-                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.JobTitle.Name}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
+                              <TextBox Text="{Binding ElementName=EmployeeCollection, Path=SelectedItem.JobTitle.Name}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
                               <TextBlock Text="Status" Grid.Column="0" Grid.Row="2" Style="{DynamicResource LabelsLight1}" />
-                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.Status.Name}" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
+                              <TextBox Text="{Binding ElementName=EmployeeCollection, Path=SelectedItem.Status.Name}" Grid.Column="1" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
                               <TextBlock Text="Hire Date" Grid.Column="0" Grid.Row="3" Style="{DynamicResource LabelsLight1}" />
-                              <TextBox Text="{Binding ElementName=listviewEmployees, Path=SelectedItem.HireDate, StringFormat=d}" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
+                              <TextBox Text="{Binding ElementName=EmployeeCollection, Path=SelectedItem.HireDate, StringFormat=d}" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" />
                               <TextBlock Text="Phone" Grid.Column="0" Grid.Row="4" Padding="10,5,0,0" Background="{DynamicResource HeadingBackgroundBrush1}" Foreground="DarkSlateGray" />
-                              <ListBox MinHeight="100" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Phones}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
+                              <ListBox MinHeight="100" Grid.Row="4" Grid.Column="1" ItemsSource="{Binding ElementName=EmployeeCollection, Path=SelectedItem.Phones}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                    <ListBox.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListBoxItem}">
                                              <Setter Property="Focusable" Value="False" />
@@ -372,7 +584,7 @@
                                    </ListBox.ItemContainerStyle>
                               </ListBox>
                               <Label Content="Email" Grid.Column="0" Grid.Row="5" Padding="10,5,0,0" Background="{DynamicResource HeadingBackgroundBrush2}" Foreground="DarkSlateGray" />
-                              <ListBox MinHeight="100" Grid.Column="1" Grid.Row="5" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Emails}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" >
+                              <ListBox MinHeight="100" Grid.Column="1" Grid.Row="5" ItemsSource="{Binding ElementName=EmployeeCollection, Path=SelectedItem.Emails}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
                                    <ListBox.ItemContainerStyle>
                                         <Style TargetType="{x:Type ListBoxItem}">
                                              <Setter Property="Focusable" Value="False" />
@@ -390,7 +602,7 @@
                               </Grid.RowDefinitions>
                               <!--Standard Issue Listbox-->
                               <TextBlock Text="Standard Issue" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Style="{DynamicResource LabelsLight1}" />
-                              <ListView FontSize="11" MinHeight="275" Grid.Row="1" ItemsSource="{Binding EmployeeTabVM.EquipmentAssignments_StandardIssue, Mode=OneWay, NotifyOnSourceUpdated=True}"  HorizontalContentAlignment="Stretch" >
+                              <ListView FontSize="11" MinHeight="275" Grid.Row="1" ItemsSource="{Binding EmployeeTabVM.EquipmentAssignments_StandardIssue, Mode=OneWay, NotifyOnSourceUpdated=True}" HorizontalContentAlignment="Stretch">
                                    <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                              <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -413,7 +625,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Grid.Row="0" Text="Certifications" Style="{DynamicResource LabelsLight2}" Padding="7" />
-                              <ListView Grid.Row="1" FontSize="11" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Certifications}">
+                              <ListView Grid.Row="1" FontSize="11" ItemsSource="{Binding ElementName=EmployeeCollection, Path=SelectedItem.Certifications}">
                                    <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                              <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -436,7 +648,7 @@
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
                               <TextBlock Text="Ad Hoc Issue" Grid.Row="0" Style="{DynamicResource LabelsLight2}" />
-                              <ListView Grid.Row="1" ItemsSource="{Binding EmployeeTabVM.EquipmentAssignments_AdHoc}" FontSize="11">
+                              <ListView Grid.Row="1" ItemsSource="{Binding EmployeeTabVM.EquipmentAssignments_AdHoc, Mode=OneWay, NotifyOnSourceUpdated=True}" FontSize="11">
                                    <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                              <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -458,8 +670,9 @@
                                    <RowDefinition Height="30" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
+
                               <TextBlock Text="Restrictions" Style="{DynamicResource LabelsLight1}" />
-                              <ListView Grid.Row="1" FontSize="11" ItemsSource="{Binding ElementName=listviewEmployees, Path=SelectedItem.Restrictions}">
+                              <ListView Grid.Row="1" FontSize="11" ItemsSource="{Binding ElementName=EmployeeCollection, Path=SelectedItem.Restrictions}">
                                    <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                              <Setter Property="HorizontalContentAlignment" Value="Center" />
@@ -475,7 +688,7 @@
                               </ListView>
                          </Grid>
                          <!--Vehicle History List Box-->
-                         <Grid Grid.Row="1" Grid.RowSpan="2" Grid.Column="4">
+                         <Grid Grid.Row="1" Grid.RowSpan="1" Grid.Column="4">
                               <Grid.RowDefinitions>
                                    <RowDefinition Height="25" />
                                    <RowDefinition Height="*" />
@@ -489,12 +702,33 @@
                                    </ListView.ItemContainerStyle>
                                    <ListView.View>
                                         <GridView>
-                                             <GridViewColumn Header="Fleet #" Width="85" DisplayMemberBinding="{Binding Path=VehicleId}"/>
+                                             <GridViewColumn Header="Fleet #" Width="85" DisplayMemberBinding="{Binding Path=VehicleId}" />
                                              <GridViewColumn Header="Date Out" Width="65" DisplayMemberBinding="{Binding Path=DateOut, StringFormat=d}" />
                                              <GridViewColumn Header="Condition Out" Width="100" DisplayMemberBinding="{Binding ConditionOut}" />
-                                             <GridViewColumn Header="Due Date" Width="65" DisplayMemberBinding="{Binding DueDate, StringFormat=d}"/>
-                                             <GridViewColumn Header="Date In" Width="65" DisplayMemberBinding="{Binding DateIn, StringFormat=d}"/>
-                                             <GridViewColumn Header="Condition In" Width="100" DisplayMemberBinding="{Binding ConditionIn}"/>
+                                             <GridViewColumn Header="Due Date" Width="65" DisplayMemberBinding="{Binding DueDate, StringFormat=d}" />
+                                             <GridViewColumn Header="Date In" Width="65" DisplayMemberBinding="{Binding DateIn, StringFormat=d}" />
+                                             <GridViewColumn Header="Condition In" Width="100" DisplayMemberBinding="{Binding ConditionIn}" />
+                                        </GridView>
+                                   </ListView.View>
+                              </ListView>
+                         </Grid>
+                         <Grid Grid.Row="2" Grid.RowSpan="1" Grid.Column="4">
+                              <Grid.RowDefinitions>
+                                   <RowDefinition Height="30" />
+                                   <RowDefinition Height="*" />
+                              </Grid.RowDefinitions>
+                              <TextBlock Text="Citations" Style="{DynamicResource LabelsLight2}" />
+                              <ListView Grid.Row="1" FontSize="11" ItemsSource="{Binding ElementName=EmployeeCollection, Path=SelectedItem.Citations}">
+                                   <ListView.ItemContainerStyle>
+                                        <Style TargetType="ListViewItem">
+                                             <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                        </Style>
+                                   </ListView.ItemContainerStyle>
+                                   <ListView.View>
+                                        <GridView>
+                                             <GridViewColumn Width="150" Header="Type" DisplayMemberBinding="{Binding Path=Name}" />
+                                             <GridViewColumn Width="180" Header="Description" DisplayMemberBinding="{Binding Path=Description}" />
+                                             <GridViewColumn Width="60" Header="Issued" DisplayMemberBinding="{Binding Path=Date, StringFormat=d}" />
                                         </GridView>
                                    </ListView.View>
                               </ListView>
@@ -552,15 +786,15 @@
                               </Button>
                          </StackPanel>
                          <TextBlock Text="Equipment List" Style="{DynamicResource LabelsLight1}" Background="{DynamicResource HeadingBackgroundBrush1}" Grid.Row="1" Grid.Column="1" />
-                         <ListView x:Name="EquipmentTabEquipmentList" Grid.Row="2" Grid.RowSpan="3" Grid.Column="1" FontSize="10" ItemsSource="{Binding EquipmentTabVM.Equipment}">
-                              <ListView.View>
-                                   <GridView>
-                                        <GridViewColumn Width="Auto" Header="Id" DisplayMemberBinding="{Binding Path= InventoryId}" />
-                                        <GridViewColumn Width="Auto" Header="Description" DisplayMemberBinding="{Binding Path=Description}" />
-                                        <GridViewColumn Width="Auto" Header="S/N" DisplayMemberBinding="{Binding Path=SerialNumber}" />
-                                   </GridView>
-                              </ListView.View>
-                         </ListView>
+                         <StackPanel Grid.Row="1" Grid.RowSpan="4" Grid.Column="1" Background="White">
+                              <DataGrid x:Name="EquipmentTabEquipmentList" FontSize="10" ItemsSource="{Binding EquipmentTabVM.Equipment}" Style="{DynamicResource DataGrids1}" Grid.ColumnSpan="2" Margin="0,28,507,2">
+                                   <DataGrid.Columns>
+                                        <DataGridTextColumn Width="Auto" Header="Id" Binding="{Binding Path= InventoryId}" />
+                                        <DataGridTextColumn Width="Auto" Header="Description" Binding="{Binding Path=Description}" />
+                                        <DataGridTextColumn Width="Auto" Header="S/N" Binding="{Binding Path=SerialNumber}" />
+                                   </DataGrid.Columns>
+                              </DataGrid>
+                         </StackPanel>
                          <TextBlock Text="Assignment History" Style="{DynamicResource LabelsLight2}" Grid.Row="1" Grid.Column="2" />
                          <ListView MinHeight="250" Grid.Row="2" Grid.Column="2">
                               <ListView.View>
@@ -645,255 +879,76 @@
                               </Button>
                          </StackPanel>
                          <TextBlock HorizontalAlignment="Stretch" Text="Vehicle List" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight1}" />
-                         <ListView MinHeight="420" MinWidth="700" FontSize="10" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" ItemsSource="{Binding VehicleTabVM.Vehicles}">
-                              <ListView.View>
-                                   <GridView>
-                                        <GridViewColumn Width="30" Header="#" DisplayMemberBinding="{Binding Path= FleetNumber}" />
-                                        <GridViewColumn Width="125" Header="Make" DisplayMemberBinding="{Binding Path=Manufacturer}" />
-                                        <GridViewColumn Width="125" Header="Model" DisplayMemberBinding="{Binding Path=Model}" />
-                                        <GridViewColumn Width="30" Header="Year" DisplayMemberBinding="{Binding Path= Year}" />
-                                        <GridViewColumn Width="100" Header="Class" DisplayMemberBinding="{Binding Path=Class}" />
-                                        <GridViewColumn Width="120" Header="VIN" DisplayMemberBinding="{Binding Path=VIN}" />
-                                        <GridViewColumn Width="70" Header="Purchase Date" DisplayMemberBinding="{Binding Path= PurchaseDate }" />
-                                        <GridViewColumn Width="125" Header="Gas Card" DisplayMemberBinding="{Binding Path=GasCardNumber}" />
-                                        <GridViewColumn Width="100" Header="Registration Due" DisplayMemberBinding="{Binding Path=RegistrationDueDate}" />
-                                        <GridViewColumn Width="100" Header="Inspection Due" DisplayMemberBinding="{Binding Path=InspectionDueDate}" />
-                                        <GridViewColumn Width="100" Header="Condition" DisplayMemberBinding="{Binding Path=Condition}" />
-                                        <GridViewColumn Width="100" Header="Is Assigned" DisplayMemberBinding="{Binding Path=IsAssigned}" />
-                                   </GridView>
-                              </ListView.View>
-                         </ListView>
-                         <TextBlock Text="Assignment History" HorizontalAlignment="Stretch" Style="{DynamicResource LabelsLight2}" Grid.Column="3" Grid.Row="1" />
-                         <ListView FontSize="10" Grid.Row="2" Grid.Column="3" Grid.RowSpan="3">
-                              <ListView.View>
-                                   <GridView>
-                                        <GridViewColumn Width="50" Header="Out"></GridViewColumn>
-                                        <GridViewColumn Width="50" Header="In"></GridViewColumn>
-                                        <GridViewColumn Width="100" Header="Assignee"></GridViewColumn>
-                                        <GridViewColumn Width="100" Header="Condition Out"></GridViewColumn>
-                                        <GridViewColumn Width="100" Header="Condition In"></GridViewColumn>
-                                        <GridViewColumn></GridViewColumn>
-                                   </GridView>
-                              </ListView.View>
-                         </ListView>
-                         <TextBlock Text="Invoice History" Style="{DynamicResource LabelsLight1}" Grid.Column="1" Grid.Row="3" />
-                         <ListView MinHeight="400" Grid.Row="4" Grid.Column="1">
-                              <ListView.View>
-                                   <GridView>
-                                        <GridView.Columns>
-                                             <GridViewColumn Width="80" Header="Invoice #" />
-                                             <GridViewColumn Width="50" Header="Line #" />
-                                             <GridViewColumn Width="50" Header="Date" />
-                                             <GridViewColumn Width="50" Header="Class" />
-                                             <GridViewColumn Width="450" Header="Description" />
-                                             <GridViewColumn Width="50" Header="Cost" />
-                                        </GridView.Columns>
-                                   </GridView>
-                              </ListView.View>
-                         </ListView>
-                         <TextBlock Text="Cost Of Ownership" Style="{DynamicResource LabelsLight2}" Grid.Row="3" Grid.Column="2" />
-                         <ListView MinHeight="400" MinWidth="525" Grid.Row="4" Grid.Column="2">
-                              <ListView.View>
-                                   <GridView>
-                                        <GridViewColumn Width="80" Header="Year"></GridViewColumn>
-                                        <GridViewColumn Width="80" Header="C"></GridViewColumn>
-                                        <GridViewColumn Width="100" Header="S/N"></GridViewColumn>
-                                        <GridViewColumn Width="100" Header="Price"></GridViewColumn>
-                                        <GridViewColumn Width="100" Header="Purchase Date"></GridViewColumn>
-                                   </GridView>
-                              </ListView.View>
-                         </ListView>
-                    </Grid>
-               </TabItem>
-               <!--#endregion-->
-               <!--#region Productivity Tab-->
-               <TabItem Header="Productivity" Width="100" Style="{DynamicResource NavigationTab}">
-                    <Grid>
-                         <Grid.RowDefinitions>
-                              <RowDefinition Height="10" />
-                              <RowDefinition Height="*" />
-                              <RowDefinition Height="10" />
-                         </Grid.RowDefinitions>
-                         <Grid.ColumnDefinitions>
-                              <ColumnDefinition Width="10" />
-                              <ColumnDefinition Width="*" />
-                              <ColumnDefinition Width="10" />
-                         </Grid.ColumnDefinitions>
-                         <Grid Grid.Row="1" Grid.Column="1">
+                         <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
                               <Grid.RowDefinitions>
-                                   <RowDefinition Height="30" />
-                                   <RowDefinition Height="0" />
-                                   <RowDefinition Height="30" />
-                                   <RowDefinition Height="30" />
-                                   <RowDefinition Height="165"/>
-                                   <RowDefinition Height="30" />
-                                   <RowDefinition Height="250" />
-                                   <RowDefinition Height="5" />
+                                   <RowDefinition Height="20*" />
                                    <RowDefinition Height="*" />
                               </Grid.RowDefinitions>
-                              <Grid.ColumnDefinitions>
-                                   <ColumnDefinition Width="550"/>
-                                   <ColumnDefinition Width="10"/>
-                                   <ColumnDefinition Width="100"/>
-                                   <ColumnDefinition />
-                                   <ColumnDefinition Width="10"/>
-                                   <ColumnDefinition Width="1.5*"/>
-                              </Grid.ColumnDefinitions>
-                              <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">
-                                   <TextBlock Text="Select Employee"  Width="230" Style="{DynamicResource LabelsLight1}" />
-                                   <ComboBox Width="320"/>
+                              <StackPanel Grid.Row="0" Style="{DynamicResource PanelBackground}">
+                                   <DataGrid GridLinesVisibility="None" FontSize="10" ItemsSource="{Binding VehicleTabVM.Vehicles}" AutoGenerateColumns="False" Style="{DynamicResource DataGrids1}" IsReadOnly="True" VerticalAlignment="Stretch" BorderThickness="0" SelectedItem="{Binding VehicleTabVM.SelectedVehicle, NotifyOnSourceUpdated=True, Mode=TwoWay}">
+                                        <DataGrid.Columns>
+                                             <DataGridTextColumn Header="#" Binding="{Binding Path= FleetNumber}" Width="50" />
+                                             <DataGridTextColumn Header="Make" Binding="{Binding Path=Make}" Width="110" />
+                                             <DataGridTextColumn Header="Model" Binding="{Binding Path=Model}" Width="110" />
+                                             <DataGridTextColumn Header="Year" Binding="{Binding Path= Year}" Width="50" />
+                                             <DataGridTextColumn Header="Class" Binding="{Binding Path=Class.Name}" Width="100" />
+                                             <DataGridTextColumn Header="VIN" Binding="{Binding Path=VIN}" Width="100" />
+                                             <DataGridTextColumn Header="Purchase Date" Binding="{Binding Path= PurchaseDate, StringFormat=d}" />
+                                             <DataGridTextColumn Header="Gas Card" Binding="{Binding Path=GasCardNumber}" Width="100" />
+                                             <DataGridTextColumn Header="Registration Due" Binding="{Binding Path=RegistrationMonth}" Width="100" />
+                                             <DataGridTextColumn Header="Inspection Due" Binding="{Binding Path=InspectionMonth}" Width="100" />
+                                             <DataGridTextColumn Header="Condition" Binding="{Binding Path=Condition}" Width="75" />
+                                             <DataGridTextColumn Header="Is Assigned" Binding="{Binding Path=IsAssigned}" Width="125" />
+                                        </DataGrid.Columns>
+                                   </DataGrid>
                               </StackPanel>
-                              <TextBlock Text="Project List" Grid.Row="2" Style="{DynamicResource LabelsLight1}" FontSize="14"/>
-                              <ListView Grid.Row="3" Grid.RowSpan="4" >
-                                   <ListView.View>
-                                        <GridView>
-                                             <GridView.Columns>
-                                                  <GridViewColumn Header="Job Number" Width="100"/>
-                                                  <GridViewColumn Header="Customer" Width="300" />
-                                                  <GridViewColumn Header="Status" Width="100" />
-                                             </GridView.Columns>
-                                        </GridView>
-                                   </ListView.View>
-                              </ListView>
-                              <TextBlock Text="Selected Project" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight2}" FontSize="14"/>
-                              <TextBlock Text="Customer Information" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight2}" />
-                              <Grid Grid.Row="4" Grid.Column="2">
-                                   <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                   </Grid.RowDefinitions>
-                                   <TextBlock Text="Address" Grid.Row="0" Style="{DynamicResource LabelsLight2}" />
-                                   <TextBlock Text="Primary Phone" Grid.Row="1" Style="{DynamicResource LabelsLight2}"/>
-                                   <TextBlock Text="Years Served" Grid.Row="2" Style="{DynamicResource LabelsLight2}"/>
-                                   <TextBlock Text="Industry" Grid.Row="3" Style="{DynamicResource LabelsLight2}"/>
-                                   <TextBlock Text="Primary Contact" Grid.Row="4" Style="{DynamicResource LabelsLight2}"/>
-                              </Grid>
-                              <Grid Grid.Row="4" Grid.Column="3">
-                                   <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                   </Grid.RowDefinitions>
-                                   <TextBox x:Name="txtAddress" Grid.Row="0" HorizontalContentAlignment="Center"/>
-                                   <TextBox x:Name="txtPrimaryPhone" Grid.Row="1" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtYearsServed" Grid.Row="2" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtIndustry" Grid.Row="3" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtPrimaryContact" Grid.Row="4" HorizontalContentAlignment="Center" />
-                              </Grid>
-                              <TextBlock Text="Project Information}" Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" Style="{DynamicResource LabelsLight2}"/>
-                              <Grid Grid.Row="6" Grid.Column="2">
-                                   <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                   </Grid.RowDefinitions>
-                                   <TextBlock Text="Start Date" Grid.Row="0" Style="{DynamicResource LabelsLight2}" />
-                                   <TextBlock Text="Close Date" Grid.Row="1" Style="{DynamicResource LabelsLight2}" />
-                                   <TextBlock Text="Proj. Close Date" Grid.Row="2" Style="{DynamicResource LabelsLight2}" />
-                                   <TextBlock Text="Projected Cost" Grid.Row="3" Style="{DynamicResource LabelsLight2}" />
-                                   <TextBlock Text="Cost To Date" Grid.Row="4" Style="{DynamicResource LabelsLight2}" />
-                                   <TextBlock Text="Cost Overrun" Grid.Row="5" Style="{DynamicResource LabelsLight2}" />
-                                   <TextBlock Text="Money Received" Grid.Row="6" Style="{DynamicResource LabelsLight2}" />
-                                   <TextBlock Text="Balance Due" Grid.Row="7" Style="{DynamicResource LabelsLight2}" />
-                              </Grid>
-
-                              <Grid Grid.Row="6" Grid.Column="3">
-                                   <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                   </Grid.RowDefinitions>
-                                   <TextBox x:Name="txtddress" Grid.Row="0" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtrimaryPhone" Grid.Row="1" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtearsServed" Grid.Row="2" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtndustry" Grid.Row="3" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtrimaryContact" Grid.Row="4" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtarsServed" Grid.Row="5" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txndustry" Grid.Row="6" HorizontalContentAlignment="Center" />
-                                   <TextBox x:Name="txtrimaryontact" Grid.Row="7" HorizontalContentAlignment="Center" />
-                              </Grid>
-                              <Grid Grid.Row="8" Grid.Column="0">
-                                   <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="*" />
-
-                                   </Grid.RowDefinitions>
-                                   <TextBlock Text="Equipment History" Style="{DynamicResource LabelsLight1}" />
-                                   <TextBox Grid.Row="1" HorizontalContentAlignment="Center" />
-                                   <TextBox  Grid.Row="2" HorizontalContentAlignment="Center" />
-                                   <TextBox  Grid.Row="3" HorizontalContentAlignment="Center" />
-                                   <TextBox  Grid.Row="4" HorizontalContentAlignment="Center" />
-                                   <TextBox  Grid.Row="5" HorizontalContentAlignment="Center" />
-                                   <TextBox  Grid.Row="6" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="7" HorizontalContentAlignment="Center" />
-                              </Grid>
-                              <Grid Grid.Row="8" Grid.Column="2" Grid.ColumnSpan="2">
-                                   <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="*" />
-
-                                   </Grid.RowDefinitions>
-                                   <TextBlock Text="Vehicle History" Style="{DynamicResource LabelsLight1}" />
-                                   <TextBox  Grid.Row="1" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="2" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="3" HorizontalContentAlignment="Center" />
-                                   <TextBox  Grid.Row="4" HorizontalContentAlignment="Center" />
-                                   <TextBox  Grid.Row="5" HorizontalContentAlignment="Center" />
-                                   <TextBox  Grid.Row="6" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="7" HorizontalContentAlignment="Center" />
-                              </Grid>
-                              <TextBlock Text="All Projects" Style="{DynamicResource LabelsLight1}" Grid.Row="2" Grid.Column="5" FontSize="14"/>
-                              <Grid Grid.Row="3" Grid.RowSpan="6" Grid.Column="6" >
-                                   <Grid.RowDefinitions>
-                                        <RowDefinition Height="30" />
-
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-                                        <RowDefinition Height="30" />
-
-                                   </Grid.RowDefinitions>
-                                   <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition />
-                                   </Grid.ColumnDefinitions>
-                                   <TextBlock Text="Open Projects Count"  Grid.Row="0" Style="{DynamicResource LabelsLight1}"/>
-                                   <TextBlock  Text="Total Projects Count" Grid.Row="1" Style="{DynamicResource LabelsLight1}" />
-                                   <TextBlock  Text="Net Days +/-" Grid.Row="2" Style="{DynamicResource LabelsLight1}" />
-                                   <TextBlock  Text="Total Revenue" Grid.Row="3" Style="{DynamicResource LabelsLight1}" />
-                                   <TextBlock  Text="Total Cost" Grid.Row="4" Style="{DynamicResource LabelsLight1}" />
-                                   <TextBlock Text="Bid Accuracy" Grid.Row="5" Style="{DynamicResource LabelsLight1}" />
-
-                                   <TextBox Grid.Row="0" Grid.Column="1" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="1" Grid.Column="1" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="2" Grid.Column="1" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="3" Grid.Column="1" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="4" Grid.Column="1" HorizontalContentAlignment="Center" />
-                                   <TextBox Grid.Row="5" Grid.Column="1" HorizontalContentAlignment="Center" />
-
-                              </Grid>
+                              <Button Grid.Row="1" Content="Refresh List" Command="{Binding VehicleTabVM.RefreshVehiclesCommand}" VerticalAlignment="Bottom" />
                          </Grid>
-                         
+                         <StackPanel Grid.Row="1" Grid.Column="3" Grid.RowSpan="2" Orientation="Vertical" Style="{DynamicResource PanelBackground}">
+                              <TextBlock Text="Assignment History" HorizontalAlignment="Stretch" Style="{DynamicResource LabelsLight2}" />
+                              <DataGrid ItemsSource="{Binding VehicleTabVM.AssignmentCollection, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, Mode=TwoWay}" Style="{DynamicResource DataGrids1}">
+                                   <DataGrid.Columns>
+                                        <DataGridTextColumn Width="80" Header="Fleet #" Binding="{Binding Path=AssignedVehicle.FleetNumber}" />
+                                        <DataGridTextColumn Width="80" Header="Make" Binding="{Binding Path=AssignedVehicle.Make}" />
+                                        <DataGridTextColumn Width="100" Header="Model" Binding="{Binding Path=AssignedVehicle.Model}" />
+                                        <DataGridTextColumn Width="130" Header="Employee" Binding="{Binding Path=Assignee.FullName}" />
+                                        <DataGridTextColumn Width="90" Header="Date Out" Binding="{Binding Path=DateOut, StringFormat=d}" />
+                                        <DataGridTextColumn Width="90" Header="Date In" Binding="{Binding Path=DateIn, StringFormat=d}" />
+                                   </DataGrid.Columns>
+                              </DataGrid>
+                         </StackPanel>
+                         <TextBlock Grid.Row="3" Grid.Column="1" Text="Invoice History" Style="{DynamicResource LabelsLight1}" />
+                         <StackPanel Grid.Row="4" Grid.Column="1" Style="{DynamicResource PanelBackground}">
+                              <DataGrid ItemsSource="{Binding VehicleTabVM.InvoiceCollection}" Style="{DynamicResource DataGrids1}" AutoGenerateColumns="False" SelectedItem="{Binding VehicleTabVM.SelectedInvoice, NotifyOnSourceUpdated=True, Mode=TwoWay}" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                                   <DataGrid.Columns>
+                                        <DataGridTextColumn Width="100" Header="Date" Binding="{Binding Path=InvoiceDate, StringFormat=d}" />
+                                        <DataGridTextColumn Width="100" Header="Vehicle" Binding="{Binding Path=VehicleServiced.FleetNumber}" />
+                                        <DataGridTextColumn Width="200" Header="Provider" Binding="{Binding Path=Provider}" />
+                                   </DataGrid.Columns>
+                              </DataGrid>
+                         </StackPanel>
+
+                         <TextBlock Text="Invoice Line Items" Style="{DynamicResource LabelsLight2}" Grid.Row="3" Grid.Column="2" />
+                         <StackPanel Grid.Row="4" Grid.Column="2" Style="{DynamicResource PanelBackground}">
+                              <DataGrid ItemsSource="{Binding VehicleTabVM.LineItemCollection}" Style="{DynamicResource DataGrids1}" AutoGenerateColumns="False">
+                                   <DataGrid.Columns>
+                                        <DataGridTextColumn Width="450" Header="Description" Binding="{Binding Path=Description}" />
+                                        <DataGridTextColumn Width="80" Header="Cost" Binding="{Binding Path=Cost}" />
+                                   </DataGrid.Columns>
+                              </DataGrid>
+                         </StackPanel>
+                         <TextBlock Text="Cost Of Ownership" Style="{DynamicResource LabelsLight1}" Grid.Row="3" Grid.Column="3" />
+                         <StackPanel Grid.Row="4" Grid.Column="3" Style="{DynamicResource PanelBackground}">
+                              <DataGrid Style="{DynamicResource DataGrids1}">
+                                   <DataGrid.Columns>
+                                        <DataGridTextColumn Width="145" Header="Routine Maintenance"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="145" Header="Mechanical Repair"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="145" Header="Accident Damage"></DataGridTextColumn>
+                                        <DataGridTextColumn Width="145" Header="Total"></DataGridTextColumn>
+                                   </DataGrid.Columns>
+                              </DataGrid>
+                         </StackPanel>
+
                     </Grid>
                </TabItem>
                <!--#endregion-->
@@ -938,16 +993,16 @@
                                    <ColumnDefinition Width="5" />
                                    <ColumnDefinition Width=".75*" />
                               </Grid.ColumnDefinitions>
-                              
+
                               <!--COLUMNS ONE AND TWO-->
-                                   <TextBlock Text="Employees" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource LabelsLight1}" FontSize="14" />
-                              <TextBlock Text="Certifications" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource LabelsLight1}" /> 
+                              <TextBlock Text="Employees" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource LabelsLight1}" FontSize="14" />
+                              <TextBlock Text="Certifications" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Style="{DynamicResource LabelsLight1}" />
                               <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" BorderThickness="1,1,0,1">
                                    <ListView.View>
                                         <GridView>
                                              <GridView.Columns>
                                                   <GridViewColumn Header="Name" Width="150" />
-                                                  <GridViewColumn Header="Description" Width="Auto"/>
+                                                  <GridViewColumn Header="Description" Width="Auto" />
                                              </GridView.Columns>
                                         </GridView>
                                    </ListView.View>
@@ -957,7 +1012,7 @@
                                         <ColumnDefinition Width="*" />
                                         <ColumnDefinition Width="*" />
                                    </Grid.ColumnDefinitions>
-                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1"/>
+                                   <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1" />
                                    <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1" />
                               </Grid>
 
@@ -1009,7 +1064,7 @@
                                         <ColumnDefinition Width="*" />
                                    </Grid.ColumnDefinitions>
                                    <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1" />
-                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1"/>
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1" />
                               </Grid>
                               <TextBlock Text="Job Titles" Grid.Row="7" Grid.Column="2" Style="{DynamicResource LabelsLight1}" />
                               <ListBox Grid.Row="8" Grid.Column="2" BorderThickness="1,1,0,1" />
@@ -1020,11 +1075,11 @@
                                         <ColumnDefinition Width="*" />
                                    </Grid.ColumnDefinitions>
                                    <Button Content="Add" Grid.Column="0" BorderThickness="0,0,0,1" />
-                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1"/>
+                                   <Button Content="Remove Selected" Grid.Column="1" BorderThickness="1,0,0,1" />
                               </Grid>
-                              
+
                               <!--Column 3 -->
-    
+
                               <TextBlock Text="Equipment" Grid.Row="0" Grid.Column="4" Style="{DynamicResource LabelsLight1}" FontSize="14" />
                               <TextBlock Text="Equipment Classes" Grid.Row="1" Grid.Column="4" Style="{DynamicResource LabelsLight1}" />
                               <ListBox Grid.Row="2" Grid.Column="4" BorderThickness="0,1,0,0" />

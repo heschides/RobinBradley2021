@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RobinBradley2021.Models
+namespace RobinBradley2021.Models.Vehicles
 {
-   public class DocumentModel
+    public class VehicleClassModel
     {
         private int _id;
 
@@ -17,18 +17,13 @@ namespace RobinBradley2021.Models
         }
 
         private string _name;
+
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
 
-        private string _safeName;
-        public string SafeName
-        {
-            get { return _safeName; }
-            set { _safeName = value; }
-        }
 
     }
 }

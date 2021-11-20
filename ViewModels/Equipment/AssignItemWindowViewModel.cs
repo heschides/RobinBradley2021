@@ -102,10 +102,10 @@ namespace RobinBradley2021.ViewModels
         public RelayCommand<object> LoadDataSourcesCommand { get; private set; }
         public async void LoadDataSources(object e)
         {
-            var equipment = await GetData.EquipmentQueryAsync();
-            var employees = await GetData.EmployeeQueryAsync();
-            var departments = await GetData.DepartmentQueryAsync();
-            var jobsites = await GetData.JobsiteQueryAsync();
+            var equipment = await EquipmentRepository.EquipmentQueryAsync();
+            var employees = await EmployeeRepository.EmployeeQueryAsync();
+            var departments = await AdministrationRepository.DepartmentQueryAsync();
+            var jobsites = await AdministrationRepository.JobsiteQueryAsync();
 
             foreach (EquipmentModel item in equipment)
             {
@@ -153,30 +153,30 @@ namespace RobinBradley2021.ViewModels
         {
             AssembleData(NewEquipmentAssignmentRecord);
             ValidateData(NewEquipmentAssignmentRecord);
-            SendData.CreateEquipmentAssignmentRecord(NewEquipmentAssignmentRecord);
+            EquipmentRepository.CreateEquipmentAssignmentRecord(NewEquipmentAssignmentRecord);
         }
 
         //ASSEMBLE DATA
         public void AssembleData(EquipmentAssignmentRecordModel record)
         {
-            record.DateOut = AssignedDate;
-            record.SelectedItems = SelectedItems.ToList();
-            record.IsDepartment = IsDepartment;
-            record.IsStandardIssue = IsStandardIssue;
+            //record.DateOut = AssignedDate;
+            //record.SelectedItems = SelectedItems.ToList();
+            //record.IsDepartment = IsDepartment;
+            //record.IsStandardIssue = IsStandardIssue;
 
-            if (record.IsStandardIssue == false)
-            {
-                record.DueDate = DueDate;
-                record.Jobsite = Destination;
-            }
-            if(record.IsDepartment)
-            {
-                record.DepartmentId = SelectedDepartment.Id;
-            }
-            if (IsDepartment == false)
-            {
-                record.EmployeeId = SelectedEmployee.Id;
-            } 
+            //if (record.IsStandardIssue == false)
+            //{
+            //    record.DueDate = DueDate;
+            //    record.Jobsite = Destination;
+            //}
+            //if(record.IsDepartment)
+            //{
+            //    record.AssigneeDepartment.Id = SelectedDepartment.Id;
+            //}
+            //if (IsDepartment == false)
+            //{
+            //    record.AssigneePerson.Id = SelectedEmployee.Id;
+            //} 
         }
         
         //DATA VALIDATION
@@ -213,13 +213,13 @@ namespace RobinBradley2021.ViewModels
                 message.AppendLine();
             }
 
-            if (record.SelectedItems == null)
-            {
-                string selectedItemsMessage = "Please select one or more items to create an assignment.";
-                message.AppendLine(selectedItemsMessage);
-                message.AppendLine();
-                message.AppendLine();
-            }
+            //if (record.SelectedItems == null)
+            //{
+            //    string selectedItemsMessage = "Please select one or more items to create an assignment.";
+            //    message.AppendLine(selectedItemsMessage);
+            //    message.AppendLine();
+            //    message.AppendLine();
+            //}
 
             if (message.Length == 0)
             {

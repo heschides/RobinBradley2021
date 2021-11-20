@@ -13,6 +13,8 @@ namespace RobinBradley2021.Models
         public string InvoiceNumber { get; set; }
         public string Provider { get; set; }
         public DateTime InvoiceDate { get; set; }
+        public VehicleModel VehicleServiced { get; set; }
         public ObservableCollection<InvoiceLineItemModel>LineItems { get; set; }
+
     }
 }

@@ -14,12 +14,14 @@ namespace RobinBradley2021.ViewModels
 {
     public class EmployeeTabViewModel : ViewModelBase
     {
+        
         //PROPERTIES
         public ObservableCollection<EmployeeModel> Employees { get; set; }
         private EmployeeModel _selectedEmployee;
         public EmployeeModel SelectedEmployee
         {
-            get => _selectedEmployee;
+            get => 
+                _selectedEmployee;
             set
             {
                 {
@@ -31,6 +33,36 @@ namespace RobinBradley2021.ViewModels
                     }
                 }
             }
+        }
+        public ObservableCollection<VehicleAssignmentRecordModel> VehicleAssignments { get; set; }
+        public ObservableCollection<DepartmentModel> Departments { get; set; }
+        private DepartmentModel _selectedDepartment;
+        public DepartmentModel SelectedDepartment
+        {
+            get { return _selectedDepartment; }
+            set
+            {
+                _selectedDepartment = value;
+                RaisePropertyChanged(nameof(EmployeeCollection));
+            }
+        }
+
+        //COLLECTIONVIEWS
+        private ICollectionView _employeeCollection;
+        public ICollectionView EmployeeCollection 
+        { 
+            get
+            {
+                var _employeeCollectionView = new CollectionViewSource { Source = Employees }.View;
+
+                if (SelectedDepartment == null)
+                {
+                    return _employeeCollection;
+                }
+               _employeeCollectionView.Filter = item => item is EmployeeModel model && model.Department.ToString() == SelectedDepartment.ToString();
+                return _employeeCollectionView;
+            }
+            set { _employeeCollection= value; }
         }
         public ICollectionView EquipmentAssignments_StandardIssue
         {
@@ -48,16 +80,12 @@ namespace RobinBradley2021.ViewModels
             get
             {
                 if (SelectedEmployee?.EquipmentAssignments == null)
-
                     return null;
                 var view = new CollectionViewSource { Source = SelectedEmployee.EquipmentAssignments }.View;
-                view.Filter = item => item is EquipmentAssignmentRecordModel model && model.IsStandardIssue;
+                view.Filter = item => item is EquipmentAssignmentRecordModel model && model.IsStandardIssue == false;
                 return view;
-
             }
         }
-
-        public ObservableCollection<VehicleAssignmentRecordModel> VehicleAssignments { get; set; }
 
         //COMMANDS
         public RelayCommand<object> OpenAddEmployeeWindowCommand { get; private set; }
@@ -65,7 +93,6 @@ namespace RobinBradley2021.ViewModels
         public RelayCommand<object> RefreshEmployeesCommand { get; private set; }
         public RelayCommand<object> OpenEditEmployeeWindowCommand { get; private set; }
         public RelayCommand<object> OpenAddEmployeeCertificationWindowCommand { get; private set; }
-
         //METHODS
         public void OpenAddEmployee(object e)
         {
@@ -75,11 +102,11 @@ namespace RobinBradley2021.ViewModels
         public void RemoveEmployee(object employee)
         {
             Employees.Remove(employee as EmployeeModel);
-            DeleteData.DeleteEmployee(employee as EmployeeModel);
+            EmployeeRepository.DeleteEmployee(employee as EmployeeModel);
         }
         public async void RefreshEmployees(object e)
         {
-            var employees = await GetData.EmployeeQueryAsync();
+            var employees = await EmployeeRepository.EmployeeQueryAsync();
             var Ids = new List<int>();
             foreach (EmployeeModel _employee in Employees) { Ids.Add(_employee.Id); }
             foreach (EmployeeModel _employee in employees)
@@ -99,19 +126,23 @@ namespace RobinBradley2021.ViewModels
             var window = new EditEmployeeWindow();
             window.Show();
         }
+  
+
         //CONSTRUCTORS
         public EmployeeTabViewModel()
         {
             //properties
             Employees = new ObservableCollection<EmployeeModel>();
-            SelectedEmployee = new EmployeeModel();
             VehicleAssignments = new ObservableCollection<VehicleAssignmentRecordModel>();
+            Departments = new ObservableCollection<DepartmentModel>();
             //commands
             RemoveEmployeeCommand = new RelayCommand<object>(RemoveEmployee);
             RefreshEmployeesCommand = new RelayCommand<object>(RefreshEmployees);
             OpenAddEmployeeWindowCommand = new RelayCommand<object>(OpenAddEmployee);
             OpenEditEmployeeWindowCommand = new RelayCommand<object>(OpenEditEmployeeWindow);
             OpenAddEmployeeCertificationWindowCommand = new RelayCommand<object>(OpenAddEmployeeCertificationWindow);
+            EmployeeCollection = CollectionViewSource.GetDefaultView(Employees);
+           
         }
     }
 }

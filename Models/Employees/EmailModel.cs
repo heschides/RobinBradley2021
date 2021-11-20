@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GalaSoft.MvvmLight;
+using static RobinBradley2021.Models.Enums;
 
 namespace RobinBradley2021.Models
 {
-    public class EmailModel
+    public class EmailModel : ViewModelBase
     {
         private int _id;
-
         public int Id
         {
             get { return _id; }
@@ -17,25 +13,22 @@ namespace RobinBradley2021.Models
         }
 
         private string _address;
-
         public string Address
         {
             get { return _address; }
-            set { _address = value; }
+            set { Set(ref _address, value); }
         }
 
-        private string _type;
-
-        public string Type
+        private EmailType _type;
+        public EmailType Type
         {
             get { return _type; }
-            set { _type = value; }
+            set { Set(ref _type, value); }
         }
 
         public override string ToString()
         {
             return Address + " : " + Type;
         }
-
     }
 }

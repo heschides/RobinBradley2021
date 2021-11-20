@@ -12,7 +12,7 @@ namespace RobinBradley2021.Functions
     {
         public static void ReplaceReferences(ObservableCollection<EmployeeStatusModel> collection, EmployeeModel selectedEmployee)
         {
-            if (collection.Count > 0)
+            if (collection?.Count > 0 && selectedEmployee.Status != null)
             {
 
                 for (int i = collection.Count - 1; i >= 0; i--)
@@ -27,7 +27,7 @@ namespace RobinBradley2021.Functions
         }         
         public static void ReplaceReferences(ObservableCollection<JobTitleModel> collection, EmployeeModel selectedEmployee)
         {
-            if (collection.Count > 0)
+            if (collection?.Count > 0 && selectedEmployee.JobTitle != null)
             {
 
                 for (int i = collection.Count - 1; i >= 0; i--)
@@ -42,7 +42,7 @@ namespace RobinBradley2021.Functions
         }
         public static void ReplaceReferences(ObservableCollection<DepartmentModel> collection, EmployeeModel selectedEmployee)
         {
-            if (collection.Count > 0)
+            if (collection?.Count > 0 && selectedEmployee.Department !=null)
             {
 
                 for (int i = collection.Count - 1; i >= 0; i--)

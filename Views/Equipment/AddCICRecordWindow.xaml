@@ -1,13 +1,4 @@
-﻿<Window x:Class="RobinBradley2021.Views.AddCICRecordWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RobinBradley2021.Views"
-        mc:Ignorable="d"
-        Title="AddCICRecordWindow" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen"
-        Height="370"
-        Width="650">
+﻿<Window x:Class="RobinBradley2021.Views.AddCICRecordWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:RobinBradley2021.Views" mc:Ignorable="d" Title="AddCICRecordWindow" Topmost="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Height="300" Width="650">
      <Grid>
           <Grid.ColumnDefinitions>
                <ColumnDefinition Width="*" />
@@ -20,184 +11,82 @@
                <RowDefinition Height="*" />
           </Grid.RowDefinitions>
 
-          <TabControl TabStripPlacement="Top"
-                      Grid.Column="1"
-                      Grid.Row="1" BorderThickness="0" Height="auto">
-               
-               <TabItem Header="Certification"
-                        Width="165">
-                    <StackPanel Orientation="Vertical"
-                                Height="250"
-                                Grid.Row="1"
-                                Grid.Column="2">
+          <TabControl TabStripPlacement="Top" Grid.Column="1" Grid.Row="1" BorderThickness="0" Height="auto">
+
+               <TabItem Header="Certification" Width="165">
+                    <StackPanel Orientation="Vertical" Height="200" Grid.Row="1" Grid.Column="2" Margin="2,0,2,0">
                          <StackPanel Orientation="Vertical">
-                              <TextBlock Text="Add Certification Record"
-                                         FontSize="16"
-                                         Margin="0,0,0,15" />
-                              <DatePicker Width="125"
-                                          HorizontalAlignment="Left"
-                                          BorderThickness="0"
-                                          Margin="20,0,0,5" />
-                              <StackPanel Orientation="Horizontal"
-                                          Margin="5,0,0,0">
-                                   <StackPanel Width="80">
-                                        <TextBlock Text="Id"
-                                                   Background="LightSkyBlue" />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
+                              <TextBlock Text="Add Certification Record" FontSize="16" Margin="0,30,0,15" />
+                              <DatePicker Width="125" HorizontalAlignment="Left" BorderThickness="0" Margin="0,0,0,5" />
+                              <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                   <StackPanel>
+                                        <TextBlock Text="Equipment Id" Margin="5,0, 0,0"/>
+                                        <TextBox Width="150" Height="30" Margin="0,0,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16"/>
                                    </StackPanel>
-                                   <StackPanel Width="150">
-                                        <TextBlock Text="Period"
-                                                   Background="LightSkyBlue" />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
+                                   <StackPanel>
+                                        <TextBlock Text="Certification Type" Margin="5,0, 0,0" />
+                                        <ComboBox ItemsSource="{Binding AddCICVM.Classes}" Height="30" Width="160" />
                                    </StackPanel>
-                                   <StackPanel Width="15" />
-                                   <StackPanel Width="200">
-                                        <TextBlock Text="Documents"
-                                                   Background="LightSkyBlue" />
-                                        <TextBox Height="22"/>
-                                        <TextBox Height="22"/>
-                                        <TextBox Height="22"/>
+                                   <StackPanel Width="10" />
+                                   <StackPanel>
+                                        <Button Height="30" Width="155" Content="Attach Document" Margin="0,15,0,0"/>
                                    </StackPanel>
 
-                                   <StackPanel Width="50" Margin="0,20,0,0">
-                                        <Image Source="/Images/plus.png"
-                                               Height="16"
-                                                />
-                                        <Image Source="/Images/plus.png"
-                                               Height="16"
-                                               Margin="0,4,0,0" />
-                                        <Image Source="/Images/plus.png"
-                                               Height="16"
-                                               Margin="0,5,0,0" />
-                                   </StackPanel>
                               </StackPanel>
+                              <Button Content="Submit" Margin="5,10,0,0" Height="30"/>
                          </StackPanel>
                     </StackPanel>
                </TabItem>
                <TabItem Header="Inspection" BorderThickness="0" Width="165">
-                    <StackPanel Orientation="Vertical"
-                                Height="250" 
-                                Grid.Row="1"
-                                Grid.Column="2">
+                    <StackPanel Orientation="Vertical" Height="200" Grid.Row="1" Grid.Column="2" Margin="2,0,2,0">
                          <StackPanel Orientation="Vertical">
-                              <TextBlock Text="Add Inspection Record"
-                                         FontSize="16"
-                                         Margin="0,0,0,15" />
-                              <DatePicker Width="125"
-                                          HorizontalAlignment="Left"
-                                          BorderThickness="0"
-                                          Margin="20,0,0,5" />
+                              <TextBlock Text="Add Certification Record" FontSize="16" Margin="0,30,0,15" />
+                              <DatePicker Width="125" HorizontalAlignment="Left" BorderThickness="0" Margin="0,0,0,5" />
                               <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
-                                   <StackPanel Width="80"
-                                               Background="LightSkyBlue">
-                                        <TextBlock Text="Id" />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
+                                   <StackPanel>
+                                        <TextBlock Text="Equipment Id" Margin="10,0,0,0" />
+                                        <TextBox Width="150" Height="30" Margin="0,0,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16"/>
                                    </StackPanel>
-                                   <StackPanel Width="150"
-                                               Background="LightSkyBlue">
-                                        <TextBlock Text="Status" />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
+                                   <StackPanel>
+                                        <TextBlock Text="Period" Margin="10,0, 0,0"/>
+                                        <ComboBox ItemsSource="{Binding AddCICVM.Classes}" Height="30" Width="160" Margin="0,0,10,0" />
                                    </StackPanel>
-                                   <StackPanel Width="15"
-                                               />
-                                   <StackPanel Width="80"
-                                               Background="LightSkyBlue">
-                                        <TextBlock Text="Id" />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
+                                   <StackPanel >
+                                        <TextBlock Text="Result" Margin="10,0, 0,0"/>
+                                        <ComboBox Height="30" Width="155" Margin="0,0,0,0" />
                                    </StackPanel>
-                                   <StackPanel Width="150"
-                                               Background="LightSkyBlue">
-                                        <TextBlock Text="Status" />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                        <ComboBox />
-                                   </StackPanel>
+
                               </StackPanel>
+                              <Button Content="Submit" Margin="5,10,0,0" Height="30" />
                          </StackPanel>
                     </StackPanel>
                </TabItem>
-               <TabItem Header="Calibration"
-                        Width="165">
-      
-                         <StackPanel Orientation="Vertical"
-                                     Height="250"
-                                     Grid.Row="1"
-                                     Grid.Column="2">
-                              <StackPanel Orientation="Vertical">
-                                   <TextBlock Text="Add Certification Record"
-                                              FontSize="16"
-                                              Margin="0,0,0,15" />
-                                   <DatePicker Width="125"
-                                               HorizontalAlignment="Left"
-                                               BorderThickness="0"
-                                               Margin="20,0,0,5" />
-                                   <StackPanel Orientation="Horizontal"
-                                               Margin="5,0,0,0">
-                                        <StackPanel Width="80">
-                                             <TextBlock Text="Id"
-                                                        Background="LightSkyBlue" />
-                                             <ComboBox />
-                                             <ComboBox />
-                                             <ComboBox />
-                                        </StackPanel>
-                                        <StackPanel Width="150">
-                                             <TextBlock Text="Period"
-                                                        Background="LightSkyBlue" />
-                                             <ComboBox />
-                                             <ComboBox />
-                                             <ComboBox />
-                                        </StackPanel>
-                                        <StackPanel Width="15" />
-                                        <StackPanel Width="200">
-                                             <TextBlock Text="Documents"
-                                                        Background="LightSkyBlue" />
-                                             <TextBox Height="22" />
-                                             <TextBox Height="22" />
-                                             <TextBox Height="22" />
-                                        </StackPanel>
+               <TabItem Header="Calibration" Width="165">
 
-                                        <StackPanel Width="50"
-                                                    Margin="0,20,0,0">
-                                             <Image Source="/Images/plus.png"
-                                                    Height="16" />
-                                             <Image Source="/Images/plus.png"
-                                                    Height="16"
-                                                    Margin="0,4,0,0" />
-                                             <Image Source="/Images/plus.png"
-                                                    Height="16"
-                                                    Margin="0,5,0,0" />
-                                        </StackPanel>
+                    <StackPanel Orientation="Vertical" Height="200" Grid.Row="1" Grid.Column="2" Margin="2,0,2,0">
+                         <StackPanel Orientation="Vertical">
+                              <TextBlock Text="Add Calibration Record" FontSize="16" Margin="0,30,0,15" />
+                              <DatePicker Width="125" HorizontalAlignment="Left" BorderThickness="0" Margin="0,0,0,5" />
+                              <StackPanel Orientation="Horizontal" Margin="5,0,0,0">
+                                   <StackPanel>
+                                        <TextBlock Text="Equipment Id" Margin="5,0,0,0" />
+                                        <TextBox Width="150" Height="30" Margin="0,0,10,0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="16" />
                                    </StackPanel>
+                                   <StackPanel>
+                                        <TextBlock Text="Calibration Type" Margin="5,0,15,0"/>
+                                        <ComboBox ItemsSource="{Binding AddCICVM.Classes}" Height="30" Width="160" Margin="0,0,10,0"/>
+                                   </StackPanel>
+                                   <StackPanel  />
+                                   <StackPanel>
+                                        <Button Height="30" Width="155" Content="Attach Document" Margin="0,15,0,0" />
+                                   </StackPanel>
+
                               </StackPanel>
+                              <Button Content="Submit" Margin="5,10,0,0" Height="30" />
                          </StackPanel>
-                    </TabItem>
-               
+                    </StackPanel>
+               </TabItem>
+
           </TabControl>
      </Grid>
 </Window>

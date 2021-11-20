@@ -1,0 +1,185 @@
+﻿<Window x:Class="RobinBradley2021.Views.Vehicles.VehicleInvoiceCaptureWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RobinBradley2021.Views.Vehicles"
+        xmlns:vm="clr-namespace:RobinBradley2021.ViewModels.Vehicles" xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors" mc:Ignorable="d"
+        Title="VehicleInvoiceCaptureWindow" Height="440" Width="800">
+     <Window.DataContext>
+          <vm:VehicleInvoiceCaptureViewModel />
+     </Window.DataContext>
+     <Grid>
+          <behaviors:Interaction.Triggers>
+               <behaviors:EventTrigger EventName="Loaded">
+                    <behaviors:InvokeCommandAction Command="{Binding LoadInitialDataCommand}" />
+               </behaviors:EventTrigger>
+          </behaviors:Interaction.Triggers>
+          <Grid.ColumnDefinitions>
+               <ColumnDefinition Width="10" />
+               <ColumnDefinition Width="*" />
+               <ColumnDefinition Width="10" />
+          </Grid.ColumnDefinitions>
+          <Grid.RowDefinitions>
+               <RowDefinition Height="10" />
+               <RowDefinition Height="*" />
+               <RowDefinition Height="40" />
+          </Grid.RowDefinitions>
+          <Grid Grid.Row="1" Grid.Column="1">
+               <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".25*" />
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+               </Grid.ColumnDefinitions>
+               <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="*" />
+               </Grid.RowDefinitions>
+               <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
+                    <TextBlock Text="Invoice #" VerticalAlignment="Center"/>
+                    <TextBox HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="100" Margin="10,0,0,0" Text="{Binding InvoiceNumber}"/>
+                    <TextBlock Text="Provider" VerticalAlignment="Center" Margin="20,0,0,0"/>
+                    <TextBox HorizontalAlignment="Center" VerticalContentAlignment="Center" Width="215" Margin="10,0,0,0" Text="{Binding Provider}"/>
+                    <TextBlock Text="Vehicle" Margin="20,0,10,0" VerticalAlignment="Center" />
+                    <ComboBox Width="100" ItemsSource="{Binding Vehicles}" DisplayMemberPath="FleetNumber" SelectedItem="{Binding SelectedVehicle}" HorizontalContentAlignment="Center" />
+                    <DatePicker Name="InvoiceDate" VerticalContentAlignment="Center" Margin="10,0,0,0" SelectedDate="{Binding InvoiceDate}" HorizontalContentAlignment="Center" BorderThickness="0"/>
+               </StackPanel>
+               <TextBlock Text="Record New Invoice" Grid.Row="0" Grid.Column="1"  Style="{DynamicResource FormHeader}" />
+               <TextBlock Text="Description" Grid.Column="1" Grid.Row="2" VerticalAlignment="Center"/>
+               <TextBlock Text="Cost" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center"/>
+               <TextBlock Text="Code" Grid.Column="3" Grid.Row="2" VerticalAlignment="Center"/>
+               <Grid Grid.Row="3" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                         <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                    </Grid.RowDefinitions>
+   
+               </Grid>
+               <Grid x:Name="TextBoxesColumn" Grid.Row="3" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                         <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" TabIndex="0" Style="{DynamicResource FormTextbox}" Text="{Binding LineOne.Description}"/>
+                    <TextBox Grid.Row="1" TabIndex="5" Style="{DynamicResource FormTextbox}" Text="{Binding LineTwo.Description}"/>
+                    <TextBox Grid.Row="2" TabIndex="10" Style="{DynamicResource FormTextbox}" Text="{Binding LineThree.Description}"/>
+                    <TextBox Grid.Row="3" TabIndex="15" Style="{DynamicResource FormTextbox}" Text="{Binding LineFour.Description}"/>
+                    <TextBox Grid.Row="4" TabIndex="20" Style="{DynamicResource FormTextbox}" Text="{Binding LineFive.Description}"/>
+                    <TextBox Grid.Row="5" TabIndex="25" Style="{DynamicResource FormTextbox}" Text="{Binding LineSix.Description}"/>
+                    <TextBox Grid.Row="6" TabIndex="30" Style="{DynamicResource FormTextbox}" Text="{Binding LineSeven.Description}"/>
+                    <TextBox Grid.Row="7" TabIndex="35" Style="{DynamicResource FormTextbox}" Text="{Binding LineEight.Description}"/>
+                    <TextBox Grid.Row="8" TabIndex="40" Style="{DynamicResource FormTextbox}" Text="{Binding LineNine.Description}" />
+               </Grid>
+               <Grid x:Name="CostBoxesColumn" Grid.Row="3" Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                         <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" TabIndex="1" Style="{DynamicResource FormTextbox}" Text="{Binding LineOne.Cost }"/>
+                    <TextBox Grid.Row="1" TabIndex="6" Style="{DynamicResource FormTextbox}" Text="{Binding LineTwo.Cost }"/>
+                    <TextBox Grid.Row="2" TabIndex="11" Style="{DynamicResource FormTextbox}" Text="{Binding LineThree.Cost }" />
+                    <TextBox Grid.Row="3" TabIndex="16" Style="{DynamicResource FormTextbox}" Text="{Binding LineFour.Cost }" />
+                    <TextBox Grid.Row="4" TabIndex="21" Style="{DynamicResource FormTextbox}" Text="{Binding LineFive.Cost }" />
+                    <TextBox Grid.Row="5" TabIndex="26" Style="{DynamicResource FormTextbox}" Text="{Binding LineSix.Cost }" />
+                    <TextBox Grid.Row="6" TabIndex="31" Style="{DynamicResource FormTextbox}" Text="{Binding LineSeven.Cost }" />
+                    <TextBox Grid.Row="7" TabIndex="41" Style="{DynamicResource FormTextbox}" Text="{Binding LineEight.Cost }" />
+                    <TextBox Grid.Row="8" TabIndex="46" Style="{DynamicResource FormTextbox}" Text="{Binding LineNine.Cost }" />
+               </Grid>
+               <Grid x:Name="RadioButtonColumn" Grid.Column="3" Grid.Row="3">
+                    <Grid.RowDefinitions>
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+                         <RowDefinition />
+
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="2" IsChecked="{Binding LineOne.IsRoutineMaintenance}"/>
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="3" IsChecked="{Binding LineOne.IsMechanicalRepair}" />
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="4" IsChecked="{Binding LineOne.IsAccidentDamage}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="1">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="7" IsChecked="{Binding LineTwo.IsRoutineMaintenance}" />
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="8" IsChecked="{Binding LineTwo.IsMechanicalRepair}" />
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="9" IsChecked="{Binding LineTwo.IsAccidentDamage}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="2">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="12" IsChecked="{Binding LineThree.IsRoutineMaintenance}"/>
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="13" IsChecked="{Binding LineThree.IsMechanicalRepair}" />
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="14" IsChecked="{Binding LineThree.IsAccidentDamage}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="3">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="17" IsChecked="{Binding LineFour.IsRoutineMaintenance}" />
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="18" IsChecked="{Binding LineFour.IsMechanicalRepair}" />
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="19" IsChecked="{Binding LineFour.IsAccidentDamage}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="4">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="22" IsChecked="{Binding LineFive.IsRoutineMaintenance}"/>
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="23" IsChecked="{Binding LineFive.IsMechanicalRepair}" />
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="4" IsChecked="{Binding LineFive.IsAccidentDamage}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="5">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="27" IsChecked="{Binding LineSix.IsRoutineMaintenance}"/>
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="28" IsChecked="{Binding LineSix.IsMechanicalRepair}" />
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="29" IsChecked="{Binding LineSix.IsAccidentDamage}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="6">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="32" IsChecked="{Binding LineSeven.IsRoutineMaintenance}" />
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="33" IsChecked="{Binding LineSeven.IsMechanicalRepair}" />
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="34" IsChecked="{Binding LineSeven.IsAccidentDamage}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="7">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="37" IsChecked="{Binding LineEight.IsRoutineMaintenance}" />
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="37" IsChecked="{Binding LineEight.IsMechanicalRepair}"/>
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="39" IsChecked="{Binding LineEight.IsAccidentDamage}" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.Row="8">
+                         <RadioButton Content="MD" FontSize="8" Margin="5" TabIndex="42" IsChecked="{Binding LineNine.IsRoutineMaintenance}" />
+                         <RadioButton Content="RM" FontSize="8" Margin="5" TabIndex="43" IsChecked="{Binding LineNine.IsMechanicalRepair}" />
+                         <RadioButton Content="CD" FontSize="8" Margin="5" TabIndex="44" IsChecked="{Binding LineNine.IsAccidentDamage}" />
+                    </StackPanel>
+
+               </Grid>
+               <Button Content="Submit" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" Margin="0,5,0,0" Command="{Binding CaptureVehicleInvoiceCommand}"/>
+          </Grid>
+     </Grid>
+</Window>

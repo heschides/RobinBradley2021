@@ -11,60 +11,51 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace RobinBradley2021.ViewModels
 {
     public class AddItemWindowViewModel : ViewModelBase
     {
-
         //PROPERTIES
         public ObservableCollection<EquipmentAssignmentRecordModel> Assignments { get; set; }
         public ObservableCollection<EquipmentClassModel> EquipmentClasses { get; set; }
         public ObservableCollection<DocumentModel> SelectedFiles { get; set; }
         public ObservableCollection<DocumentModel> Documents { get; set; }
-
         private string _id;
         public string Id
         {
             get { return _id; }
             set { Set(ref _id, value); }
         }
-
         private string _description;
         public string Description
         {
             get { return _description; }
             set { Set(ref _description, value); }
         }
-
         private EquipmentClassModel _class;
         public EquipmentClassModel Class
         {
             get { return _class; }
             set { Set(ref _class, value); }
         }
-
         private EquipmentStatusModel _status;
         public EquipmentStatusModel Status
         {
             get { return _status; }
             set { Set(ref _status, value); }
         }
-
         private string _serialNumber;
         public string SerialNumber
         {
             get { return _serialNumber; }
             set { Set(ref _serialNumber, value); }
         }
-
         private string _price;
         public string Price
         {
             get { return _price; }
             set { Set(ref _price, value); }
         }
-
         private DateTime _purchaseDate;
         public DateTime PurchaseDate
         {
@@ -77,43 +68,37 @@ namespace RobinBradley2021.ViewModels
             get { return _warrantyMonths; }
             set { Set(ref _warrantyMonths, value); }
         }
-
         private string _brand;
         public string Brand
         {
             get { return _brand; }
             set { Set(ref _brand, value); }
         }
-
         private string _model;
         public string Model
         {
             get { return _model; }
             set { Set(ref _model, value); }
         }
-
         private string _po;
         public string PO
         {
             get { return _po; }
             set { Set(ref _po, value); }
         }
-
         private bool _cicIsRequired;
         public bool CICIsRequired
         {
             get { return _cicIsRequired; }
             set { Set(ref _cicIsRequired, value); }
         }
-
         //COMMANDS
         public RelayCommand<object> GetEquipmentClassesCommand { get; set; }
         public async void GetEquipmentClasses(object e)
         {
-            var _equipmentClasses = await GetData.EquipmentClassQueryAsync();
+            var _equipmentClasses = await EquipmentRepository.EquipmentClassQueryAsync();
             var Ids = new List<int>();
             foreach (EquipmentClassModel _class in EquipmentClasses) { Ids.Add(_class.Id); }
-
             foreach (EquipmentClassModel _class in _equipmentClasses)
             {
                 if (Ids.Contains(_class.Id))
@@ -121,7 +106,6 @@ namespace RobinBradley2021.ViewModels
                 else { EquipmentClasses.Add(_class); }
             }
         }
-
         public RelayCommand<object> CreateItemCommand { get; set; }
         public void CreateItem(object e)
         {
@@ -143,7 +127,7 @@ namespace RobinBradley2021.ViewModels
             result = int.TryParse(WarrantyMonths, out int warrantyMonths);
             newItem.WarrantyMonths = warrantyMonths;
             SaveItemDocument();
-            SendData.CreateItem(newItem);
+            EquipmentRepository.CreateItem(newItem);
             Id = string.Empty;
             Description = string.Empty;
             Class = null;
@@ -155,7 +139,6 @@ namespace RobinBradley2021.ViewModels
             PO = string.Empty;
             SelectedFiles.Clear();
         }
-
         public RelayCommand<object> OpenFileDialogCommand { get; set; }
         public void OpenFileDialogWindow(object e)
         {
@@ -176,7 +159,6 @@ namespace RobinBradley2021.ViewModels
                 }
             }
         }
-
         public void SaveItemDocument()
         {
             foreach (DocumentModel document in SelectedFiles)
@@ -191,7 +173,6 @@ namespace RobinBradley2021.ViewModels
                 Documents.Add(newDocument);
             }
         }
-
         public AddItemWindowViewModel()
         {
             SelectedFiles = new ObservableCollection<DocumentModel>();

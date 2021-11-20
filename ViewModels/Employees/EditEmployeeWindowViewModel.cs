@@ -1,15 +1,16 @@
 ﻿using FluentValidation.Results;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Win32;
 using RobinBradley2021.DataAccess;
 using RobinBradley2021.DataValidation;
 using RobinBradley2021.Models;
+using RobinBradley2021.Models.Employees;
 using RobinBradley2021.Models.Tokens;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Linq;
 using System.Windows;
 using static RobinBradley2021.Functions.ReferenceAction;
@@ -26,8 +27,9 @@ namespace RobinBradley2021.ViewModels
             set
             {
                 Set(ref _selectedEmployee, value);
+                //Passes SelectedEmployee properties to ComboBoxes for reference equality.  Necessary for binding to work.
                 ReplaceReferences(EmployeeStatuses, SelectedEmployee);
-                ReplaceReferences(JobTitles, SelectedEmployee );
+                ReplaceReferences(JobTitles, SelectedEmployee);
                 ReplaceReferences(Departments, SelectedEmployee);
             }
         }
@@ -35,7 +37,19 @@ namespace RobinBradley2021.ViewModels
         public PhoneModel NewPhone
         {
             get { return _newPhone; }
-            set { Set(ref _newPhone, value) ; }
+            set { Set(ref _newPhone, value); }
+        }
+        private string _newPhoneNumber;
+        public string NewPhoneNumber
+        {
+            get { return _newPhoneNumber; }
+            set { Set(ref _newPhoneNumber, value); }
+        }
+        private PhoneType _newPhoneType;
+        public PhoneType NewPhoneType
+        {
+            get { return _newPhoneType; }
+            set { Set(ref _newPhoneType, value); }
         }
         private EmailModel _newEmail;
         public EmailModel NewEmail
@@ -43,29 +57,53 @@ namespace RobinBradley2021.ViewModels
             get { return _newEmail; }
             set { Set(ref _newEmail, value); }
         }
+        private string _newEmailAddress;
+        public string NewEmailAddress
+        {
+            get { return _newEmailAddress; }
+            set { Set(ref _newEmailAddress, value); }
+        }
+        private EmailType _newEmailType;
+        public EmailType NewEmailType
+        {
+            get { return _newEmailType; }
+            set { Set(ref _newEmailType, value); }
+        }
         private RestrictionModel _newRestriction;
         public RestrictionModel NewRestriction
         {
             get { return _newRestriction; }
-            set { Set(ref _newRestriction, value) ; }
+            set { Set(ref _newRestriction, value); }
         }
-        private CertificationModel _newCertification;
-        public CertificationModel NewCertification
+        private CertificationRecordModel _newCertification;
+        public CertificationRecordModel NewCertification
         {
             get { return _newCertification; }
-            set { Set(ref _newCertification, value) ; }
+            set { Set(ref _newCertification, value); }
         }
         private CitationModel _newCitation;
         public CitationModel NewCitation
         {
             get { return _newCitation; }
-            set {Set(ref _newCitation, value) ; }
+            set { Set(ref _newCitation, value); }
         }
         private DocumentModel _newDocument;
         public DocumentModel NewDocument
         {
             get { return _newDocument; }
-            set {Set(ref _newDocument, value) ; }
+            set { Set(ref _newDocument, value); }
+        }
+        private Image _newImage;
+        public Image NewImage
+        {
+            get { return _newImage; }
+            set { Set(ref _newImage, value); }
+        }
+        private string _displayedImage;
+        public string DisplayedImage
+        {
+            get { return _displayedImage; }
+            set { Set(ref _displayedImage, value); }
         }
         private PhoneModel _selectedPhone;
         public PhoneModel SelectedPhone
@@ -77,16 +115,16 @@ namespace RobinBradley2021.ViewModels
         public EmailModel SelectedEmail
         {
             get { return _emailModel; }
-            set { Set(ref _emailModel, value) ; }
+            set { Set(ref _emailModel, value); }
         }
         private RestrictionModel _selectedRestriction;
         public RestrictionModel SelectedRestriction
         {
             get { return _selectedRestriction; }
-            set { Set(ref _selectedRestriction, value) ; }
+            set { Set(ref _selectedRestriction, value); }
         }
-        private CertificationModel _selectedCertification;
-        public CertificationModel SelectedCertification
+        private CertificationRecordModel _selectedCertification;
+        public CertificationRecordModel SelectedCertification
         {
             get { return _selectedCertification; }
             set { Set(ref _selectedCertification, value); }
@@ -95,15 +133,15 @@ namespace RobinBradley2021.ViewModels
         public CitationModel SelectedCitation
         {
             get { return _selectedCitation; }
-            set { Set(ref _selectedCitation, value) ; }
+            set { Set(ref _selectedCitation, value); }
         }
         private DocumentModel _selectedDocument;
         public DocumentModel SelectedDocument
         {
             get { return _selectedDocument; }
-            set { Set(ref _selectedDocument, value) ; }
+            set { Set(ref _selectedDocument, value); }
         }
-
+        public ObservableCollection<DocumentModel> Documents { get; private set; }
         public ObservableCollection<DepartmentModel> Departments { get; private set; }
         public ObservableCollection<JobTitleModel> JobTitles { get; private set; }
         public ObservableCollection<EmployeeStatusModel> EmployeeStatuses { get; private set; }
@@ -121,9 +159,10 @@ namespace RobinBradley2021.ViewModels
                 return Enum.GetValues(typeof(EmailType)).Cast<EmailType>();
             }
         }
-        public ObservableCollection<string>ValidationErrors { get; private set; }
-
-
+        public ObservableCollection<RestrictionModel> Restrictions { get; private set; }
+        public ObservableCollection<CertificationRecordModel> Certifications { get; private set; }
+        public ObservableCollection<CitationModel> Citations { get; private set; }
+        public ObservableCollection<string> ValidationErrors { get; private set; }
         //COMMANDS
         public RelayCommand<object> AddPhoneCommand { get; private set; }
         public RelayCommand<object> AddEmailCommand { get; private set; }
@@ -132,23 +171,32 @@ namespace RobinBradley2021.ViewModels
         public RelayCommand<object> AddRestrictionCommand { get; private set; }
         public RelayCommand<object> AddDocumentCommand { get; private set; }
         public RelayCommand<object> ValidateNewEmployeeCommand { get; private set; }
+        public RelayCommand<object> SelectNewImageCommand { get; private set; }
+        public TokenCommand<EmployeeToken> LoadInitialDataCommand { get; private set; }
         public RelayCommand<ObservableCollection<PhoneModel>> RemovePhoneCommand { get; private set; }
         public RelayCommand<ObservableCollection<EmailModel>> RemoveEmailCommand { get; private set; }
-        public RelayCommand<ObservableCollection<CertificationModel>> RemoveCertificationCommand { get; private set; }
+        public RelayCommand<ObservableCollection<CertificationRecordModel>> RemoveCertificationCommand { get; private set; }
         public RelayCommand<ObservableCollection<CitationModel>> RemoveCitationCommand { get; private set; }
         public RelayCommand<ObservableCollection<RestrictionModel>> RemoveRestrictionCommand { get; private set; }
         public RelayCommand<ObservableCollection<DocumentModel>> RemoveDocumentCommand { get; private set; }
-
-        public RelayCommand<object> LoadComboboxesCommand { get; set; }
-
         //METHODS
         public void AddPhone(object e)
         {
-            _selectedEmployee.Phones.Add(NewPhone);
+            var newPhone = new PhoneModel();
+            newPhone.Number = NewPhoneNumber;
+            newPhone.Type = NewPhoneType;
+            _selectedEmployee.Phones.Add(newPhone);
+            NewPhoneNumber = string.Empty;
+            NewPhoneType = default;
         }
         public void AddEmail(object e)
         {
-            _selectedEmployee.Emails.Add(NewEmail);
+            var newEmail = new EmailModel();
+            newEmail.Address = NewEmailAddress;
+            newEmail.Type = NewEmailType;
+            _selectedEmployee.Emails.Add(newEmail);
+            NewEmailAddress = string.Empty;
+            NewEmailType = default;
         }
         public void AddRestriction(object e)
         {
@@ -169,7 +217,16 @@ namespace RobinBradley2021.ViewModels
         }
         public void AddDocument(object e)
         {
-            _selectedEmployee.Documents.Add(SelectedDocument);
+            var newFileDialog = new OpenFileDialog();
+            if (newFileDialog.ShowDialog() == true)
+            {
+                var selectedFileSafeName = newFileDialog.SafeFileName;
+                var selectedFileName = newFileDialog.FileName;
+                var newdoc = new DocumentModel();
+                newdoc.SafeName = selectedFileSafeName;
+                newdoc.Name = selectedFileName;
+                _selectedEmployee.Documents.Add(newdoc);
+            }
         }
         public void RemovePhone(object e)
         {
@@ -203,14 +260,14 @@ namespace RobinBradley2021.ViewModels
         }
         public void RemoveCertification(object e)
         {
-            var newList = new List<CertificationModel>();
-            foreach (CertificationModel certificationModel in SelectedEmployee.Certifications)
+            var newList = new List<CertificationRecordModel>();
+            foreach (CertificationRecordModel CertificationRecordModel in SelectedEmployee.Certifications)
             {
-                if (certificationModel.Id != SelectedCertification.Id)
-                    newList.Add(certificationModel);
+                if (CertificationRecordModel.Id != SelectedCertification.Id)
+                    newList.Add(CertificationRecordModel);
             }
             SelectedEmployee.Certifications.Clear();
-            foreach (CertificationModel certification in newList)
+            foreach (CertificationRecordModel certification in newList)
             {
                 SelectedEmployee.Certifications.Add(certification);
             }
@@ -252,24 +309,55 @@ namespace RobinBradley2021.ViewModels
             var newList = new List<DocumentModel>();
             if (SelectedEmployee.Documents != null)
             {
-                foreach (DocumentModel document in SelectedEmployee.Documents.Where(x => x.Id != SelectedDocument.Id))
+                for (int i = SelectedEmployee.Documents.Count - 1; i >= 0; i--)
                 {
-                    newList.Add(document);
+                    var document = SelectedEmployee.Documents[i];
+                    if (SelectedDocument != null && SelectedDocument == document)
+                        SelectedEmployee.Documents.Remove(document);
                 }
-                SelectedEmployee.Documents.Clear();
-                foreach (DocumentModel document in newList)
+            }
+        }
+        public void SelectImage(object e)
+        {
+            var selectImageDialog = new OpenFileDialog() { Filter = "Image Files(*.bmp; *.png; *.jpg)|*.bmp; *.png; *.jpg" };
+            if (selectImageDialog.ShowDialog() == true)
+            {
+                Image image = Image.FromFile(selectImageDialog.FileName.ToString());
+                if (image.Width != 250 || image.Height != 200)
                 {
-                    SelectedEmployee.Documents.Add(document);
+                    var errorMessage = "Please select an image with dimensions 250x200";
+                    MessageBox.Show(errorMessage);
+                }
+                else
+                {
+                    DisplayedImage = selectImageDialog.FileName.ToString();
+                    NewImage = image;
+                    var profilePhoto = new DocumentModel();
+                    profilePhoto.Name = DisplayedImage;
+                    SelectedEmployee.ProfilePhoto = profilePhoto;
                 }
             }
         }
         public async void LoadComboboxes(object e)
         {
-            var departments = await GetData.DepartmentQueryAsync();
-            var jobTitles = await GetData.JobTitleQueryAsync();
-            var employeeStatuses = await GetData.EmployeeStatusQueryAsync();
-
-
+            var departments = await AdministrationRepository.DepartmentQueryAsync();
+            var jobTitles = await AdministrationRepository.JobTitleQueryAsync();
+            var employeeStatuses = await AdministrationRepository.EmployeeStatusQueryAsync();
+            var certifications = await AdministrationRepository.CertificationQueryAsync();
+            var citations = await AdministrationRepository.CitationQueryAsync();
+            var restrictions = await AdministrationRepository.RestrictionQueryAsync();
+            foreach (CertificationRecordModel certification in certifications)
+            {
+                Certifications.Add(certification);
+            }
+            foreach (CitationModel citation in citations)
+            {
+                Citations.Add(citation);
+            }
+            foreach (RestrictionModel restriction in restrictions)
+            {
+                Restrictions.Add(restriction);
+            }
             foreach (DepartmentModel department in departments)
             {
                 Departments.Add(department);
@@ -289,7 +377,6 @@ namespace RobinBradley2021.ViewModels
             if (SelectedEmployee != null)
             {
                 var results = employeeValidator.Validate(SelectedEmployee);
-
                 if (results.IsValid == false)
                 {
                     foreach (ValidationFailure failure in results.Errors)
@@ -302,36 +389,49 @@ namespace RobinBradley2021.ViewModels
         }
         private void OnNewEmployeeToken(EmployeeToken token)
         {
-            SelectedEmployee = token.SelectedEmployee;
+            if (token != null)
+            {
+                SelectedEmployee = token.SelectedEmployee;
+            }
         }
-        
-        
         //CONSTRUCTOR
         public EditEmployeeWindowViewModel()
         {
-            LoadComboboxesCommand = new RelayCommand<object>(LoadComboboxes);
+            var now = DateTime.Now;
+            var oneYearAhead = now.AddDays(365);
+            SelectedEmployee = new EmployeeModel();
+            Messenger.Default.Register<EmployeeToken>(this, OnNewEmployeeToken);
+            LoadInitialDataCommand = new TokenCommand<EmployeeToken>(OnNewEmployeeToken, LoadComboboxes);
             EmployeeStatuses = new ObservableCollection<EmployeeStatusModel>();
             ValidationErrors = new ObservableCollection<string>();
-            Messenger.Default.Register<EmployeeToken>(this, OnNewEmployeeToken);
-
+            Restrictions = new ObservableCollection<RestrictionModel>();
+            Citations = new ObservableCollection<CitationModel>();
+            Certifications = new ObservableCollection<CertificationRecordModel>();
             Departments = new ObservableCollection<DepartmentModel>();
+            Documents = new ObservableCollection<DocumentModel>();
             JobTitles = new ObservableCollection<JobTitleModel>();
-            NewCitation = new CitationModel();
+            NewCitation = new CitationModel() { Date = DateTime.Now };
             NewPhone = new PhoneModel();
+            NewEmail = new EmailModel();
+            NewDocument = new DocumentModel();
+            NewImage = Image.FromFile(@"C:\Users\jwhit\source\repos\Robin-Bradley2021\Images\defaultUserImage.jpg");
+            DisplayedImage = @"C:\Users\jwhit\source\repos\Robin-Bradley2021\Images\defaultUserImage.jpg";
+            NewRestriction = new RestrictionModel() { BeginDate = DateTime.Now, EndDate = oneYearAhead };
+            NewCertification = new CertificationRecordModel() { DateStart = DateTime.Now, DateEnd = oneYearAhead };
             AddPhoneCommand = new RelayCommand<object>(AddPhone);
             AddEmailCommand = new RelayCommand<object>(AddEmail);
             AddCertificationCommand = new RelayCommand<object>(AddCertification);
             AddCitationCommand = new RelayCommand<object>(AddCitation);
             AddRestrictionCommand = new RelayCommand<object>(AddRestriction);
             AddDocumentCommand = new RelayCommand<object>(AddDocument);
+            SelectNewImageCommand = new RelayCommand<object>(SelectImage);
             RemovePhoneCommand = new RelayCommand<ObservableCollection<PhoneModel>>(RemovePhone);
             RemoveEmailCommand = new RelayCommand<ObservableCollection<EmailModel>>(RemoveEmail);
-            RemoveCertificationCommand = new RelayCommand<ObservableCollection<CertificationModel>>(RemoveCertification);
+            RemoveCertificationCommand = new RelayCommand<ObservableCollection<CertificationRecordModel>>(RemoveCertification);
             RemoveCitationCommand = new RelayCommand<ObservableCollection<CitationModel>>(RemoveCitation);
             RemoveRestrictionCommand = new RelayCommand<ObservableCollection<RestrictionModel>>(RemoveRestriction);
             RemoveDocumentCommand = new RelayCommand<ObservableCollection<DocumentModel>>(RemoveDocument);
             ValidateNewEmployeeCommand = new RelayCommand<object>(ValidateNewEmployee);
-
         }
     }
 }

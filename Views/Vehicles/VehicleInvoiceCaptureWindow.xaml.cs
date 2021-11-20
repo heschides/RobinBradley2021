@@ -15,13 +15,18 @@ using System.Windows.Shapes;
 namespace RobinBradley2021.Views.Vehicles
 {
     /// <summary>
-    /// Interaction logic for RecordInvoiceWindow.xaml
+    /// Interaction logic for VehicleInvoiceCaptureWindow.xaml
     /// </summary>
-    public partial class RecordInvoiceWindow : Window
+    public partial class VehicleInvoiceCaptureWindow : Window
     {
-        public RecordInvoiceWindow()
+        public VehicleInvoiceCaptureWindow()
         {
             InitializeComponent();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

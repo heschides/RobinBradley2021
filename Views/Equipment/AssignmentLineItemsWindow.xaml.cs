@@ -1,9 +1,5 @@
-﻿using RobinBradley2021.Models;
-using RobinBradley2021.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,18 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-
-namespace RobinBradley2021.Views
+namespace RobinBradley2021.Views.Equipment
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AssignmentLineItemsWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AssignmentLineItemsWindow : Window
     {
-        public MainWindow()
+        public AssignmentLineItemsWindow()
         {
             InitializeComponent();
         }
-
     }
 }

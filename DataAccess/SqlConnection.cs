@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RobinBradley2021.DataAccess
 {
-    public static class SqlConnect
+    public static class SqlConnection
     {
         public static string CnnString(string name)
         {

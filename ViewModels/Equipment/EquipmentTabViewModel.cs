@@ -54,7 +54,7 @@ namespace RobinBradley2021.ViewModels
         public async void RefreshEquipment(object e)
         {
 
-           var equipment = await GetData.EquipmentQueryAsync();
+           var equipment = await EquipmentRepository.EquipmentQueryAsync();
             var Ids = new List<int>();
             foreach (EquipmentModel _equipment in Equipment) { Ids.Add(_equipment.Id); }
 

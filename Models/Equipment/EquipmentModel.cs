@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RobinBradley2021.Models.Equipment;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -24,5 +25,6 @@ namespace RobinBradley2021.Models
         public int WarrantyMonths { get; set; }
         public ObservableCollection<EquipmentAssignmentRecordModel> Assignments { get; set; }
         public ObservableCollection<DocumentModel> Documents { get; set; }
+        public ObservableCollection<CICRecordModel>CICs { get; set; }
     }
 }
